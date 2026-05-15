@@ -1,0 +1,8 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 900'>
+<defs><linearGradient id='g2' x1='0' x2='1'><stop stop-color='#eefcf9'/><stop offset='1' stop-color='#d4f5ee'/></linearGradient></defs>
+<rect width='1200' height='900' fill='url(#g2)'/>
+<rect x='160' y='140' width='880' height='620' rx='28' fill='white' opacity='.92'/>
+<circle cx='360' cy='360' r='110' fill='#b8efe4'/><circle cx='840' cy='360' r='110' fill='#9be4d6'/>
+<rect x='300' y='540' width='600' height='34' rx='17' fill='#2aa893' opacity='.8'/>
+<text x='600' y='470' text-anchor='middle' font-family='Segoe UI,Arial' font-size='46' fill='#0d7464' font-weight='700'>Clear Treatment Planning</text>
+</svg>

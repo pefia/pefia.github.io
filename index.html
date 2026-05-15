@@ -1,1 +1,137 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Waterden Dental Practice | Home</title><link rel="stylesheet" href="assets/css/styles.css"></head><body><header id="site-header" class="site-header"></header><main><section class="hero"><div class="container hero-grid"><div><h1>Friendly dental care in the heart of Guildford</h1><p>At Waterden Dental Practice, we combine modern dentistry with a calm, welcoming environment and truly patient-focused care.</p><div style="display:flex;gap:.7rem;flex-wrap:wrap"><button class="btn" data-book-open>Book Appointment</button><a class="btn btn-outline" href="treatments.html">View Treatments</a></div></div><img class="hero-img" src="https://images.unsplash.com/photo-1609840112855-9a32fc5b6f40?auto=format&fit=crop&w=1200&q=80" alt="Patient smiling in a bright dental clinic"></div></section><section class="section"><div class="container"><h2>Treatments</h2><div id="homeTreatmentPreview" class="treatment-track"></div></div></section><section class="section section-soft"><div class="container hero-grid"><img class="hero-img" src="https://images.unsplash.com/photo-1588776814546-ec7f0b0dcaf3?auto=format&fit=crop&w=1200&q=80" alt="Dentist discussing treatment options with a patient"><div><h2>Welcome to Waterden Dental Practice</h2><p>We aim to make every visit feel comfortable, clear and reassuring, whether you need routine care or advanced treatment.</p></div></div></section><section class="section"><div class="container"><h2>Selected patient feedback</h2><div id="homeReviews" class="grid"></div></div></section><section class="section section-soft"><div class="container"><h3>Professional dental care with trusted industry standards.</h3><div class="trust-strip"><div class="logo-card">CQC</div><div class="logo-card">BDA</div><div class="logo-card">General Dental Council</div><div class="logo-card">Invisalign</div></div></div></section><section class="section"><div class="container card" style="text-align:center"><h2>Ready to book?</h2><p>Contact our friendly team or submit a mock appointment request online.</p><button class="btn" data-book-open>Book Appointment</button></div></section></main><footer id="site-footer" class="footer"></footer><div id="bookingModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Book appointment form"><div class="modal"><div style="display:flex;justify-content:space-between;align-items:center"><h2>Book Appointment</h2><button class="btn btn-outline" data-book-close>Close</button></div><form id="bookingForm"><div class="two-col"><label>Are you already a patient?<select required><option value="">Select</option><option>Yes</option><option>No</option></select></label><label>Full name<input class="input" required></label><label>Email<input class="input" type="email" required></label><label>Phone number<input class="input" required></label><label>Preferred contact method<select required><option value="">Select</option><option>Phone</option><option>Email</option></select></label><label>Preferred dentist<select required><option>No preference</option><option>Mitul</option><option>Mo</option><option>Other / Not sure</option></select></label><label>Preferred date<input class="input" type="date" required></label><label>Preferred time<input class="input" type="time" required></label></div><label>What do you need help with?<input class="input" required></label><label>Message<textarea rows="4"></textarea></label><div style="margin-top:1rem"><button class="btn" type="submit">Submit mock request</button></div></form></div></div><script src="assets/js/data.js"></script><script src="assets/js/main.js"></script><script src="assets/js/booking-modal.js"></script><script>if(document.getElementById("hoursList")){hoursList.innerHTML=siteData.hours.map(h=>`<div>${h[0]}: ${h[1]}</div>`).join("")}</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waterden Dental Practice | Home</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header id="site-header" class="site-header"></header>
+
+  <main>
+    <section class="hero hero-modern">
+      <div class="hero-bg-orb orb-one"></div>
+      <div class="hero-bg-orb orb-two"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal-up">
+          <span class="badge">Guildford Private & Family Dental Care</span>
+          <h1>Calm, modern dentistry designed around your smile</h1>
+          <p>
+            At Waterden Dental Practice, we blend advanced treatments with a gentle, reassuring approach so every visit feels clear, comfortable and confident.
+          </p>
+          <div class="hero-cta-row">
+            <button class="btn" data-book-open>Book Appointment</button>
+            <a class="btn btn-outline" href="treatments.html">Explore Treatments</a>
+          </div>
+          <div class="hero-stats" aria-label="Practice highlights">
+            <article class="stat-card pulse-stat"><strong data-count="4.9">4.9★</strong><span>Google Reviews</span></article>
+            <article class="stat-card pulse-stat"><strong>Platinum</strong><span>Invisalign Provider</span></article>
+            <article class="stat-card pulse-stat"><strong>Mon–Sat</strong><span>Flexible appointment options</span></article>
+          </div>
+        </div>
+        <div class="hero-media reveal-up delay-2">
+          <img class="hero-img" src="assets/img/hero-smile.svg" alt="Patient smiling in a bright dental clinic">
+          <div class="floating-note card">
+            <span class="pill">Trusted local team</span>
+            <p>Professional, friendly care focused on long-term oral health.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-head">
+          <span class="badge">Popular Services</span>
+          <h2>Treatments tailored to your goals</h2>
+        </div>
+        <div id="homeTreatmentPreview" class="treatment-track"></div>
+      </div>
+    </section>
+
+
+    <section class="section parallax-section">
+      <div class="container">
+        <div class="parallax-panel" data-parallax>
+          <h2>Precision Dentistry, Elevated Experience</h2>
+          <p>As you scroll, discover a smoother journey from consultation to confident smile.</p>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container split-panel reveal-up">
+        <img class="hero-img" src="assets/img/hero-consult.svg" alt="Dentist discussing treatment options with a patient">
+        <div>
+          <span class="badge">Why Waterden</span>
+          <h2>Welcome to a practice built on comfort, clarity and results</h2>
+          <p>
+            From preventive check-ups to advanced restorative care, we make your treatment journey straightforward with clear guidance and patient-first attention.
+          </p>
+          <ul class="feature-list">
+            <li>Friendly clinicians with consultation-led care</li>
+            <li>Modern techniques for precision and comfort</li>
+            <li>Transparent treatment planning and next steps</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="badge">Patient Reviews</span>
+          <h2>Selected feedback from our community</h2>
+        </div>
+        <div id="homeReviews" class="grid"></div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <h3>Professional dental care with trusted industry standards.</h3>
+        <div class="trust-strip">
+          <div class="logo-card">CQC</div>
+          <div class="logo-card">BDA</div>
+          <div class="logo-card">General Dental Council</div>
+          <div class="logo-card">Invisalign</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container card cta-panel">
+        <h2>Ready to book your appointment?</h2>
+        <p>Speak with our friendly team or submit an online mock appointment request in under 2 minutes.</p>
+        <button class="btn" data-book-open>Book Appointment</button>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="footer"></footer>
+
+  <div id="bookingModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle" aria-describedby="bookingModalDesc">
+    <div class="modal modal-animated">
+      <div class="modal-glow"></div>
+      <button class="icon-close" data-book-close aria-label="Close booking form">×</button>
+      <div class="modal-header">
+        <span class="badge">Book Appointment</span>
+        <h2 id="bookingModalTitle">Let’s find the right appointment for you</h2>
+        <p id="bookingModalDesc">Complete this quick form and our team will contact you shortly to confirm details.</p>
+      </div>
+      <form id="bookingForm">
+        <div class="progress-row" aria-hidden="true"></div>
+        <div id="bookingStepper" class="stepper-card"></div>
+        <div class="modal-actions">
+          <button class="btn btn-outline" type="button" id="stepBackBtn">Back</button>
+          <button class="btn" type="button" id="stepNextBtn">Next</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/booking-modal.js"></script>
+</body>
+</html>
