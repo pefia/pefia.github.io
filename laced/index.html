@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/webp" href="./cursorlogo.webp" />
+  <title>laced.cl — Coming Soon</title>
+  <style>
+    :root {
+      --cursor-size: 42px;
+      --flashlight-size: 260px;
+      --flashlight-x: 50vw;
+      --flashlight-y: 50vh;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      cursor: none;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000;
+    }
+
+    body {
+      background: url('./bg.jpg') center center / cover no-repeat fixed;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(
+        circle var(--flashlight-size) at var(--flashlight-x) var(--flashlight-y),
+        rgba(0, 0, 0, 0.05) 0%,
+        rgba(0, 0, 0, 0.15) 30%,
+        rgba(0, 0, 0, 0.78) 70%,
+        rgba(0, 0, 0, 0.88) 100%
+      );
+      z-index: 1;
+    }
+
+    .content {
+      position: fixed;
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 2rem;
+      pointer-events: none;
+    }
+
+    .logo {
+      width: min(45vw, 420px);
+      min-width: 190px;
+      height: auto;
+      filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.6));
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .ghost-btn {
+      pointer-events: auto;
+      border: 1.5px solid rgba(255, 255, 255, 0.82);
+      background: rgba(0, 0, 0, 0.28);
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.9rem 1.8rem;
+      font-size: 0.92rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.25) inset,
+        0 10px 30px rgba(0, 0, 0, 0.45);
+    }
+
+
+
+    .logo {
+      animation: logoGlow 3.2s ease-in-out infinite;
+    }
+
+    @keyframes logoGlow {
+      0%, 100% {
+        filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.2));
+      }
+      50% {
+        filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 26px rgba(255, 255, 255, 0.45));
+      }
+    }
+
+    .socials {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .socials a {
+      color: rgba(255, 255, 255, 0.92);
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      opacity: 0.9;
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .socials a:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .socials svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+      display: block;
+    }
+
+    .cursor {
+      position: fixed;
+      width: var(--cursor-size);
+      height: var(--cursor-size);
+      pointer-events: none;
+      z-index: 4;
+      left: 0;
+      top: 0;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="content" aria-label="Coming soon">
+    <img class="logo" src="./cursorlogo.webp" alt="Laced logo" />
+    <button class="ghost-btn" type="button">KNOW THE PASSWORD?</button>
+  </main>
+
+
+
+  <nav class="socials" aria-label="Social links">
+    <a href="https://instagram.com" target="_blank" rel="noreferrer noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6Zm9.65 1.5a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2.1a2.9 2.9 0 1 0 0 5.8 2.9 2.9 0 0 0 0-5.8Z"/></svg>
+    </a>
+    <a href="https://tiktok.com" target="_blank" rel="noreferrer noopener" aria-label="TikTok">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3h2.35c.33 1.93 1.48 3.35 3.15 3.95v2.43a7.05 7.05 0 0 1-3.1-.75V14.4a5.4 5.4 0 1 1-5.4-5.4c.2 0 .4.01.6.04v2.5a2.9 2.9 0 1 0 2.4 2.86V3Z"/></svg>
+    </a>
+    <a href="https://x.com" target="_blank" rel="noreferrer noopener" aria-label="X">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.2l-4.9-6.4L6.3 22H3.2l7.2-8.3L1 2h6.4l4.4 5.9L18.9 2Zm-1.1 18h1.7L6.4 3.9H4.6L17.8 20Z"/></svg>
+    </a>
+  </nav>
+
+  <img class="cursor" src="./cursorlogo.webp" alt="" aria-hidden="true" />
+
+  <script>
+    const root = document.documentElement;
+    const cursor = document.querySelector('.cursor');
+
+    const TRAIL_SECONDS = 0.2;
+    const IDLE_MS = 2000;
+
+    let x = window.innerWidth / 2;
+    let y = window.innerHeight / 2;
+    let targetX = x;
+    let targetY = y;
+
+    let autoX = x;
+    let autoY = y;
+    let autoVx = 1.6;
+    let autoVy = 1.25;
+
+    let autopilot = false;
+    let lastFrame = performance.now();
+    let idleTimer;
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function renderCursor() {
+      cursor.style.transform = `translate(${x - cursor.offsetWidth / 2}px, ${y - cursor.offsetHeight / 2}px)`;
+      root.style.setProperty('--flashlight-x', `${x}px`);
+      root.style.setProperty('--flashlight-y', `${y}px`);
+    }
+
+    function activateAutopilot() {
+      autopilot = true;
+      autoX = targetX;
+      autoY = targetY;
+    }
+
+    function deactivateAutopilot() {
+      autopilot = false;
+    }
+
+    function resetIdleTimer() {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(activateAutopilot, IDLE_MS);
+    }
+
+    function updateAutopilot() {
+      autoX += autoVx;
+      autoY += autoVy;
+
+      const maxX = window.innerWidth;
+      const maxY = window.innerHeight;
+
+      if (autoX >= maxX || autoX <= 0) {
+        autoVx *= -1;
+        autoX = clamp(autoX, 0, maxX);
+      }
+
+      if (autoY >= maxY || autoY <= 0) {
+        autoVy *= -1;
+        autoY = clamp(autoY, 0, maxY);
+      }
+
+      targetX = autoX;
+      targetY = autoY;
+    }
+
+    function loop(now) {
+      const dt = Math.max(0.001, (now - lastFrame) / 1000);
+      lastFrame = now;
+
+      if (autopilot) {
+        updateAutopilot();
+      }
+
+      const follow = 1 - Math.exp(-dt / TRAIL_SECONDS);
+      x += (targetX - x) * follow;
+      y += (targetY - y) * follow;
+
+      renderCursor();
+      requestAnimationFrame(loop);
+    }
+
+    function setPointerTarget(px, py) {
+      targetX = clamp(px, 0, window.innerWidth);
+      targetY = clamp(py, 0, window.innerHeight);
+      autoX = targetX;
+      autoY = targetY;
+      deactivateAutopilot();
+      resetIdleTimer();
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      setPointerTarget(e.clientX, e.clientY);
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!e.touches[0]) return;
+      setPointerTarget(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      targetX = clamp(targetX, 0, window.innerWidth);
+      targetY = clamp(targetY, 0, window.innerHeight);
+      autoX = clamp(autoX, 0, window.innerWidth);
+      autoY = clamp(autoY, 0, window.innerHeight);
+      x = clamp(x, 0, window.innerWidth);
+      y = clamp(y, 0, window.innerHeight);
+      renderCursor();
+    });
+
+    renderCursor();
+    resetIdleTimer();
+    requestAnimationFrame(loop);
+  </script>
+
+</body>
+</html>
