@@ -25,13 +25,13 @@
             <a class="btn btn-outline" href="treatments.html">Explore Treatments</a>
           </div>
           <div class="hero-stats" aria-label="Practice highlights">
-            <article class="stat-card"><strong>500+</strong><span>5-star patient reviews</span></article>
-            <article class="stat-card"><strong>15+</strong><span>treatments under one roof</span></article>
-            <article class="stat-card"><strong>Mon–Sat</strong><span>flexible appointment options</span></article>
+            <article class="stat-card pulse-stat"><strong data-count="4.9">4.9★</strong><span>Google Reviews</span></article>
+            <article class="stat-card pulse-stat"><strong>Platinum</strong><span>Invisalign Provider</span></article>
+            <article class="stat-card pulse-stat"><strong>Mon–Sat</strong><span>Flexible appointment options</span></article>
           </div>
         </div>
         <div class="hero-media reveal-up delay-2">
-          <img class="hero-img" src="https://images.unsplash.com/photo-1609840112855-9a32fc5b6f40?auto=format&fit=crop&w=1400&q=80" alt="Patient smiling in a bright dental clinic">
+          <img class="hero-img" src="assets/img/hero-smile.svg" alt="Patient smiling in a bright dental clinic">
           <div class="floating-note card">
             <span class="pill">Trusted local team</span>
             <p>Professional, friendly care focused on long-term oral health.</p>
@@ -50,9 +50,18 @@
       </div>
     </section>
 
+
+    <section class="section parallax-section">
+      <div class="container">
+        <div class="parallax-panel" data-parallax>
+          <h2>Precision Dentistry, Elevated Experience</h2>
+          <p>As you scroll, discover a smoother journey from consultation to confident smile.</p>
+        </div>
+      </div>
+    </section>
     <section class="section">
       <div class="container split-panel reveal-up">
-        <img class="hero-img" src="https://images.unsplash.com/photo-1588776814546-ec7f0b0dcaf3?auto=format&fit=crop&w=1200&q=80" alt="Dentist discussing treatment options with a patient">
+        <img class="hero-img" src="assets/img/hero-consult.svg" alt="Dentist discussing treatment options with a patient">
         <div>
           <span class="badge">Why Waterden</span>
           <h2>Welcome to a practice built on comfort, clarity and results</h2>
@@ -111,43 +120,11 @@
         <p id="bookingModalDesc">Complete this quick form and our team will contact you shortly to confirm details.</p>
       </div>
       <form id="bookingForm">
-        <div class="progress-row" aria-hidden="true">
-          <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
-        </div>
-        <div class="two-col">
-          <label>Are you already a patient?
-            <select required>
-              <option value="">Select</option>
-              <option>Yes</option>
-              <option>No</option>
-            </select>
-          </label>
-          <label>Full name<input class="input" required></label>
-          <label>Email<input class="input" type="email" required></label>
-          <label>Phone number<input class="input" required></label>
-          <label>Preferred contact method
-            <select required>
-              <option value="">Select</option>
-              <option>Phone</option>
-              <option>Email</option>
-            </select>
-          </label>
-          <label>Preferred dentist
-            <select required>
-              <option>No preference</option>
-              <option>Mitul</option>
-              <option>Mo</option>
-              <option>Other / Not sure</option>
-            </select>
-          </label>
-          <label>Preferred date<input class="input" type="date" required></label>
-          <label>Preferred time<input class="input" type="time" required></label>
-        </div>
-        <label>What do you need help with?<input class="input" required></label>
-        <label>Message<textarea rows="4"></textarea></label>
+        <div class="progress-row" aria-hidden="true"></div>
+        <div id="bookingStepper" class="stepper-card"></div>
         <div class="modal-actions">
-          <button class="btn" type="submit">Submit mock request</button>
-          <button class="btn btn-outline" type="button" data-book-close>Cancel</button>
+          <button class="btn btn-outline" type="button" id="stepBackBtn">Back</button>
+          <button class="btn" type="button" id="stepNextBtn">Next</button>
         </div>
       </form>
     </div>
