@@ -20,6 +20,42 @@ function initContactForm(){const f=document.getElementById('contact-form');const
 function initEstimator(){const pages=document.getElementById('est-pages'),seo=document.getElementById('est-seo'),copy=document.getElementById('est-copy'),booking=document.getElementById('est-booking'),out=document.getElementById('estimate-value');if(!pages||!seo||!copy||!booking||!out)return;const calc=()=>{const min=220+Number(pages.value)*95+Number(seo.value)*140+Number(copy.value)*180+Number(booking.value)*160;const max=Math.round(min*1.55);out.textContent=`£${min} - £${max}`;};[pages,seo,copy,booking].forEach(el=>el.addEventListener('input',calc));calc();}
 function initBackToTop(){const b=document.getElementById('back-to-top');window.addEventListener('scroll',()=>b.style.display=window.scrollY>500?'block':'none');b?.addEventListener('click',()=>window.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));}
 
+
+function initGsapStats(){
+  if(reduceMotion||window.innerWidth<900||!window.gsap||!window.ScrollTrigger)return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const sections=[...document.querySelectorAll('.stats-scroll .stat-page')];
+  if(sections.length){
+    sections.forEach((section)=>{
+      ScrollTrigger.create({
+        trigger:section,
+        start:'top top',
+        end:'bottom top',
+        pin:true,
+        pinSpacing:false,
+        scrub:0.25,
+        invalidateOnRefresh:true
+      });
+    });
+  }
+
+  const stories=[...document.querySelectorAll('.story-snap .story-panel')];
+  if(stories.length){
+    stories.forEach((panel)=>{
+      ScrollTrigger.create({
+        trigger:panel,
+        start:'top top',
+        end:'bottom top',
+        pin:true,
+        pinSpacing:false,
+        scrub:0.2,
+        invalidateOnRefresh:true
+      });
+    });
+  }
+}
+
 function initTiltCards(){if(window.innerWidth<900||reduceMotion)return;document.querySelectorAll('.tilt').forEach(card=>{card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;card.style.transform=`rotateX(${(-y*8).toFixed(2)}deg) rotateY(${(x*10).toFixed(2)}deg)`;});card.addEventListener('mouseleave',()=>card.style.transform='');});}
 
 initCursorGlow();initMobileNav();initSmoothScroll();initScrollAnimations();initStatsCounters();initGsapStats();initAuditTool();initContactForm();initEstimator();initBackToTop();initTiltCards();
