@@ -21,62 +21,46 @@ function initEstimator(){const pages=document.getElementById('est-pages'),seo=do
 function initBackToTop(){const b=document.getElementById('back-to-top');window.addEventListener('scroll',()=>b.style.display=window.scrollY>500?'block':'none');b?.addEventListener('click',()=>window.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));}
 
 
-function initGsapStats(){
-  if(!window.gsap||!window.ScrollTrigger)return;
-  gsap.registerPlugin(ScrollTrigger);
+function initScrollMagicPins(){
+  if(reduceMotion||window.innerWidth<900)return;
+  if(!window.ScrollMagic)return;
 
-  const contexts=[];
-  const selectors=['.stats-scroll .stat-page','.story-snap .story-panel'];
-  const unwrapPinSpacers=()=>{
-    document.querySelectorAll('.pin-spacer').forEach((spacer)=>{
-      const parent=spacer.parentNode;
-      if(!parent)return;
-      while(spacer.firstChild)parent.insertBefore(spacer.firstChild,spacer);
-      parent.removeChild(spacer);
-    });
-  };
+  const controller=new ScrollMagic.Controller();
+  const scenes=[];
 
-  const createPins=(selector,scrub)=>{
-    document.querySelectorAll(selector).forEach((item)=>{
-      ScrollTrigger.create({
-        trigger:item,
-        start:'top top',
-        end:'bottom top',
-        pin:true,
-        pinSpacing:false,
-        scrub,
-        invalidateOnRefresh:true
+  const build=()=>{
+    scenes.splice(0).forEach(scene=>scene.destroy(true));
+
+    [['.stats-scroll .stat-page',0.22],['.story-snap .story-panel',0.2]].forEach(([selector,hook])=>{
+      document.querySelectorAll(selector).forEach((item)=>{
+        const scene=new ScrollMagic.Scene({
+          triggerElement:item,
+          triggerHook:hook,
+          duration:item.offsetHeight
+        }).setPin(item,{pushFollowers:false}).addTo(controller);
+
+        scenes.push(scene);
       });
     });
+
+    controller.update(true);
   };
 
-  const teardown=()=>{
-    selectors.forEach((selector)=>{
-      ScrollTrigger.getAll().forEach((trigger)=>{
-        if(trigger.trigger?.matches?.(selector))trigger.kill(true);
-      });
-    });
-    unwrapPinSpacers();
+  let resizeTimer;
+  const onResize=()=>{
+    clearTimeout(resizeTimer);
+    resizeTimer=setTimeout(build,120);
   };
 
-  unwrapPinSpacers();
-
-  contexts.push(ScrollTrigger.matchMedia({
-    '(prefers-reduced-motion: no-preference) and (min-width: 900px)':()=>{
-      createPins('.stats-scroll .stat-page',0.25);
-      createPins('.story-snap .story-panel',0.2);
-      ScrollTrigger.refresh();
-    },
-    all:()=>teardown
-  }));
-
-  window.addEventListener('resize',()=>ScrollTrigger.refresh());
+  build();
+  window.addEventListener('resize',onResize);
   window.addEventListener('beforeunload',()=>{
-    contexts.forEach((ctx)=>ctx?.kill?.(true));
-    teardown();
+    scenes.forEach(scene=>scene.destroy(true));
+    controller.destroy(true);
+    window.removeEventListener('resize',onResize);
   },{once:true});
 }
 
 function initTiltCards(){if(window.innerWidth<900||reduceMotion)return;document.querySelectorAll('.tilt').forEach(card=>{card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;card.style.transform=`rotateX(${(-y*8).toFixed(2)}deg) rotateY(${(x*10).toFixed(2)}deg)`;});card.addEventListener('mouseleave',()=>card.style.transform='');});}
 
-initCursorGlow();initMobileNav();initSmoothScroll();initScrollAnimations();initStatsCounters();initGsapStats();initAuditTool();initContactForm();initEstimator();initBackToTop();initTiltCards();
+initCursorGlow();initMobileNav();initSmoothScroll();initScrollAnimations();initStatsCounters();initScrollMagicPins();initAuditTool();initContactForm();initEstimator();initBackToTop();initTiltCards();
