@@ -49,6 +49,10 @@
       </div>
       <p class="punch">Your website should not be quietly costing you customers.</p>
     </section>
+    <aside class="sticky-cta" aria-label="Quick actions">
+      <a class="btn" href="#contact">Book free consult</a>
+      <a class="btn btn-ghost" href="#pricing-estimator">Get estimate</a>
+    </aside>
 
     <section class="story-snap" id="story">
       <article class="story-panel reveal"><h2>Your website is your first impression.</h2><p>If it loads slowly, looks dated, or hides the contact button, customers leave before you even get a chance.</p><span class="big-num">01</span></article>
@@ -59,21 +63,25 @@
 
     <section class="stats-scroll" id="stats">
       <article class="stat-page reveal">
+        <div class="stat-3d model-orb" aria-hidden="true"></div>
         <p class="stat-kicker">Typical improvement target</p>
         <strong class="stat-value" data-count="33" data-suffix="%">0%</strong>
         <h2>Faster perceived load time.</h2>
       </article>
       <article class="stat-page reveal">
+        <div class="stat-3d model-cube" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
         <p class="stat-kicker">Typical conversion clarity uplift</p>
         <strong class="stat-value" data-count="2.4" data-suffix="x">0x</strong>
         <h2>Clearer, stronger calls-to-action.</h2>
       </article>
       <article class="stat-page reveal">
+        <div class="stat-3d model-pyramid" aria-hidden="true"></div>
         <p class="stat-kicker">Design trust signal</p>
         <strong class="stat-value" data-count="71" data-suffix="%">0%</strong>
         <h2>Customers judge credibility in seconds.</h2>
       </article>
       <article class="stat-page reveal">
+        <div class="stat-3d model-ring" aria-hidden="true"></div>
         <p class="stat-kicker">Build standard</p>
         <strong class="stat-value" data-count="100" data-suffix="%">0%</strong>
         <h2>Mobile-first by default.</h2>
@@ -87,6 +95,11 @@
       <article class="service-card tilt"><h3>Local SEO Structure</h3><p>Pages, headings, metadata, and content structure built around how customers search.</p></article>
       <article class="service-card tilt"><h3>Speed & UX Improvements</h3><p>Cleaner layouts, faster pages, better spacing, easier contact routes.</p></article>
       <article class="service-card tilt"><h3>Ongoing Support</h3><p>Updates, edits, improvements, and support after launch.</p></article>
+    </div></section>
+    <section class="cases container reveal" id="cases"><h2>Proof, not promises.</h2><div class="case-grid">
+      <article class="card"><h3>Local clinic relaunch</h3><p>+38% inbound enquiries in 45 days.</p></article>
+      <article class="card"><h3>Trades business rebuild</h3><p>-1.3s median mobile load time after launch.</p></article>
+      <article class="card"><h3>Coaching service funnel</h3><p>2.1x more form starts from clearer CTAs.</p></article>
     </div></section>
 
     <section class="before-after container reveal">
@@ -102,6 +115,16 @@
       <article class="price-card featured"><h3>Business Site</h3><p>Most popular</p><ul><li>4-6 page website</li><li>Service pages</li><li>Contact form mockup</li><li>Local SEO structure</li><li>Speed-focused build</li></ul><strong>From £699</strong></article>
       <article class="price-card"><h3>Growth Site</h3><p>For businesses ready to scale</p><ul><li>Full website system</li><li>Landing pages</li><li>Content structure</li><li>Analytics setup guidance</li><li>Ongoing support option</li></ul><strong>From £1,200</strong></article>
     </div></section>
+    <section class="pricing-estimator container reveal" id="pricing-estimator">
+      <h2>Interactive estimate</h2>
+      <div class="card estimator-grid">
+        <label>Pages <input id="est-pages" type="range" min="1" max="12" value="5" /></label>
+        <label>SEO depth <input id="est-seo" type="range" min="0" max="3" value="2" /></label>
+        <label>Copywriting <input id="est-copy" type="range" min="0" max="3" value="1" /></label>
+        <label>Booking integration <input id="est-booking" type="range" min="0" max="1" value="1" /></label>
+        <p class="estimate-output">Estimated range: <strong id="estimate-value">£0 - £0</strong></p>
+      </div>
+    </section>
 
     <section class="contact container reveal" id="contact">
       <h2>Ready for take-off?</h2>
@@ -110,7 +133,11 @@
       <form id="contact-form">
         <label>Name<input name="name" required /></label>
         <label>Business name<input name="business" required /></label>
+        <label>Business type<select name="type" required><option value="">Choose type</option><option>Dentist</option><option>Restaurant</option><option>Plumber</option><option>Coach</option><option>Agency</option><option>Other</option></select></label>
         <label>Current website<input name="website" type="url" /></label>
+        <label>Timeline<select name="timeline" required><option value="">Choose timeline</option><option>ASAP</option><option>Within 1 month</option><option>Within 3 months</option><option>3+ months</option></select></label>
+        <label>Monthly traffic<select name="traffic" required><option value="">Choose traffic</option><option>&lt; 1,000</option><option>1,000 - 5,000</option><option>5,000 - 20,000</option><option>20,000+</option></select></label>
+        <label>Current platform<select name="platform" required><option value="">Choose platform</option><option>WordPress</option><option>Wix</option><option>Shopify</option><option>Squarespace</option><option>Custom</option></select></label>
         <label>What do you need help with?<textarea name="help" required></textarea></label>
         <label>Budget<select name="budget" required><option value="">Choose budget</option><option>Under £500</option><option>£500–£1,000</option><option>£1,000–£2,500</option><option>£2,500+</option></select></label>
         <button class="btn" type="submit">Request my website plan</button>
@@ -121,6 +148,8 @@
 
   <footer class="footer container"><a class="logo" href="#top">SitePilots</a><p>Websites for small businesses that want to look bigger.</p><div><a href="#services">Services</a> · <a href="#audit">Audit</a> · <a href="#pricing">Pricing</a> · <a href="#contact">Contact</a></div><small>© 2026 SitePilots. All rights reserved.</small></footer>
   <button id="back-to-top" aria-label="Back to top">↑</button>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
