@@ -22,38 +22,59 @@ function initBackToTop(){const b=document.getElementById('back-to-top');window.a
 
 
 function initGsapStats(){
-  if(reduceMotion||window.innerWidth<900||!window.gsap||!window.ScrollTrigger)return;
+  if(!window.gsap||!window.ScrollTrigger)return;
   gsap.registerPlugin(ScrollTrigger);
 
-  const sections=[...document.querySelectorAll('.stats-scroll .stat-page')];
-  if(sections.length){
-    sections.forEach((section)=>{
-      ScrollTrigger.create({
-        trigger:section,
-        start:'top top',
-        end:'bottom top',
-        pin:true,
-        pinSpacing:false,
-        scrub:0.25,
-        invalidateOnRefresh:true
-      });
+  const contexts=[];
+  const selectors=['.stats-scroll .stat-page','.story-snap .story-panel'];
+  const unwrapPinSpacers=()=>{
+    document.querySelectorAll('.pin-spacer').forEach((spacer)=>{
+      const parent=spacer.parentNode;
+      if(!parent)return;
+      while(spacer.firstChild)parent.insertBefore(spacer.firstChild,spacer);
+      parent.removeChild(spacer);
     });
-  }
+  };
 
-  const stories=[...document.querySelectorAll('.story-snap .story-panel')];
-  if(stories.length){
-    stories.forEach((panel)=>{
+  const createPins=(selector,scrub)=>{
+    document.querySelectorAll(selector).forEach((item)=>{
       ScrollTrigger.create({
-        trigger:panel,
+        trigger:item,
         start:'top top',
         end:'bottom top',
         pin:true,
         pinSpacing:false,
-        scrub:0.2,
+        scrub,
         invalidateOnRefresh:true
       });
     });
-  }
+  };
+
+  const teardown=()=>{
+    selectors.forEach((selector)=>{
+      ScrollTrigger.getAll().forEach((trigger)=>{
+        if(trigger.trigger?.matches?.(selector))trigger.kill(true);
+      });
+    });
+    unwrapPinSpacers();
+  };
+
+  unwrapPinSpacers();
+
+  contexts.push(ScrollTrigger.matchMedia({
+    '(prefers-reduced-motion: no-preference) and (min-width: 900px)':()=>{
+      createPins('.stats-scroll .stat-page',0.25);
+      createPins('.story-snap .story-panel',0.2);
+      ScrollTrigger.refresh();
+    },
+    all:()=>teardown
+  }));
+
+  window.addEventListener('resize',()=>ScrollTrigger.refresh());
+  window.addEventListener('beforeunload',()=>{
+    contexts.forEach((ctx)=>ctx?.kill?.(true));
+    teardown();
+  },{once:true});
 }
 
 function initTiltCards(){if(window.innerWidth<900||reduceMotion)return;document.querySelectorAll('.tilt').forEach(card=>{card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;card.style.transform=`rotateX(${(-y*8).toFixed(2)}deg) rotateY(${(x*10).toFixed(2)}deg)`;});card.addEventListener('mouseleave',()=>card.style.transform='');});}
