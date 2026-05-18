@@ -7,7 +7,7 @@
   <meta name="description" content="SitePilots builds fast, high-converting websites for small businesses. Look bigger. Load faster. Convert better." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -33,7 +33,7 @@
       <p class="eyebrow">Small businesses deserve serious websites.</p>
       <h1>Unlock your digital potential.</h1>
       <p class="lead">SitePilots builds fast, high-converting websites for small businesses that are tired of looking small online.</p>
-      <p class="sublead">Paste your current website below. Get an instant preview audit.</p>
+      <p class="sublead">Paste your current website below. Get an instant preview audit with a live mini-site preview.</p>
 
       <div class="audit-panel glass">
         <label for="website-url" class="sr-only">Paste website URL</label>
@@ -57,16 +57,31 @@
       <article class="story-panel reveal"><h2>From invisible to unavoidable.</h2><p>SitePilots gives your business a sharper online presence, clearer message, and a better route to customers.</p><span class="big-num">04</span></article>
     </section>
 
-    <section class="stats container reveal" id="stats">
-      <h2>Built around the numbers that actually matter.</h2>
-      <p class="muted">Typical improvement goals, not guaranteed outcomes.</p>
-      <div class="stat-grid">
-        <div class="card"><strong data-count="33">0</strong><span>% faster perceived load time</span></div>
-        <div class="card"><strong data-count="2.4">0</strong><span>x clearer calls-to-action</span></div>
-        <div class="card"><strong data-count="71">0</strong><span>Design signal: most customers judge credibility fast.</span></div>
-        <div class="card"><strong data-count="100">0</strong><span>% mobile-first builds</span></div>
-        <div class="card"><strong data-count="0">0</strong><span>jargon. Just results.</span></div>
-      </div>
+    <section class="stats-scroll" id="stats">
+      <article class="stat-page reveal">
+        <div class="stat-3d model-orb" aria-hidden="true"></div>
+        <p class="stat-kicker">Typical improvement target</p>
+        <strong class="stat-value" data-count="33" data-suffix="%">0%</strong>
+        <h2>Faster perceived load time.</h2>
+      </article>
+      <article class="stat-page reveal">
+        <div class="stat-3d model-cube" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <p class="stat-kicker">Typical conversion clarity uplift</p>
+        <strong class="stat-value" data-count="2.4" data-suffix="x">0x</strong>
+        <h2>Clearer, stronger calls-to-action.</h2>
+      </article>
+      <article class="stat-page reveal">
+        <div class="stat-3d model-pyramid" aria-hidden="true"></div>
+        <p class="stat-kicker">Design trust signal</p>
+        <strong class="stat-value" data-count="71" data-suffix="%">0%</strong>
+        <h2>Customers judge credibility in seconds.</h2>
+      </article>
+      <article class="stat-page reveal">
+        <div class="stat-3d model-ring" aria-hidden="true"></div>
+        <p class="stat-kicker">Build standard</p>
+        <strong class="stat-value" data-count="100" data-suffix="%">0%</strong>
+        <h2>Mobile-first by default.</h2>
+      </article>
     </section>
 
     <section class="services container reveal" id="services"><h2>Everything your business needs to look dangerous online.</h2><div class="service-grid">
@@ -110,6 +125,8 @@
 
   <footer class="footer container"><a class="logo" href="#top">SitePilots</a><p>Websites for small businesses that want to look bigger.</p><div><a href="#services">Services</a> · <a href="#audit">Audit</a> · <a href="#pricing">Pricing</a> · <a href="#contact">Contact</a></div><small>© 2026 SitePilots. All rights reserved.</small></footer>
   <button id="back-to-top" aria-label="Back to top">↑</button>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
