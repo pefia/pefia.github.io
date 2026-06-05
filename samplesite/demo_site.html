@@ -695,9 +695,11 @@
     // fromTo with explicit y:0 neutralises the px value GSAP derives from the
     // CSS `translateY(110%)` resting state — otherwise px + yPercent combine and
     // the lines stay pushed down (clipped by the overflow mask = invisible).
+    // NB: do NOT clearProps here — that would revert to the stylesheet's
+    // translateY(110%) and hide the text again after the tween finishes.
     gsap.fromTo('.reveal-line > *',
       { yPercent:110, y:0 },
-      { yPercent:0, y:0, duration:1.1, ease:'power4.out', stagger:0.12, delay:0.15, clearProps:'transform' });
+      { yPercent:0, y:0, duration:1.1, ease:'power4.out', stagger:0.12, delay:0.15 });
 
     // generic reveals — fade + rise, staggered per section
     gsap.utils.toArray('.reveal').forEach((el)=>{
