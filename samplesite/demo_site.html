@@ -3,1219 +3,744 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Ace Plumbing & Heating — fast, reliable, fully insured emergency plumbers serving Hackney and East London. Available 24/7." />
-<title>Ace Plumbing &amp; Heating · Emergency Plumber in Hackney, London</title>
+<meta name="description" content="Ace Plumbing & Heating — Gas-Safe plumbers and heating engineers serving Hackney and East London since 2013. Honest pricing, tidy work, available 24/7." />
+<title>Ace Plumbing &amp; Heating — Hackney's plumbers since 2013</title>
 
-<!-- Google Fonts -->
+<!-- Fonts: editorial serif + clean sans -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-<!-- AOS -->
-<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-<!-- Swiper -->
+<!-- Swiper (your plugin) -->
 <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet" />
 
 <style>
-  /* ============================================================
-     DESIGN TOKENS
-     ============================================================ */
-  :root {
-    --primary: #0b2545;      /* deep navy */
-    --primary-700: #13315c;
-    --primary-900: #061528;
-    --accent: #f0a500;       /* warm gold */
-    --accent-700: #d68f00;
-    --accent-glow: rgba(240, 165, 0, 0.45);
-    --dark: #0a0a0a;
-    --light: #f8f8f8;
-    --text: #2d2d2d;
-    --muted: #6b7280;
-    --white: #ffffff;
-    --radius-card: 16px;
-    --radius-input: 8px;
-    --radius-pill: 50px;
-    --shadow-sm: 0 2px 8px rgba(11, 37, 69, 0.08);
-    --shadow-md: 0 10px 30px rgba(11, 37, 69, 0.12);
-    --shadow-lg: 0 24px 60px rgba(11, 37, 69, 0.22);
-    --ease: cubic-bezier(0.22, 1, 0.36, 1);
-    --maxw: 1200px;
+  /* ===========================================================
+     TOKENS — warm, editorial, trade-appropriate
+     =========================================================== */
+  :root{
+    --ink:#17140f;          /* near-black, warm */
+    --ink-soft:#4a443b;
+    --paper:#f3efe7;        /* warm off-white */
+    --paper-2:#ece6da;
+    --sand:#e3d8c6;
+    --line:#d9d0c0;
+    --pine:#163a32;         /* deep pine/teal — water + warmth */
+    --pine-700:#1f4a40;
+    --copper:#c2602f;       /* copper pipe accent */
+    --copper-600:#a94f24;
+    --copper-tint:rgba(194,96,47,.12);
+    --white:#fff;
+
+    --r-lg:20px; --r-md:14px; --r-sm:8px;
+    --maxw:1180px;
+    --pad:clamp(20px,5vw,40px);
+    --ease:cubic-bezier(.22,1,.36,1);
+    --serif:"Fraunces",Georgia,serif;
+    --sans:"Inter",system-ui,sans-serif;
   }
 
-  /* ============================================================
-     RESET & BASE (mobile-first)
-     ============================================================ */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{ -webkit-text-size-adjust:100% }
+  body{
+    font-family:var(--sans);
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    font-size:16px;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* Lenis */
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
 
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-
-  body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    color: var(--text);
-    background: var(--light);
-    line-height: 1.65;
-    font-size: 16px;
-    overflow-x: hidden;
+  /* film grain overlay for tactile, non-flat feel */
+  body::after{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  h1, h2, h3, .display { font-family: 'Syne', sans-serif; line-height: 1.08; letter-spacing: -0.02em; }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  ul{list-style:none}
+  ::selection{background:var(--copper);color:#fff}
 
-  a { color: inherit; text-decoration: none; }
-  img { max-width: 100%; display: block; }
-  ul { list-style: none; }
+  h1,h2,h3,h4,.serif{font-family:var(--serif);font-weight:500;line-height:1.04;letter-spacing:-.015em}
 
-  .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+  .section{padding:clamp(64px,11vw,140px) 0;position:relative}
 
-  section { padding: 56px 0; position: relative; }
-
-  .eyebrow {
-    display: inline-block;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent-700);
-    margin-bottom: 14px;
+  .kicker{
+    font-family:var(--sans);font-size:.72rem;font-weight:500;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--copper-600);
+    display:inline-flex;align-items:center;gap:10px;
   }
+  .kicker::before{content:"";width:26px;height:1px;background:var(--copper)}
 
-  .section-title {
-    font-size: clamp(1.9rem, 5vw, 3rem);
-    font-weight: 800;
-    color: var(--primary);
-    position: relative;
-    display: inline-block;
-    margin-bottom: 18px;
-  }
-  .section-title::after {
-    content: "";
-    position: absolute;
-    left: 0; bottom: -10px;
-    height: 4px; width: 0;
-    background: linear-gradient(90deg, var(--accent), var(--accent-700));
-    border-radius: 4px;
-    transition: width 0.9s var(--ease) 0.2s;
-  }
-  .section-title.in-view::after { width: 64px; }
+  .h-display{font-size:clamp(2.6rem,8vw,5.6rem)}
+  .h-section{font-size:clamp(2rem,5.5vw,3.4rem)}
+  .lead{font-size:clamp(1.05rem,2.4vw,1.25rem);color:var(--ink-soft);font-weight:300;max-width:54ch}
 
-  .section-head { margin-bottom: 40px; }
-  .section-head p { color: var(--muted); max-width: 560px; font-size: 1.02rem; }
-
-  /* ============================================================
-     BUTTONS — background sweep on hover
-     ============================================================ */
-  .btn {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 0.98rem;
-    padding: 14px 28px;
-    border-radius: var(--radius-pill);
-    border: 2px solid transparent;
-    cursor: pointer;
-    overflow: hidden;
-    z-index: 1;
-    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), color 0.35s var(--ease);
-    isolation: isolate;
+  /* buttons — quieter, confident */
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--sans);font-weight:500;font-size:.95rem;
+    padding:15px 26px;border-radius:50px;cursor:pointer;border:1px solid transparent;
+    transition:transform .4s var(--ease),background .4s var(--ease),color .4s var(--ease),box-shadow .4s var(--ease);
   }
-  .btn::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    transform: translateX(-101%);
-    transition: transform 0.45s var(--ease);
-  }
-  .btn:hover { transform: translateY(-2px); }
-  .btn:hover::before { transform: translateX(0); }
+  .btn-solid{background:var(--ink);color:var(--paper)}
+  .btn-solid:hover{background:var(--copper-600);transform:translateY(-3px);box-shadow:0 14px 30px rgba(169,79,36,.28)}
+  .btn-copper{background:var(--copper);color:#fff}
+  .btn-copper:hover{background:var(--copper-600);transform:translateY(-3px);box-shadow:0 14px 30px rgba(169,79,36,.3)}
+  .btn-outline{border-color:var(--ink);color:var(--ink);background:transparent}
+  .btn-outline:hover{background:var(--ink);color:var(--paper);transform:translateY(-3px)}
+  .btn .arr{transition:transform .4s var(--ease)}
+  .btn:hover .arr{transform:translate(3px,-3px)}
 
-  .btn-primary { background: var(--accent); color: var(--primary-900); box-shadow: 0 10px 24px var(--accent-glow); }
-  .btn-primary::before { background: var(--primary); }
-  .btn-primary:hover { color: var(--white); }
+  /* underline text-link */
+  .tlink{position:relative;font-weight:500;padding-bottom:3px}
+  .tlink::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:100%;background:currentColor;transform-origin:right;transform:scaleX(0);transition:transform .5s var(--ease)}
+  .tlink:hover::after{transform-origin:left;transform:scaleX(1)}
 
-  .btn-ghost { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.5); }
-  .btn-ghost::before { background: var(--white); }
-  .btn-ghost:hover { color: var(--primary); border-color: var(--white); }
+  /* reveal primitives (GSAP toggles these via JS, CSS is the resting state) */
+  .reveal{opacity:0;transform:translateY(26px)}
+  .reveal-line{overflow:hidden;display:block}
+  .reveal-line > *{display:block;transform:translateY(110%)}
 
-  .btn-dark { background: var(--primary); color: var(--white); }
-  .btn-dark::before { background: var(--accent); }
-  .btn-dark:hover { color: var(--primary-900); }
+  /* progress */
+  #progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--copper);z-index:1000}
 
-  /* ============================================================
-     SCROLL PROGRESS BAR
-     ============================================================ */
-  #progress-bar {
-    position: fixed;
-    top: 0; left: 0;
-    height: 3px;
-    width: 0%;
-    background: linear-gradient(90deg, var(--accent), var(--accent-700));
-    z-index: 1000;
-    transition: width 0.1s linear;
-  }
+  /* ===========================================================
+     NAV
+     =========================================================== */
+  .nav{position:fixed;inset:0 0 auto 0;z-index:900;transition:padding .4s var(--ease),background .4s var(--ease),box-shadow .4s var(--ease),backdrop-filter .4s;padding:24px 0}
+  .nav.solid{background:rgba(243,239,231,.8);backdrop-filter:blur(14px) saturate(150%);box-shadow:0 1px 0 var(--line);padding:14px 0}
+  .nav-in{display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:var(--serif);font-weight:600;font-size:1.3rem;letter-spacing:-.02em;display:flex;align-items:center;gap:11px}
+  .brand .dot{width:30px;height:30px;border-radius:9px;background:var(--pine);color:var(--paper);display:grid;place-items:center;font-size:.95rem;transition:transform .5s var(--ease)}
+  .brand:hover .dot{transform:rotate(-8deg)}
+  .nav-links{display:none;gap:34px;align-items:center}
+  .nav-links a{font-size:.92rem;color:var(--ink-soft);font-weight:400;position:relative;transition:color .3s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;height:1.5px;width:0;background:var(--copper);transition:width .35s var(--ease)}
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{display:none}
+  .burger{display:flex;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px;z-index:950}
+  .burger span{width:26px;height:2px;background:var(--ink);border-radius:2px;transition:transform .4s var(--ease),opacity .25s}
+  .burger.x span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger.x span:nth-child(2){opacity:0}
+  .burger.x span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .msheet{position:fixed;inset:0;z-index:940;background:var(--pine);color:var(--paper);display:flex;flex-direction:column;justify-content:center;gap:8px;padding:0 var(--pad);transform:translateY(-100%);transition:transform .6s var(--ease)}
+  .msheet.open{transform:translateY(0)}
+  .msheet a{font-family:var(--serif);font-size:clamp(2rem,9vw,3rem);font-weight:500;padding:8px 0;color:var(--paper);opacity:.85;transition:opacity .3s,padding-left .35s var(--ease)}
+  .msheet a:hover{opacity:1;padding-left:14px;color:#fff}
+  .msheet .m-foot{margin-top:30px;font-size:.9rem;opacity:.6;font-family:var(--sans)}
 
-  /* ============================================================
-     1. NAVIGATION
-     ============================================================ */
-  .nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 900;
-    transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease), padding 0.4s var(--ease);
-    padding: 18px 0;
-  }
-  .nav.scrolled {
-    background: rgba(10, 20, 38, 0.72);
-    backdrop-filter: blur(14px) saturate(160%);
-    -webkit-backdrop-filter: blur(14px) saturate(160%);
-    box-shadow: 0 6px 30px rgba(0,0,0,0.25);
-    padding: 12px 0;
-  }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+  /* ===========================================================
+     HERO — editorial, asymmetric
+     =========================================================== */
+  .hero{min-height:100svh;display:flex;align-items:flex-end;position:relative;overflow:hidden;padding-bottom:clamp(40px,7vw,90px)}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:end;width:100%}
+  .hero-eyebrow{margin-bottom:28px}
+  .hero h1{font-size:clamp(3rem,11vw,7rem);font-weight:500}
+  .hero h1 em{font-style:italic;color:var(--copper)}
+  .hero .lead{margin:30px 0 34px}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:42px;padding-top:26px;border-top:1px solid var(--line);font-size:.86rem;color:var(--ink-soft)}
+  .hero-meta b{color:var(--ink);font-weight:600}
+  .hero-meta .star{color:var(--copper)}
 
-  .logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.35rem;
-    color: var(--white);
-    letter-spacing: -0.02em;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .logo .mark {
-    width: 34px; height: 34px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-700));
-    display: grid; place-items: center;
-    color: var(--primary-900);
-    font-size: 1.1rem;
-    box-shadow: 0 6px 18px var(--accent-glow);
-  }
-  .logo .light { color: var(--accent); }
-
-  .nav-links { display: none; align-items: center; gap: 30px; }
-  .nav-links a {
-    color: rgba(255,255,255,0.85);
-    font-weight: 500;
-    font-size: 0.95rem;
-    position: relative;
-    transition: color 0.25s;
-  }
-  .nav-links a::after {
-    content: ""; position: absolute; left: 0; bottom: -6px;
-    height: 2px; width: 0; background: var(--accent);
-    transition: width 0.3s var(--ease);
-  }
-  .nav-links a:hover { color: var(--white); }
-  .nav-links a:hover::after { width: 100%; }
-
-  .nav-cta { display: none; }
-
-  .hamburger {
-    display: flex; flex-direction: column; gap: 5px;
-    background: none; border: 0; cursor: pointer; padding: 6px;
-    z-index: 950;
-  }
-  .hamburger span {
-    width: 26px; height: 2.5px; background: var(--white);
-    border-radius: 2px; transition: transform 0.35s var(--ease), opacity 0.25s;
-  }
-  .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
-
-  /* Mobile slide-in overlay */
-  .mobile-menu {
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(160deg, var(--primary-900), var(--primary));
-    z-index: 940;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 26px;
-    transform: translateX(100%);
-    transition: transform 0.45s var(--ease);
-  }
-  .mobile-menu.open { transform: translateX(0); }
-  .mobile-menu a { color: var(--white); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.6rem; }
-  .mobile-menu a:hover { color: var(--accent); }
-  .mobile-menu .btn { margin-top: 14px; }
-
-  /* ============================================================
-     2. HERO
-     ============================================================ */
-  .hero {
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
+  /* visual panel */
+  .hero-art{position:relative;border-radius:var(--r-lg);overflow:hidden;min-height:clamp(280px,42vh,460px);
     background:
-      radial-gradient(1200px 600px at 70% -10%, rgba(240,165,0,0.18), transparent 60%),
-      radial-gradient(900px 700px at 10% 110%, rgba(19,49,92,0.9), transparent 60%),
-      linear-gradient(150deg, var(--primary-900) 0%, var(--primary) 55%, #0e2b50 100%);
-  }
-  .hero::after {
-    content: "";
-    position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(6,21,40,0.35), rgba(6,21,40,0.65));
-    z-index: 1;
-  }
-  /* geometric particles */
-  .particles { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-  .particles span {
-    position: absolute;
-    display: block;
-    border-radius: 50%;
-    background: var(--accent);
-    opacity: 0.18;
-    animation: float 16s linear infinite;
-  }
-  .particles span:nth-child(odd) { background: #cfe3ff; opacity: 0.12; border-radius: 4px; }
-  @keyframes float {
-    0%   { transform: translateY(0) rotate(0deg); }
-    50%  { transform: translateY(-40px) rotate(180deg); }
-    100% { transform: translateY(0) rotate(360deg); }
-  }
+      radial-gradient(120% 90% at 80% 10%,rgba(194,96,47,.5),transparent 55%),
+      linear-gradient(160deg,var(--pine-700),var(--pine) 70%,#0e2a24);
+    box-shadow:0 40px 80px -30px rgba(22,58,50,.6)}
+  .hero-art .pipe{position:absolute;inset:0;opacity:.5}
+  .hero-art .ribbon{position:absolute;left:0;right:0;bottom:0;padding:22px 24px;display:flex;justify-content:space-between;align-items:center;color:var(--paper);background:linear-gradient(transparent,rgba(0,0,0,.35))}
+  .hero-art .ribbon .big{font-family:var(--serif);font-size:2.6rem;line-height:1}
+  .hero-art .ribbon .lab{font-size:.8rem;opacity:.8;max-width:14ch;text-align:right}
 
-  .hero-inner { position: relative; z-index: 2; padding-top: 90px; padding-bottom: 90px; }
-  .hero h1 {
-    color: var(--white);
-    font-size: clamp(2.4rem, 9vw, 5rem);
-    font-weight: 800;
-    min-height: 1.1em;
-  }
-  .hero h1 .typed { color: var(--accent); }
-  .cursor { display: inline-block; width: 3px; background: var(--accent); margin-left: 4px; animation: blink 1s steps(1) infinite; }
-  @keyframes blink { 50% { opacity: 0; } }
+  .scrollcue{position:absolute;left:var(--pad);bottom:26px;display:flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+  .scrollcue .ln{width:46px;height:1px;background:var(--ink-soft);position:relative;overflow:hidden}
+  .scrollcue .ln::after{content:"";position:absolute;inset:0;background:var(--copper);transform:translateX(-100%);animation:slide 2.4s var(--ease) infinite}
+  @keyframes slide{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
 
-  .hero p.sub {
-    color: rgba(255,255,255,0.82);
-    font-size: clamp(1rem, 2.6vw, 1.22rem);
-    max-width: 560px;
-    margin: 22px 0 34px;
-    font-weight: 300;
-  }
-  .hero-btns { display: flex; flex-wrap: wrap; gap: 14px; }
+  /* ===========================================================
+     MARQUEE (GSAP)
+     =========================================================== */
+  .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;overflow:hidden;background:var(--paper-2)}
+  .strip-track{display:flex;gap:0;white-space:nowrap;will-change:transform}
+  .strip-track span{font-family:var(--serif);font-size:clamp(1.2rem,3vw,1.9rem);padding:0 30px;color:var(--ink);display:inline-flex;align-items:center;gap:14px}
+  .strip-track .dot{width:7px;height:7px;border-radius:50%;background:var(--copper)}
 
-  .scroll-arrow {
-    position: absolute;
-    bottom: 26px; left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-    color: rgba(255,255,255,0.7);
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
-    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-  }
-  .scroll-arrow svg { animation: bounce 1.8s infinite; }
-  @keyframes bounce {
-    0%,20%,50%,80%,100% { transform: translateY(0); }
-    40% { transform: translateY(8px); }
-    60% { transform: translateY(4px); }
-  }
+  /* ===========================================================
+     STATS
+     =========================================================== */
+  .stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden}
+  .stat{background:var(--paper);padding:clamp(26px,4vw,44px) clamp(20px,3vw,32px)}
+  .stat .n{font-family:var(--serif);font-size:clamp(2.4rem,6vw,3.6rem);font-weight:500;line-height:1;color:var(--pine)}
+  .stat .n .u{color:var(--copper)}
+  .stat .l{margin-top:10px;font-size:.9rem;color:var(--ink-soft)}
 
-  .trust-badges {
-    position: absolute;
-    left: 22px; bottom: 70px;
-    z-index: 3;
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  .trust-badges .badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.16);
-    backdrop-filter: blur(8px);
-    color: #fff; font-size: 0.82rem; font-weight: 500;
-    padding: 8px 14px; border-radius: var(--radius-pill);
-    width: fit-content;
-  }
-  .trust-badges .star { color: var(--accent); }
+  /* ===========================================================
+     SERVICES
+     =========================================================== */
+  .head{max-width:62ch;margin-bottom:clamp(40px,6vw,70px)}
+  .head .kicker{margin-bottom:20px}
+  .head .lead{margin-top:18px}
 
-  /* ============================================================
-     3. STATS BAR
-     ============================================================ */
-  .stats {
-    background:
-      radial-gradient(700px 300px at 80% 0%, rgba(240,165,0,0.12), transparent 60%),
-      linear-gradient(120deg, var(--primary), var(--primary-700));
-    color: #fff;
-    padding: 44px 0;
-  }
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px 16px;
-    text-align: center;
-  }
-  .stat .ico { font-size: 1.8rem; margin-bottom: 6px; }
-  .stat .num {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(2rem, 7vw, 2.8rem);
-    color: var(--accent);
-    line-height: 1;
-  }
-  .stat .label { font-size: 0.86rem; color: rgba(255,255,255,0.75); margin-top: 6px; letter-spacing: 0.02em; }
+  .svc{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}
+  .svc-item{display:grid;grid-template-columns:1fr;gap:14px;padding:clamp(26px,4vw,40px) 0;border-bottom:1px solid var(--line);position:relative;transition:padding-left .5s var(--ease)}
+  .svc-item:hover{padding-left:clamp(8px,1.5vw,22px)}
+  .svc-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--copper);transform:scaleY(0);transform-origin:top;transition:transform .5s var(--ease)}
+  .svc-item:hover::before{transform:scaleY(1)}
+  .svc-num{font-family:var(--serif);color:var(--copper);font-size:1rem}
+  .svc-ic{width:46px;height:46px;color:var(--pine);stroke-width:1.4}
+  .svc-body h3{font-size:clamp(1.5rem,3.4vw,2.1rem);margin-bottom:8px}
+  .svc-body p{color:var(--ink-soft);max-width:60ch}
+  .svc-go{align-self:center;justify-self:start;color:var(--ink-soft);transition:color .3s,transform .4s var(--ease)}
+  .svc-item:hover .svc-go{color:var(--copper);transform:translateX(6px)}
 
-  /* ============================================================
-     4. SERVICES
-     ============================================================ */
-  .services { background: var(--light); }
-  .services-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 22px;
-  }
-  .service-card {
-    background: var(--white);
-    border: 1px solid #eef0f3;
-    border-radius: var(--radius-card);
-    padding: 32px 26px;
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
-    position: relative;
-    overflow: hidden;
-  }
-  .service-card::before {
-    content: ""; position: absolute; inset: 0;
-    background: radial-gradient(300px 160px at 50% -20%, var(--accent-glow), transparent 70%);
-    opacity: 0; transition: opacity 0.4s var(--ease);
-  }
-  .service-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--accent);
-  }
-  .service-card:hover::before { opacity: 0.5; }
-  .service-card .ico {
-    width: 62px; height: 62px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-700));
-    color: var(--accent);
-    display: grid; place-items: center;
-    font-size: 1.9rem;
-    margin-bottom: 18px;
-    box-shadow: var(--shadow-sm);
-    position: relative; z-index: 1;
-  }
-  .service-card h3 { font-size: 1.25rem; color: var(--primary); margin-bottom: 8px; position: relative; z-index: 1; }
-  .service-card p { color: var(--muted); font-size: 0.95rem; position: relative; z-index: 1; }
+  /* ===========================================================
+     WHY (parallax split)
+     =========================================================== */
+  .why{background:var(--pine);color:var(--paper);overflow:hidden}
+  .why .kicker{color:#e7b48f}
+  .why .kicker::before{background:#e7b48f}
+  .why-grid{display:grid;grid-template-columns:1fr;gap:clamp(40px,6vw,70px);align-items:center}
+  .why h2{color:var(--paper)}
+  .why-visual{position:relative;border-radius:var(--r-lg);min-height:340px;overflow:hidden;background:radial-gradient(120% 100% at 10% 0%,rgba(194,96,47,.45),transparent 55%),linear-gradient(150deg,#1d4940,#0f2a24)}
+  .why-visual .pquote{position:absolute;inset:auto 26px 26px 26px}
+  .why-visual .pquote .q{font-family:var(--serif);font-size:clamp(1.3rem,3vw,1.9rem);line-height:1.2}
+  .why-visual .pquote .by{margin-top:14px;font-size:.85rem;opacity:.75}
+  .why-visual .para{position:absolute;top:-10%;right:-8%;width:46%;height:60%;border-radius:50%;background:rgba(194,96,47,.25);filter:blur(10px);will-change:transform}
+  .why-list li{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+  .why-list li:last-child{border-bottom:0}
+  .why-list .no{font-family:var(--serif);color:#e7b48f;font-size:1rem}
+  .why-list h4{font-family:var(--sans);font-weight:600;font-size:1.06rem;color:#fff;margin-bottom:5px}
+  .why-list p{color:rgba(243,239,231,.7);font-size:.94rem}
 
-  /* ============================================================
-     5. WHY CHOOSE US
-     ============================================================ */
-  .why { background: var(--white); }
-  .why-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
-  .why-visual {
-    position: relative;
-    border-radius: 22px;
-    min-height: 320px;
-    background: linear-gradient(150deg, var(--primary-900), var(--primary-700));
-    overflow: hidden;
-    display: grid; place-items: center;
-    box-shadow: var(--shadow-lg);
-  }
-  .why-visual .shape {
-    position: absolute; border-radius: 50%;
-    filter: blur(2px); opacity: 0.5;
-  }
-  .why-visual .shape.a { width: 220px; height: 220px; background: var(--accent); top: -60px; right: -60px; opacity: 0.35; }
-  .why-visual .shape.b { width: 160px; height: 160px; background: #2e6bb8; bottom: -50px; left: -40px; opacity: 0.4; }
-  .why-visual .stat-box {
-    position: relative; z-index: 2; text-align: center; color: #fff; padding: 26px;
-  }
-  .why-visual .stat-box .big {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3.4rem; color: var(--accent); line-height: 1;
-  }
-  .why-visual .stat-box .small { font-size: 1rem; color: rgba(255,255,255,0.85); margin-top: 8px; }
-  .why-visual .stat-box .est { margin-top: 18px; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+  /* ===========================================================
+     TESTIMONIALS (Swiper, minimal)
+     =========================================================== */
+  .quotes .swiper{padding-bottom:64px;overflow:visible}
+  .qcard{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(28px,4vw,40px);height:100%;display:flex;flex-direction:column}
+  .qcard .stars{color:var(--copper);letter-spacing:3px;font-size:.95rem;margin-bottom:18px}
+  .qcard blockquote{font-family:var(--serif);font-weight:400;font-size:clamp(1.15rem,2.4vw,1.5rem);line-height:1.35;color:var(--ink);flex:1}
+  .qcard .who{display:flex;align-items:center;gap:14px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+  .qcard .av{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:var(--serif);font-weight:600;flex:none}
+  .qcard .nm{font-weight:600;font-size:.95rem}
+  .qcard .lc{font-size:.82rem;color:var(--ink-soft)}
+  .q-nav{display:flex;gap:12px;margin-top:8px}
+  .q-nav button{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:background .35s var(--ease),color .35s,border-color .35s,transform .35s var(--ease)}
+  .q-nav button:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:translateY(-2px)}
+  .swiper-pagination{position:static;margin-top:22px;text-align:left}
+  .swiper-pagination-bullet{background:var(--ink);opacity:.25;transition:width .3s,opacity .3s}
+  .swiper-pagination-bullet-active{background:var(--copper);opacity:1;width:24px;border-radius:4px}
 
-  .why-points li {
-    display: flex; gap: 14px; align-items: flex-start;
-    padding: 14px 0;
-    border-bottom: 1px solid #eef0f3;
-  }
-  .why-points li:last-child { border-bottom: 0; }
-  .why-points .check {
-    flex: none;
-    width: 30px; height: 30px; border-radius: 50%;
-    background: rgba(240,165,0,0.14);
-    color: var(--accent-700);
-    display: grid; place-items: center;
-    font-weight: 700; font-size: 0.9rem;
-  }
-  .why-points h4 { color: var(--primary); font-size: 1.05rem; font-family: 'Inter'; font-weight: 600; }
-  .why-points p { color: var(--muted); font-size: 0.92rem; }
+  /* ===========================================================
+     ABOUT
+     =========================================================== */
+  .about-grid{display:grid;grid-template-columns:1fr;gap:clamp(36px,5vw,60px);align-items:center}
+  .about-photo{position:relative;border-radius:var(--r-lg);min-height:340px;overflow:hidden;background:radial-gradient(110% 90% at 20% 10%,rgba(194,96,47,.4),transparent 55%),linear-gradient(150deg,var(--pine-700),#0e2a24);box-shadow:0 40px 80px -34px rgba(22,58,50,.55)}
+  .about-photo .ini{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);font-size:clamp(4rem,12vw,7rem);color:rgba(243,239,231,.92)}
+  .about-photo .stamp{position:absolute;left:20px;bottom:20px;font-size:.78rem;color:var(--paper);background:rgba(0,0,0,.25);backdrop-filter:blur(4px);padding:7px 13px;border-radius:50px}
+  .about-text p{color:var(--ink-soft);margin-bottom:18px;font-size:1.05rem}
+  .about-text p:first-of-type{font-family:var(--serif);font-size:clamp(1.3rem,3vw,1.7rem);line-height:1.3;color:var(--ink);font-weight:400}
+  .sign{margin-top:24px;display:flex;align-items:center;gap:14px}
+  .sign .nm{font-family:var(--serif);font-size:1.4rem}
+  .sign .role{font-size:.85rem;color:var(--ink-soft)}
 
-  /* ============================================================
-     6. TESTIMONIALS (Swiper)
-     ============================================================ */
-  .testimonials { background: var(--light); }
-  .swiper { padding: 12px 4px 56px; }
-  .review-card {
-    background: var(--white);
-    border-radius: var(--radius-card);
-    padding: 30px 28px;
-    box-shadow: var(--shadow-md);
-    height: 100%;
-    border: 1px solid #eef0f3;
-    display: flex; flex-direction: column;
-  }
-  .review-card .stars { color: var(--accent); letter-spacing: 2px; margin-bottom: 14px; font-size: 1rem; }
-  .review-card .quote { color: var(--text); font-size: 1.02rem; line-height: 1.7; flex: 1; }
-  .review-card .who { display: flex; align-items: center; gap: 12px; margin-top: 22px; }
-  .review-card .avatar {
-    width: 46px; height: 46px; border-radius: 50%;
-    display: grid; place-items: center;
-    color: #fff; font-weight: 700; font-family: 'Syne'; font-size: 1rem;
-    flex: none;
-  }
-  .review-card .name { font-weight: 600; color: var(--primary); font-size: 0.95rem; }
-  .review-card .loc { font-size: 0.82rem; color: var(--muted); }
+  /* ===========================================================
+     CTA
+     =========================================================== */
+  .cta{background:var(--ink);color:var(--paper);text-align:center;overflow:hidden;position:relative}
+  .cta .glow{position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:80%;height:120%;background:radial-gradient(circle,rgba(194,96,47,.4),transparent 60%);filter:blur(30px);will-change:transform}
+  .cta h2{position:relative;font-size:clamp(2.2rem,7vw,4.4rem)}
+  .cta p{position:relative;color:rgba(243,239,231,.7);margin:18px auto 32px;max-width:48ch}
+  .cta .phone{position:relative;display:inline-block;margin-top:30px;font-family:var(--serif);font-size:clamp(1.6rem,5vw,2.6rem)}
+  .cta .phone:hover{color:var(--copper)}
 
-  .swiper-pagination-bullet { background: var(--primary); opacity: 0.3; }
-  .swiper-pagination-bullet-active { background: var(--accent); opacity: 1; width: 22px; border-radius: 4px; }
-  .swiper-button-next, .swiper-button-prev { color: var(--primary); }
-  .swiper-button-next:hover, .swiper-button-prev:hover { color: var(--accent-700); }
-  .swiper-button-next::after, .swiper-button-prev::after { font-size: 1.4rem; font-weight: 700; }
+  /* ===========================================================
+     CONTACT
+     =========================================================== */
+  .contact-grid{display:grid;grid-template-columns:1fr;gap:clamp(40px,5vw,64px)}
+  .ci .item{display:flex;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
+  .ci .item:first-child{border-top:1px solid var(--line)}
+  .ci .ic{width:24px;height:24px;color:var(--copper);flex:none;margin-top:3px;stroke-width:1.5}
+  .ci h4{font-family:var(--sans);font-weight:600;font-size:.95rem;margin-bottom:4px}
+  .ci p,.ci a{color:var(--ink-soft);font-size:.95rem}
+  .ci a:hover{color:var(--copper)}
 
-  /* ============================================================
-     7. MARQUEE
-     ============================================================ */
-  .marquee {
-    background: var(--primary-900);
-    padding: 18px 0;
-    overflow: hidden;
-    white-space: nowrap;
-    position: relative;
-  }
-  .marquee::before, .marquee::after {
-    content: ""; position: absolute; top: 0; bottom: 0; width: 90px; z-index: 2;
-  }
-  .marquee::before { left: 0; background: linear-gradient(90deg, var(--primary-900), transparent); }
-  .marquee::after { right: 0; background: linear-gradient(270deg, var(--primary-900), transparent); }
-  .marquee-track {
-    display: inline-flex; gap: 0;
-    animation: scroll-x 28s linear infinite;
-  }
-  .marquee:hover .marquee-track { animation-play-state: paused; }
-  .marquee-track span {
-    color: #fff; font-size: 0.98rem; padding: 0 28px; font-weight: 500;
-  }
-  .marquee-track span .star { color: var(--accent); margin-right: 6px; }
-  @keyframes scroll-x { to { transform: translateX(-50%); } }
+  .form{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(26px,4vw,38px)}
+  .row{display:grid;grid-template-columns:1fr;gap:16px}
+  .fld{margin-bottom:16px}
+  .fld label{display:block;font-size:.78rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
+  .fld input,.fld select,.fld textarea{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:var(--r-sm);font-family:var(--sans);font-size:.95rem;color:var(--ink);background:var(--paper);transition:border-color .3s,box-shadow .3s}
+  .fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--copper);box-shadow:0 0 0 3px var(--copper-tint)}
+  .fld textarea{resize:vertical;min-height:120px}
+  .note{font-size:.8rem;color:var(--ink-soft);text-align:center;margin-top:12px}
+  .ok{display:none;margin-top:14px;background:rgba(22,58,50,.08);color:var(--pine);border:1px solid rgba(22,58,50,.2);padding:13px;border-radius:var(--r-sm);font-size:.9rem;font-weight:500;text-align:center}
 
-  /* ============================================================
-     8. ABOUT
-     ============================================================ */
-  .about { background: var(--white); }
-  .about-grid { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: center; }
-  .about-photo {
-    border-radius: 22px;
-    min-height: 300px;
-    background:
-      radial-gradient(400px 200px at 30% 20%, rgba(240,165,0,0.25), transparent 60%),
-      linear-gradient(150deg, var(--primary-700), var(--primary-900));
-    display: grid; place-items: center;
-    box-shadow: var(--shadow-lg);
-    position: relative; overflow: hidden;
-  }
-  .about-photo .initials {
-    font-family: 'Syne'; font-weight: 800; font-size: 4.5rem; color: rgba(255,255,255,0.92);
-    text-shadow: 0 6px 30px rgba(0,0,0,0.4);
-  }
-  .about-photo .tag {
-    position: absolute; bottom: 18px; left: 18px;
-    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
-    color: #fff; font-size: 0.78rem; padding: 7px 14px; border-radius: var(--radius-pill);
-    backdrop-filter: blur(6px);
-  }
-  .about-text p { color: var(--muted); margin-bottom: 16px; }
-  .about-text .based {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--light); border: 1px solid #e6e8ec;
-    padding: 10px 16px; border-radius: var(--radius-pill);
-    font-weight: 600; color: var(--primary); font-size: 0.9rem; margin-top: 6px;
-  }
+  /* ===========================================================
+     FOOTER
+     =========================================================== */
+  .footer{background:var(--paper-2);border-top:1px solid var(--line);padding:clamp(50px,7vw,80px) 0 110px}
+  .foot-grid{display:grid;grid-template-columns:1fr;gap:34px}
+  .footer .brand{margin-bottom:16px}
+  .footer p{color:var(--ink-soft);font-size:.94rem;max-width:34ch}
+  .footer h5{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:16px}
+  .footer ul li{margin-bottom:11px}
+  .footer ul a{font-size:.95rem;color:var(--ink);transition:color .3s}
+  .footer ul a:hover{color:var(--copper)}
+  .copy{margin-top:46px;padding-top:24px;border-top:1px solid var(--line);font-size:.82rem;color:var(--ink-soft);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between}
 
-  /* ============================================================
-     9. CTA BANNER
-     ============================================================ */
-  .cta-banner {
-    background:
-      radial-gradient(600px 300px at 20% 0%, rgba(255,255,255,0.12), transparent 60%),
-      linear-gradient(120deg, var(--primary) 0%, var(--accent-700) 130%);
-    color: #fff; text-align: center;
-  }
-  .cta-banner h2 { font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 800; margin-bottom: 14px; }
-  .cta-banner p { color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 28px; }
-  .pulse {
-    animation: pulse 2.2s infinite;
-  }
-  @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 var(--accent-glow); }
-    70% { box-shadow: 0 0 0 22px rgba(240,165,0,0); }
-    100% { box-shadow: 0 0 0 0 rgba(240,165,0,0); }
-  }
-  .cta-phone {
-    display: block; margin-top: 26px;
-    font-family: 'Syne'; font-weight: 800;
-    font-size: clamp(1.6rem, 6vw, 2.6rem); color: #fff;
-  }
-  .cta-phone:hover { color: var(--accent); }
+  /* ===========================================================
+     SITEPILOTS BANNER
+     =========================================================== */
+  .sp{position:fixed;left:0;right:0;bottom:0;z-index:980;background:rgba(23,20,15,.92);backdrop-filter:blur(8px);border-top:1px solid rgba(194,96,47,.35);color:rgba(243,239,231,.82);font-size:.82rem;padding:11px 46px 11px 18px;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;transition:transform .5s var(--ease),opacity .5s}
+  .sp.hide{transform:translateY(110%);opacity:0}
+  .sp .sk{color:var(--copper)}
+  .sp a{color:var(--copper);font-weight:500;text-decoration:underline;text-underline-offset:3px}
+  .sp .x{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.1);border:0;color:#fff;cursor:pointer;display:grid;place-items:center;transition:background .3s}
+  .sp .x:hover{background:var(--copper)}
 
-  /* ============================================================
-     10. CONTACT
-     ============================================================ */
-  .contact { background: var(--light); }
-  .contact-grid { display: grid; grid-template-columns: 1fr; gap: 36px; }
-  .contact-info .item { display: flex; gap: 14px; margin-bottom: 22px; align-items: flex-start; }
-  .contact-info .ico {
-    width: 46px; height: 46px; border-radius: 12px; flex: none;
-    background: linear-gradient(135deg, var(--primary), var(--primary-700));
-    color: var(--accent); display: grid; place-items: center; font-size: 1.2rem;
+  /* ===========================================================
+     RESPONSIVE
+     =========================================================== */
+  @media(min-width:768px){
+    .nav-links{display:flex}.nav-cta{display:inline-flex}.burger{display:none}
+    .hero-grid{grid-template-columns:1.35fr .9fr}
+    .stats-grid{grid-template-columns:repeat(4,1fr)}
+    .svc-item{grid-template-columns:64px 64px 1fr auto;gap:30px;align-items:start}
+    .why-grid{grid-template-columns:1fr 1fr}
+    .about-grid{grid-template-columns:.85fr 1.15fr}
+    .contact-grid{grid-template-columns:.8fr 1.2fr}
+    .row{grid-template-columns:1fr 1fr}
+    .foot-grid{grid-template-columns:2fr 1fr 1fr}
   }
-  .contact-info h4 { color: var(--primary); font-family: 'Inter'; font-weight: 600; font-size: 1rem; }
-  .contact-info p, .contact-info a { color: var(--muted); font-size: 0.95rem; }
-  .contact-info a:hover { color: var(--accent-700); }
-
-  .contact-form {
-    background: var(--white);
-    border: 1px solid #eef0f3;
-    border-radius: var(--radius-card);
-    padding: 30px 26px;
-    box-shadow: var(--shadow-md);
-  }
-  .field { margin-bottom: 16px; }
-  .field label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--primary); margin-bottom: 6px; }
-  .field input, .field select, .field textarea {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1.5px solid #e2e5ea;
-    border-radius: var(--radius-input);
-    font-family: 'Inter'; font-size: 0.95rem; color: var(--text);
-    background: #fcfcfd;
-    transition: border-color 0.25s, box-shadow 0.25s;
-  }
-  .field input:focus, .field select:focus, .field textarea:focus {
-    outline: none; border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(240,165,0,0.15);
-  }
-  .field textarea { resize: vertical; min-height: 110px; }
-  .form-note { font-size: 0.82rem; color: var(--muted); margin-top: 10px; text-align: center; }
-  .form-success {
-    display: none; margin-top: 14px; text-align: center;
-    background: rgba(34,197,94,0.12); color: #15803d;
-    border: 1px solid rgba(34,197,94,0.3);
-    padding: 12px; border-radius: var(--radius-input); font-weight: 600; font-size: 0.92rem;
-  }
-
-  /* ============================================================
-     11. FOOTER
-     ============================================================ */
-  .footer {
-    background: var(--primary-900);
-    color: rgba(255,255,255,0.75);
-    padding: 56px 0 90px;
-  }
-  .footer-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
-  .footer .logo { margin-bottom: 14px; }
-  .footer p { font-size: 0.92rem; }
-  .footer h4 { color: #fff; font-family: 'Inter'; font-weight: 600; margin-bottom: 14px; font-size: 1rem; }
-  .footer ul li { margin-bottom: 10px; }
-  .footer ul a { font-size: 0.92rem; transition: color 0.25s; }
-  .footer ul a:hover { color: var(--accent); }
-  .footer .copy {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    margin-top: 36px; padding-top: 22px;
-    font-size: 0.84rem; color: rgba(255,255,255,0.5);
-    text-align: center;
-  }
-
-  /* ============================================================
-     12. SITEPILOTS DEMO BANNER
-     ============================================================ */
-  .sp-banner {
-    position: fixed;
-    left: 0; right: 0; bottom: 0;
-    z-index: 980;
-    background: linear-gradient(90deg, rgba(6,21,40,0.96), rgba(19,49,92,0.96));
-    backdrop-filter: blur(8px);
-    border-top: 1px solid rgba(240,165,0,0.3);
-    color: rgba(255,255,255,0.85);
-    font-size: 0.82rem;
-    padding: 10px 44px 10px 18px;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    text-align: center;
-    transition: transform 0.45s var(--ease), opacity 0.45s var(--ease);
-  }
-  .sp-banner.hidden { transform: translateY(110%); opacity: 0; }
-  .sp-banner .spark { color: var(--accent); }
-  .sp-banner a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
-  .sp-banner .close {
-    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-    background: rgba(255,255,255,0.1); border: 0; color: #fff;
-    width: 24px; height: 24px; border-radius: 50%; cursor: pointer;
-    display: grid; place-items: center; font-size: 0.9rem; line-height: 1;
-    transition: background 0.25s;
-  }
-  .sp-banner .close:hover { background: rgba(240,165,0,0.4); }
-
-  /* ============================================================
-     RESPONSIVE — tablet & desktop
-     ============================================================ */
-  @media (min-width: 768px) {
-    section { padding: 88px 0; }
-    .nav-links { display: flex; }
-    .nav-cta { display: inline-flex; }
-    .hamburger { display: none; }
-    .stats-grid { grid-template-columns: repeat(4, 1fr); }
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
-    .why-grid { grid-template-columns: 1fr 1fr; }
-    .about-grid { grid-template-columns: 0.9fr 1.1fr; }
-    .contact-grid { grid-template-columns: 1fr 1.2fr; }
-    .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
-    .trust-badges { left: 40px; flex-direction: row; flex-wrap: wrap; }
-  }
-  @media (min-width: 1024px) {
-    .services-grid { grid-template-columns: repeat(4, 1fr); }
-    .section-head p { font-size: 1.08rem; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+    .reveal-line>*{transform:none}
   }
 </style>
 </head>
 <body>
 
-<!-- Scroll progress -->
-<div id="progress-bar"></div>
+<div id="progress"></div>
 
-<!-- ===================== 1. NAVIGATION ===================== -->
+<!-- ============ NAV ============ -->
 <nav class="nav" id="nav">
-  <div class="container nav-inner">
-    <a href="#home" class="logo">
-      <span class="mark">A</span> Ace <span class="light">&middot;</span> Plumbing
-    </a>
+  <div class="wrap nav-in">
+    <a href="#top" class="brand"><span class="dot">A</span> Ace Plumbing</a>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
-      <li><a href="#why">Why Us</a></li>
-      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#why">Why us</a></li>
+      <li><a href="#reviews">Reviews</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#contact" class="btn btn-primary nav-cta">Get a Quote</a>
-    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <a href="#contact" class="btn btn-copper nav-cta">Book a visit</a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<!-- Mobile overlay -->
-<div class="mobile-menu" id="mobileMenu">
+<div class="msheet" id="msheet">
   <a href="#services">Services</a>
-  <a href="#why">Why Us</a>
-  <a href="#testimonials">Reviews</a>
+  <a href="#why">Why us</a>
+  <a href="#reviews">Reviews</a>
   <a href="#about">About</a>
   <a href="#contact">Contact</a>
-  <a href="#contact" class="btn btn-primary">Get a Quote</a>
+  <div class="m-foot">020 7946 0001 · Open 24/7</div>
 </div>
 
-<!-- ===================== 2. HERO ===================== -->
-<header class="hero" id="home">
-  <div class="particles" id="particles"></div>
-  <div class="container hero-inner">
-    <h1>
-      <span class="typed" id="typed"></span><span class="cursor">&nbsp;</span>
-    </h1>
-    <p class="sub" data-aos="fade-up" data-aos-delay="200">
-      Ace Plumbing &amp; Heating keeps Hackney running — burst pipes, broken boilers and blocked
-      drains sorted by friendly, fully-insured engineers, day or night.
-    </p>
-    <div class="hero-btns" data-aos="fade-up" data-aos-delay="350">
-      <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
-      <a href="#services" class="btn btn-ghost">See Our Work</a>
-    </div>
-  </div>
-
-  <div class="trust-badges" data-aos="fade-up" data-aos-delay="500">
-    <span class="badge"><span class="star">★</span> 4.9 Rating</span>
-    <span class="badge">✓ Gas-Safe Verified</span>
-    <span class="badge">📍 Local to Hackney</span>
-  </div>
-
-  <a href="#stats" class="scroll-arrow" aria-label="Scroll down">
-    Scroll
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-  </a>
-</header>
-
-<!-- ===================== 3. STATS BAR ===================== -->
-<section class="stats" id="stats" style="padding-top:44px;padding-bottom:44px">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat" data-aos="fade-up">
-        <div class="ico">🔧</div>
-        <div class="num" data-count="2400" data-suffix="+">0</div>
-        <div class="label">Jobs Completed</div>
-      </div>
-      <div class="stat" data-aos="fade-up" data-aos-delay="100">
-        <div class="ico">⭐</div>
-        <div class="num" data-count="4.9" data-decimals="1" data-suffix="★">0</div>
-        <div class="label">Average Rating</div>
-      </div>
-      <div class="stat" data-aos="fade-up" data-aos-delay="200">
-        <div class="ico">⏱️</div>
-        <div class="num" data-count="24" data-suffix="/7">0</div>
-        <div class="label">Emergency Cover</div>
-      </div>
-      <div class="stat" data-aos="fade-up" data-aos-delay="300">
-        <div class="ico">🛡️</div>
-        <div class="num" data-count="100" data-suffix="%">0</div>
-        <div class="label">Satisfaction</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 4. SERVICES ===================== -->
-<section class="services" id="services">
-  <div class="container">
-    <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">What we do</span>
-      <h2 class="section-title reveal-title">Our Services</h2>
-      <p>From a dripping tap to a full heating overhaul — one trusted local team for every job, big or small.</p>
-    </div>
-    <div class="services-grid">
-      <article class="service-card" data-aos="fade-up">
-        <div class="ico">🚨</div>
-        <h3>Emergency Repairs</h3>
-        <p>Burst pipes, leaks and floods handled fast. A real engineer on your doorstep, 24 hours a day, 7 days a week.</p>
-      </article>
-      <article class="service-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="ico">🔥</div>
-        <h3>Boiler &amp; Heating</h3>
-        <p>Gas-Safe boiler installs, servicing and repairs. Keep your home warm with efficient, reliable heating.</p>
-      </article>
-      <article class="service-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="ico">🚿</div>
-        <h3>Bathrooms &amp; Taps</h3>
-        <p>Stylish bathroom fits, tap replacements and shower installs — finished cleanly and built to last.</p>
-      </article>
-      <article class="service-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="ico">🌀</div>
-        <h3>Drain Unblocking</h3>
-        <p>Slow sinks and blocked drains cleared with pro equipment. No mess left behind, guaranteed.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 5. WHY CHOOSE US ===================== -->
-<section class="why" id="why">
-  <div class="container">
-    <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">The Ace difference</span>
-      <h2 class="section-title reveal-title">Why Choose Us</h2>
-    </div>
-    <div class="why-grid">
-      <div class="why-visual" data-aos="fade-right">
-        <span class="shape a"></span>
-        <span class="shape b"></span>
-        <div class="stat-box">
-          <div class="big">12+</div>
-          <div class="small">years keeping Hackney<br>warm &amp; dry</div>
-          <div class="est">Est. 2013</div>
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="kicker hero-eyebrow reveal">Gas-Safe plumbers · Hackney</span>
+        <h1>
+          <span class="reveal-line"><span>Plumbing &amp; heating,</span></span>
+          <span class="reveal-line"><span>done <em>properly.</em></span></span>
+        </h1>
+        <p class="lead reveal">No call-centre, no surprise bills. A small East-London team that turns up when we say, does the job right, and leaves your place tidy.</p>
+        <div class="hero-actions reveal">
+          <a href="#contact" class="btn btn-solid">Get a free quote <span class="arr">↗</span></a>
+          <a href="#services" class="tlink">See what we do</a>
+        </div>
+        <div class="hero-meta reveal">
+          <span><span class="star">★</span> <b>4.9</b> from 200+ jobs</span>
+          <span>Serving Hackney since <b>2013</b></span>
+          <span><b>24/7</b> emergency cover</span>
         </div>
       </div>
-      <ul class="why-points" data-aos="fade-left">
-        <li>
-          <span class="check">✓</span>
-          <div><h4>Same-day response</h4><p>Call before noon and we'll usually be with you the same day.</p></div>
-        </li>
-        <li>
-          <span class="check">✓</span>
-          <div><h4>Transparent pricing</h4><p>Clear, upfront quotes. No call-out surprises, no hidden fees.</p></div>
-        </li>
-        <li>
-          <span class="check">✓</span>
-          <div><h4>Fully insured &amp; Gas-Safe</h4><p>Every engineer is qualified, vetted and covered — total peace of mind.</p></div>
-        </li>
-        <li>
-          <span class="check">✓</span>
-          <div><h4>Tidy, respectful work</h4><p>We protect your home and leave it cleaner than we found it.</p></div>
-        </li>
-        <li>
-          <span class="check">✓</span>
-          <div><h4>12-month guarantee</h4><p>All workmanship backed by our written guarantee, as standard.</p></div>
-        </li>
+
+      <div class="hero-art reveal" id="heroArt">
+        <svg class="pipe" viewBox="0 0 400 460" fill="none" stroke="rgba(243,239,231,.35)" stroke-width="10" stroke-linecap="round">
+          <path d="M60 40 V180 a40 40 0 0 0 40 40 H260 a40 40 0 0 1 40 40 V300"/>
+          <path d="M120 460 V360 a40 40 0 0 1 40 -40 H340"/>
+          <circle cx="60" cy="40" r="14" fill="rgba(194,96,47,.6)" stroke="none"/>
+          <circle cx="300" cy="300" r="14" fill="rgba(194,96,47,.6)" stroke="none"/>
+        </svg>
+        <div class="ribbon">
+          <span class="big">12 yrs</span>
+          <span class="lab">keeping the borough warm &amp; dry</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scrollcue"><span class="ln"></span> Scroll</div>
+</header>
+
+<!-- ============ MARQUEE ============ -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-track" id="strip">
+    <span>Burst pipes <span class="dot"></span></span>
+    <span>Boiler repairs <span class="dot"></span></span>
+    <span>Bathroom fits <span class="dot"></span></span>
+    <span>Blocked drains <span class="dot"></span></span>
+    <span>Radiators &amp; heating <span class="dot"></span></span>
+    <span>Leak detection <span class="dot"></span></span>
+  </div>
+</div>
+
+<!-- ============ STATS ============ -->
+<section class="section" style="padding-top:clamp(50px,8vw,90px);padding-bottom:0">
+  <div class="wrap">
+    <div class="stats-grid reveal">
+      <div class="stat"><div class="n"><span data-count="2400">0</span><span class="u">+</span></div><div class="l">Jobs completed</div></div>
+      <div class="stat"><div class="n"><span data-count="4.9" data-dec="1">0</span><span class="u">★</span></div><div class="l">Average rating</div></div>
+      <div class="stat"><div class="n"><span data-count="24">0</span><span class="u">/7</span></div><div class="l">Emergency cover</div></div>
+      <div class="stat"><div class="n"><span data-count="12">0</span><span class="u">yr</span></div><div class="l">In the borough</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker reveal">What we do</span>
+      <h2 class="h-section reveal" style="margin-top:18px">One local team for every job —<br>big leak or small drip.</h2>
+    </div>
+
+    <div class="svc">
+      <article class="svc-item reveal">
+        <span class="svc-num">01</span>
+        <svg class="svc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-5.6 5.6a1.5 1.5 0 0 0 2.1 2.1l5.6-5.6a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.2-2.4z"/></svg>
+        <div class="svc-body"><h3>Emergency repairs</h3><p>Burst pipes, leaks and floods sorted fast. A real engineer on your doorstep, any hour, any day.</p></div>
+        <span class="svc-go">↗</span>
+      </article>
+      <article class="svc-item reveal">
+        <span class="svc-num">02</span>
+        <svg class="svc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1.5 2.5 4 3.8 4 7a4 4 0 1 1-8 0c0-1.4.6-2.4 1.5-3.3C10.5 8 11 9 12 9c.8 0 1-1.4 0-6z"/></svg>
+        <div class="svc-body"><h3>Boiler &amp; heating</h3><p>Gas-Safe installs, servicing and repairs. Warm home, lower bills, no fuss — backed for 12 months.</p></div>
+        <span class="svc-go">↗</span>
+      </article>
+      <article class="svc-item reveal">
+        <span class="svc-num">03</span>
+        <svg class="svc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a6 6 0 0 0 6-6c0-4-6-11-6-11S6 11 6 15a6 6 0 0 0 6 6z"/></svg>
+        <div class="svc-body"><h3>Bathrooms &amp; taps</h3><p>Tap swaps, shower installs and full bathroom fits — finished cleanly, built to last.</p></div>
+        <span class="svc-go">↗</span>
+      </article>
+      <article class="svc-item reveal">
+        <span class="svc-num">04</span>
+        <svg class="svc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8c2 0 2-2 4.5-2S10 8 12 8s2-2 4.5-2S19 8 21 8M3 14c2 0 2-2 4.5-2S10 14 12 14s2-2 4.5-2S19 14 21 14M3 20c2 0 2-2 4.5-2S10 20 12 20s2-2 4.5-2S19 20 21 20"/></svg>
+        <div class="svc-body"><h3>Drain unblocking</h3><p>Slow sinks and blocked drains cleared with pro kit — and we leave no mess behind, guaranteed.</p></div>
+        <span class="svc-go">↗</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section class="section why" id="why">
+  <div class="wrap">
+    <div class="head" style="max-width:none">
+      <span class="kicker reveal">The Ace difference</span>
+      <h2 class="h-section reveal" style="margin-top:18px">Trades have a reputation.<br>We spend every job earning a better one.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-visual reveal">
+        <span class="para" id="whyPara"></span>
+        <div class="pquote">
+          <p class="q">"They quoted fairly, turned up on time, and you'd never know they'd been — except the heating works."</p>
+          <p class="by">— a fairly typical Tuesday</p>
+        </div>
+      </div>
+      <ul class="why-list">
+        <li class="reveal"><span class="no">01</span><div><h4>Same-day response</h4><p>Call before noon and we're usually with you the same day.</p></div></li>
+        <li class="reveal"><span class="no">02</span><div><h4>Honest, upfront pricing</h4><p>You get the price before we start. No call-out surprises, ever.</p></div></li>
+        <li class="reveal"><span class="no">03</span><div><h4>Gas-Safe &amp; fully insured</h4><p>Every engineer is qualified, vetted and covered. Proper paperwork as standard.</p></div></li>
+        <li class="reveal"><span class="no">04</span><div><h4>We respect your home</h4><p>Dust sheets down, boots off, mess gone. Left cleaner than we found it.</p></div></li>
+        <li class="reveal"><span class="no">05</span><div><h4>12-month guarantee</h4><p>All workmanship backed in writing. If it's not right, we come back.</p></div></li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ===================== 6. TESTIMONIALS ===================== -->
-<section class="testimonials" id="testimonials">
-  <div class="container">
-    <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">Real reviews</span>
-      <h2 class="section-title reveal-title">What Our Customers Say</h2>
-      <p>Hundreds of Hackney homeowners and landlords trust Ace. Here's a few of them.</p>
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section quotes" id="reviews">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker reveal">In their words</span>
+      <h2 class="h-section reveal" style="margin-top:18px">Neighbours who'd have us back.</h2>
     </div>
-
-    <div class="swiper" id="reviewSwiper">
+    <div class="swiper" id="swiper">
       <div class="swiper-wrapper">
-        <!-- card -->
-        <div class="swiper-slide">
-          <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="quote">"Our boiler died on the coldest night of the year. Ace had an engineer out within the hour and we had heat back by morning. Absolute lifesavers — calm, friendly and fair."</p>
-            <div class="who">
-              <div class="avatar" style="background:#0b2545">SM</div>
-              <div><div class="name">Sarah M.</div><div class="loc">Hackney</div></div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="quote">"Booked a bathroom refit and couldn't be happier. They turned up when they said, kept everything spotless, and the finish is genuinely beautiful. Highly recommend."</p>
-            <div class="who">
-              <div class="avatar" style="background:#d68f00">JR</div>
-              <div><div class="name">James R.</div><div class="loc">Dalston</div></div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="quote">"Called at 8pm about a leaking pipe under the sink — fixed and dried out by 9pm. Honest pricing and no upselling. This is how a local trade should be run."</p>
-            <div class="who">
-              <div class="avatar" style="background:#13315c">PT</div>
-              <div><div class="name">Priya T.</div><div class="loc">Stoke Newington</div></div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="quote">"As a landlord I've used Ace across three flats now. Reliable every single time, great with tenants, and the paperwork is always sorted. My go-to plumbers."</p>
-            <div class="who">
-              <div class="avatar" style="background:#0b2545">DO</div>
-              <div><div class="name">David O.</div><div class="loc">Clapton</div></div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="quote">"Blocked drain that two other companies couldn't shift. Ace cleared it in twenty minutes and explained exactly what had caused it. Polite, professional, brilliant value."</p>
-            <div class="who">
-              <div class="avatar" style="background:#d68f00">LK</div>
-              <div><div class="name">Lauren K.</div><div class="loc">Homerton</div></div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="quote">"From the first phone call to the final invoice everything was easy. They quoted fairly, did exactly what they promised, and the new radiator works a treat. Five stars."</p>
-            <div class="who">
-              <div class="avatar" style="background:#13315c">MN</div>
-              <div><div class="name">Michael N.</div><div class="loc">Shoreditch</div></div>
-            </div>
-          </div>
-        </div>
+        <div class="swiper-slide"><div class="qcard"><div class="stars">★★★★★</div><blockquote>Our boiler died on the coldest night of the year. Ace had someone out within the hour and we had heat back by morning. Calm, friendly, fair.</blockquote><div class="who"><span class="av" style="background:#163a32">SM</span><div><div class="nm">Sarah M.</div><div class="lc">Hackney</div></div></div></div></div>
+        <div class="swiper-slide"><div class="qcard"><div class="stars">★★★★★</div><blockquote>Booked a bathroom refit and couldn't be happier. Turned up when they said, kept everything spotless, and the finish is genuinely lovely.</blockquote><div class="who"><span class="av" style="background:#c2602f">JR</span><div><div class="nm">James R.</div><div class="lc">Dalston</div></div></div></div></div>
+        <div class="swiper-slide"><div class="qcard"><div class="stars">★★★★★</div><blockquote>Called at 8pm about a leak under the sink — fixed and dried out by 9pm. Honest pricing, no upselling. This is how a local trade should run.</blockquote><div class="who"><span class="av" style="background:#1f4a40">PT</span><div><div class="nm">Priya T.</div><div class="lc">Stoke Newington</div></div></div></div></div>
+        <div class="swiper-slide"><div class="qcard"><div class="stars">★★★★★</div><blockquote>As a landlord I've used Ace across three flats now. Reliable every time, great with tenants, paperwork always sorted. My go-to.</blockquote><div class="who"><span class="av" style="background:#a94f24">DO</span><div><div class="nm">David O.</div><div class="lc">Clapton</div></div></div></div></div>
+        <div class="swiper-slide"><div class="qcard"><div class="stars">★★★★★</div><blockquote>A blocked drain two other firms couldn't shift. Ace cleared it in twenty minutes and explained what caused it. Polite, brilliant value.</blockquote><div class="who"><span class="av" style="background:#163a32">LK</span><div><div class="nm">Lauren K.</div><div class="lc">Homerton</div></div></div></div></div>
       </div>
       <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+    </div>
+    <div class="q-nav">
+      <button id="qPrev" aria-label="Previous">←</button>
+      <button id="qNext" aria-label="Next">→</button>
     </div>
   </div>
 </section>
 
-<!-- ===================== 7. MARQUEE ===================== -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span><span class="star">⭐</span>"Amazing service!"</span>
-    <span><span class="star">⭐</span>"Called at 8pm, fixed by 9pm"</span>
-    <span><span class="star">⭐</span>"Highly recommend"</span>
-    <span><span class="star">⭐</span>"Saved us in an emergency"</span>
-    <span><span class="star">⭐</span>"Spotless work, fair price"</span>
-    <span><span class="star">⭐</span>"Our go-to plumbers"</span>
-    <!-- duplicate for seamless loop -->
-    <span><span class="star">⭐</span>"Amazing service!"</span>
-    <span><span class="star">⭐</span>"Called at 8pm, fixed by 9pm"</span>
-    <span><span class="star">⭐</span>"Highly recommend"</span>
-    <span><span class="star">⭐</span>"Saved us in an emergency"</span>
-    <span><span class="star">⭐</span>"Spotless work, fair price"</span>
-    <span><span class="star">⭐</span>"Our go-to plumbers"</span>
-  </div>
-</div>
-
-<!-- ===================== 8. ABOUT ===================== -->
-<section class="about" id="about">
-  <div class="container">
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="wrap">
     <div class="about-grid">
-      <div class="about-photo" data-aos="fade-right">
-        <span class="initials">AP</span>
-        <span class="tag">📍 Based in Hackney, London</span>
+      <div class="about-photo reveal">
+        <span class="ini">AP</span>
+        <span class="stamp">Hackney, E8 · since 2013</span>
       </div>
-      <div class="about-text" data-aos="fade-left">
-        <span class="eyebrow">Our story</span>
-        <h2 class="section-title reveal-title">Who We Are</h2>
-        <p>Ace Plumbing &amp; Heating started in 2013 with one van, one engineer and a simple promise: treat every home like our own. More than a decade on, that promise hasn't changed.</p>
-        <p>We're a small, tight-knit team of Gas-Safe registered engineers who actually live and work in East London. When you call, you speak to a real person — and the same friendly faces turn up at your door.</p>
-        <p>No call-centres, no faceless contractors, no surprise bills. Just honest, skilled plumbers who take pride in getting it right the first time.</p>
-        <span class="based">📍 Proudly serving Hackney &amp; surrounding areas</span>
+      <div class="about-text">
+        <span class="kicker reveal">Who we are</span>
+        <p class="reveal" style="margin-top:18px">We started in 2013 with one van and a simple rule: treat every home like our own.</p>
+        <p class="reveal">More than a decade on, that hasn't changed. We're a small, tight-knit team of Gas-Safe engineers who actually live and work in East London — so when you call, you reach a real person, and the same faces turn up at your door.</p>
+        <p class="reveal">No call-centres, no faceless contractors, no surprise bills. Just skilled local plumbers who'd rather do it once and do it right.</p>
+        <div class="sign reveal">
+          <div>
+            <div class="nm">Tom Ellery</div>
+            <div class="role">Founder &amp; lead engineer</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== 9. CTA BANNER ===================== -->
-<section class="cta-banner">
-  <div class="container" data-aos="zoom-in">
-    <h2>Ready to Get Started?</h2>
-    <p>Get your free quote today — no obligation, no pressure.</p>
-    <a href="#contact" class="btn btn-primary pulse">Get a Free Quote</a>
-    <a href="tel:02079460001" class="cta-phone">020 7946 0001</a>
+<!-- ============ CTA ============ -->
+<section class="section cta">
+  <span class="glow" id="ctaGlow"></span>
+  <div class="wrap">
+    <h2 class="reveal">Something leaking,<br>dripping or just not right?</h2>
+    <p class="reveal">Tell us what's going on and we'll come back with a fair, no-obligation quote — usually the same day.</p>
+    <a href="#contact" class="btn btn-copper reveal">Get a free quote <span class="arr">↗</span></a>
+    <a href="tel:02079460001" class="phone reveal">020 7946 0001</a>
   </div>
 </section>
 
-<!-- ===================== 10. CONTACT ===================== -->
-<section class="contact" id="contact">
-  <div class="container">
-    <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">Get in touch</span>
-      <h2 class="section-title reveal-title">Book Your Plumber</h2>
-      <p>Tell us what's going on and we'll get straight back to you with a fair, upfront quote.</p>
+<!-- ============ CONTACT ============ -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker reveal">Get in touch</span>
+      <h2 class="h-section reveal" style="margin-top:18px">Book your plumber.</h2>
     </div>
     <div class="contact-grid">
-      <div class="contact-info" data-aos="fade-right">
-        <div class="item">
-          <div class="ico">📞</div>
-          <div><h4>Call us</h4><a href="tel:02079460001">020 7946 0001</a><p>24/7 emergency line</p></div>
-        </div>
-        <div class="item">
-          <div class="ico">✉️</div>
-          <div><h4>Email</h4><a href="mailto:hello@aceplumbing.co.uk">hello@aceplumbing.co.uk</a><p>Replies within the hour</p></div>
-        </div>
-        <div class="item">
-          <div class="ico">📍</div>
-          <div><h4>Area covered</h4><p>Hackney, Dalston, Stoke Newington, Clapton, Shoreditch &amp; all of East London</p></div>
-        </div>
-        <div class="item">
-          <div class="ico">🕒</div>
-          <div><h4>Opening hours</h4><p>Mon–Sun: Always open for emergencies</p></div>
-        </div>
+      <div class="ci reveal">
+        <div class="item"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><div><h4>Call us</h4><a href="tel:02079460001">020 7946 0001</a><p>24/7 emergency line</p></div></div>
+        <div class="item"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg><div><h4>Email</h4><a href="mailto:hello@aceplumbing.co.uk">hello@aceplumbing.co.uk</a><p>We reply within the hour</p></div></div>
+        <div class="item"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><div><h4>Area covered</h4><p>Hackney, Dalston, Stoke Newington, Clapton, Shoreditch &amp; all of East London</p></div></div>
+        <div class="item"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><h4>Hours</h4><p>Always open for genuine emergencies</p></div></div>
       </div>
 
-      <form class="contact-form" data-aos="fade-left" id="contactForm" novalidate>
-        <div class="field">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+      <form class="form reveal" id="form" novalidate>
+        <div class="row">
+          <div class="fld"><label for="name">Name</label><input id="name" name="name" placeholder="Jane Doe" required></div>
+          <div class="fld"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="07700 900000" required></div>
         </div>
-        <div class="field">
-          <label for="phone">Phone</label>
-          <input type="tel" id="phone" name="phone" placeholder="07700 900000" required />
+        <div class="row">
+          <div class="fld"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="jane@example.com" required></div>
+          <div class="fld"><label for="service">Service</label>
+            <select id="service" name="service">
+              <option value="">Choose one…</option>
+              <option>Emergency repair</option>
+              <option>Boiler &amp; heating</option>
+              <option>Bathroom &amp; taps</option>
+              <option>Drain unblocking</option>
+              <option>Something else</option>
+            </select>
+          </div>
         </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="jane@example.com" required />
-        </div>
-        <div class="field">
-          <label for="service">Service type</label>
-          <select id="service" name="service">
-            <option value="">Select a service…</option>
-            <option>Emergency Repair</option>
-            <option>Boiler &amp; Heating</option>
-            <option>Bathroom &amp; Taps</option>
-            <option>Drain Unblocking</option>
-            <option>Other / Not sure</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Tell us what's going on…"></textarea>
-        </div>
-        <button type="submit" class="btn btn-dark" style="width:100%;justify-content:center">Send Request</button>
-        <p class="form-note">We'll never share your details. Demo form — no data is sent.</p>
-        <div class="form-success" id="formSuccess">✓ Thanks! In a real site we'd be in touch within the hour.</div>
+        <div class="fld"><label for="msg">What's going on?</label><textarea id="msg" name="msg" placeholder="A quick line about the job…"></textarea></div>
+        <button type="submit" class="btn btn-solid" style="width:100%;justify-content:center">Send request <span class="arr">↗</span></button>
+        <p class="note">We'll never share your details. Demo form — nothing is actually sent.</p>
+        <div class="ok" id="ok">Thanks — on a live site we'd be in touch within the hour.</div>
       </form>
     </div>
   </div>
 </section>
 
-<!-- ===================== 11. FOOTER ===================== -->
+<!-- ============ FOOTER ============ -->
 <footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
+  <div class="wrap">
+    <div class="foot-grid">
       <div>
-        <a href="#home" class="logo"><span class="mark">A</span> Ace <span class="light">&middot;</span> Plumbing</a>
-        <p>Fast, reliable, fully-insured plumbing &amp; heating for Hackney and East London. Available 24/7.</p>
+        <a href="#top" class="brand"><span class="dot">A</span> Ace Plumbing</a>
+        <p>Gas-Safe plumbing &amp; heating for Hackney and East London. Honest work, available around the clock.</p>
       </div>
       <div>
-        <h4>Quick links</h4>
+        <h5>Explore</h5>
         <ul>
           <li><a href="#services">Services</a></li>
-          <li><a href="#why">Why Us</a></li>
-          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#why">Why us</a></li>
+          <li><a href="#reviews">Reviews</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
       <div>
-        <h4>Contact</h4>
+        <h5>Reach us</h5>
         <ul>
-          <li><a href="tel:02079460001">📞 020 7946 0001</a></li>
-          <li><a href="mailto:hello@aceplumbing.co.uk">✉️ hello@aceplumbing.co.uk</a></li>
-          <li>📍 Hackney, London</li>
-          <li>🕒 Open 24/7</li>
+          <li><a href="tel:02079460001">020 7946 0001</a></li>
+          <li><a href="mailto:hello@aceplumbing.co.uk">hello@aceplumbing.co.uk</a></li>
+          <li>Hackney, London E8</li>
+          <li>Open 24/7</li>
         </ul>
       </div>
     </div>
-    <div class="copy">© 2026 Ace Plumbing &amp; Heating. All rights reserved. · Gas-Safe Registered No. 000000</div>
+    <div class="copy">
+      <span>© 2026 Ace Plumbing &amp; Heating</span>
+      <span>Gas-Safe Reg. 000000 · Fully insured</span>
+    </div>
   </div>
 </footer>
 
-<!-- ===================== 12. SITEPILOTS DEMO BANNER ===================== -->
-<div class="sp-banner" id="spBanner">
-  <span class="spark">✦</span>
-  Demo website created by <strong style="color:#fff">SitePilots</strong> · Want a site like this?
-  <a href="#">Contact us</a>
-  <button class="close" id="spClose" aria-label="Dismiss">✕</button>
+<!-- ============ SITEPILOTS BANNER ============ -->
+<div class="sp" id="sp">
+  <span class="sk">✦</span> Demo website by <strong style="color:#fff">SitePilots</strong> · Want one like this?
+  <a href="#">Get in touch</a>
+  <button class="x" id="spX" aria-label="Dismiss">✕</button>
 </div>
 
-<!-- ===================== SCRIPTS ===================== -->
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<!-- ============ PLUGINS ============ -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <script>
-  /* ---------- AOS ---------- */
-  AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 60 });
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Swiper ---------- */
-  new Swiper('#reviewSwiper', {
-    loop: true,
-    spaceBetween: 24,
-    autoplay: { delay: 3800, disableOnInteraction: false },
-    speed: 700,
-    grabCursor: true,
-    pagination: { el: '.swiper-pagination', clickable: true },
-    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-    breakpoints: {
-      640: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 }
-    }
+  /* ---- Lenis smooth scroll, driven by GSAP ticker ---- */
+  let lenis = null;
+  if(!reduce && window.Lenis){
+    lenis = new Lenis({ lerp:0.085, wheelMultiplier:1, smoothWheel:true });
+    if(window.gsap) gsap.ticker.add((t)=> lenis.raf(t*1000));
+    if(window.gsap) gsap.ticker.lagSmoothing(0);
+    if(window.ScrollTrigger) lenis.on('scroll', ScrollTrigger.update);
+  }
+  // anchor links via Lenis (fallback to native)
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const id=a.getAttribute('href');
+      if(id.length<2) return;
+      const el=document.querySelector(id);
+      if(!el) return;
+      e.preventDefault();
+      closeMenu();
+      if(lenis) lenis.scrollTo(el,{offset:-10,duration:1.2});
+      else el.scrollIntoView({behavior:reduce?'auto':'smooth'});
+    });
   });
 
-  /* ---------- Nav: scrolled state + progress bar ---------- */
-  const nav = document.getElementById('nav');
-  const progress = document.getElementById('progress-bar');
-  function onScroll() {
-    const y = window.scrollY || document.documentElement.scrollTop;
-    nav.classList.toggle('scrolled', y > 40);
-    const h = document.documentElement.scrollHeight - window.innerHeight;
-    progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+  /* ---- Nav state + progress bar ---- */
+  const nav=document.getElementById('nav'), bar=document.getElementById('progress');
+  function onScroll(){
+    const y=window.scrollY||document.documentElement.scrollTop;
+    nav.classList.toggle('solid', y>30);
+    const h=document.documentElement.scrollHeight-window.innerHeight;
+    bar.style.width=(h>0?(y/h)*100:0)+'%';
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
-  /* ---------- Mobile menu ---------- */
-  const burger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  function toggleMenu(force) {
-    const open = force ?? !mobileMenu.classList.contains('open');
-    mobileMenu.classList.toggle('open', open);
-    burger.classList.toggle('open', open);
-    burger.setAttribute('aria-expanded', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  }
-  burger.addEventListener('click', () => toggleMenu());
-  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+  /* ---- Mobile menu ---- */
+  const burger=document.getElementById('burger'), sheet=document.getElementById('msheet');
+  function closeMenu(){ sheet.classList.remove('open'); burger.classList.remove('x'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click',()=>{
+    const open=sheet.classList.toggle('open');
+    burger.classList.toggle('x',open);
+    burger.setAttribute('aria-expanded',open);
+  });
 
-  /* ---------- Hero typing effect ---------- */
-  const phrases = ['Fast. Reliable. Local.', 'Your Local Plumber.', 'Available 24/7.'];
-  const typedEl = document.getElementById('typed');
-  let pi = 0, ci = 0, deleting = false;
-  function type() {
-    const word = phrases[pi];
-    typedEl.textContent = word.substring(0, ci);
-    if (!deleting && ci < word.length) {
-      ci++; setTimeout(type, 70);
-    } else if (!deleting && ci === word.length) {
-      deleting = true; setTimeout(type, 1600);
-    } else if (deleting && ci > 0) {
-      ci--; setTimeout(type, 35);
-    } else {
-      deleting = false; pi = (pi + 1) % phrases.length; setTimeout(type, 250);
-    }
-  }
-  type();
-
-  /* ---------- Count-up on scroll ---------- */
-  const counters = document.querySelectorAll('[data-count]');
-  const cObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const target = parseFloat(el.dataset.count);
-      const decimals = parseInt(el.dataset.decimals || '0', 10);
-      const suffix = el.dataset.suffix || '';
-      const dur = 1600; const start = performance.now();
-      function tick(now) {
-        const p = Math.min((now - start) / dur, 1);
-        const eased = 1 - Math.pow(1 - p, 3);
-        const val = (target * eased).toFixed(decimals);
-        el.textContent = val + (p === 1 ? suffix : '');
-        if (p < 1) requestAnimationFrame(tick);
-        else el.textContent = target.toFixed(decimals) + suffix;
-      }
-      requestAnimationFrame(tick);
-      cObserver.unobserve(el);
+  /* ---- Swiper testimonials ---- */
+  if(window.Swiper){
+    new Swiper('#swiper',{
+      loop:true, grabCursor:true, spaceBetween:24, speed:650,
+      autoplay:{ delay:4200, disableOnInteraction:false },
+      pagination:{ el:'.swiper-pagination', clickable:true },
+      navigation:{ nextEl:'#qNext', prevEl:'#qPrev' },
+      breakpoints:{ 640:{slidesPerView:1.6}, 1024:{slidesPerView:2.4} }
     });
-  }, { threshold: 0.5 });
-  counters.forEach(c => cObserver.observe(c));
-
-  /* ---------- Section title underline reveal ---------- */
-  const titleObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); titleObserver.unobserve(e.target); } });
-  }, { threshold: 0.6 });
-  document.querySelectorAll('.reveal-title, .section-title').forEach(t => titleObserver.observe(t));
-
-  /* ---------- Particles ---------- */
-  const pWrap = document.getElementById('particles');
-  for (let i = 0; i < 18; i++) {
-    const s = document.createElement('span');
-    const size = Math.random() * 14 + 4;
-    s.style.width = size + 'px';
-    s.style.height = size + 'px';
-    s.style.left = Math.random() * 100 + '%';
-    s.style.top = Math.random() * 100 + '%';
-    s.style.animationDelay = (Math.random() * 16) + 's';
-    s.style.animationDuration = (Math.random() * 12 + 12) + 's';
-    pWrap.appendChild(s);
   }
 
-  /* ---------- Contact form (demo) ---------- */
-  const form = document.getElementById('contactForm');
-  form.addEventListener('submit', (e) => {
+  /* ---- GSAP scroll animations ---- */
+  if(!reduce && window.gsap && window.ScrollTrigger){
+    gsap.registerPlugin(ScrollTrigger);
+
+    // masked line rise for hero headline
+    gsap.to('.reveal-line > *',{ yPercent:0, duration:1.1, ease:'power4.out', stagger:0.12, delay:0.15 });
+
+    // generic reveals — fade + rise, staggered per section
+    gsap.utils.toArray('.reveal').forEach((el)=>{
+      gsap.to(el,{
+        opacity:1, y:0, duration:1, ease:'power3.out',
+        scrollTrigger:{ trigger:el, start:'top 88%' }
+      });
+    });
+
+    // hero art parallax
+    gsap.to('#heroArt',{ yPercent:-12, ease:'none', scrollTrigger:{ trigger:'#top', start:'top top', end:'bottom top', scrub:true }});
+    // why blob + cta glow parallax
+    gsap.to('#whyPara',{ yPercent:30, xPercent:-15, ease:'none', scrollTrigger:{ trigger:'.why', start:'top bottom', end:'bottom top', scrub:true }});
+    gsap.to('#ctaGlow',{ yPercent:25, ease:'none', scrollTrigger:{ trigger:'.cta', start:'top bottom', end:'bottom top', scrub:true }});
+
+    // seamless marquee tied to a tween (also drifts subtly with scroll velocity)
+    const track=document.getElementById('strip');
+    track.innerHTML += track.innerHTML; // duplicate for loop
+    const half=track.scrollWidth/2;
+    gsap.to(track,{ x:-half, duration:22, ease:'none', repeat:-1, modifiers:{ x:gsap.utils.unitize(x=>parseFloat(x)%half) }});
+
+    // count-up
+    document.querySelectorAll('[data-count]').forEach(el=>{
+      const end=parseFloat(el.dataset.count), dec=parseInt(el.dataset.dec||'0',10);
+      const o={v:0};
+      ScrollTrigger.create({ trigger:el, start:'top 85%', once:true, onEnter:()=>{
+        gsap.to(o,{ v:end, duration:1.8, ease:'power2.out', onUpdate:()=>{ el.textContent=o.v.toFixed(dec); }, onComplete:()=>{ el.textContent=end.toFixed(dec); }});
+      }});
+    });
+  } else {
+    // reduced motion / no gsap: show everything
+    document.querySelectorAll('.reveal').forEach(e=>{e.style.opacity=1;e.style.transform='none';});
+    document.querySelectorAll('.reveal-line > *').forEach(e=>e.style.transform='none');
+    document.querySelectorAll('[data-count]').forEach(el=>{ const d=parseInt(el.dataset.dec||'0',10); el.textContent=parseFloat(el.dataset.count).toFixed(d); });
+  }
+
+  /* ---- Contact form (demo) ---- */
+  const form=document.getElementById('form');
+  form.addEventListener('submit',e=>{
     e.preventDefault();
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-    document.getElementById('formSuccess').style.display = 'block';
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+    document.getElementById('ok').style.display='block';
     form.reset();
   });
 
-  /* ---------- SitePilots banner dismiss ---------- */
-  document.getElementById('spClose').addEventListener('click', () => {
-    document.getElementById('spBanner').classList.add('hidden');
-  });
+  /* ---- SitePilots dismiss ---- */
+  document.getElementById('spX').addEventListener('click',()=>document.getElementById('sp').classList.add('hide'));
+})();
 </script>
 </body>
 </html>
