@@ -691,8 +691,13 @@
   if(!reduce && window.gsap && window.ScrollTrigger){
     gsap.registerPlugin(ScrollTrigger);
 
-    // masked line rise for hero headline
-    gsap.to('.reveal-line > *',{ yPercent:0, duration:1.1, ease:'power4.out', stagger:0.12, delay:0.15 });
+    // masked line rise for hero headline.
+    // fromTo with explicit y:0 neutralises the px value GSAP derives from the
+    // CSS `translateY(110%)` resting state — otherwise px + yPercent combine and
+    // the lines stay pushed down (clipped by the overflow mask = invisible).
+    gsap.fromTo('.reveal-line > *',
+      { yPercent:110, y:0 },
+      { yPercent:0, y:0, duration:1.1, ease:'power4.out', stagger:0.12, delay:0.15, clearProps:'transform' });
 
     // generic reveals — fade + rise, staggered per section
     gsap.utils.toArray('.reveal').forEach((el)=>{
