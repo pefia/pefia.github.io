@@ -1,137 +1,998 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Waterden Dental Practice | Home</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YORMECH — Mobile Mechanic & MOT | Banstead, Surrey</title>
+<meta name="description" content="YORMECH — fully qualified mobile mechanic and MOT tester covering Banstead, Epsom, Sutton, Croydon and 20+ more areas. He comes to your driveway. 93 five-star Google reviews.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400&display=swap');
+
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:          #f8f6f1;
+  --bg-alt:      #f1ede5;
+  --surface:     #ffffff;
+  --border:      #e0d9ce;
+  --border-dark: #c8bfb0;
+  --ink:         #1a1611;
+  --ink-2:       #4a443c;
+  --ink-3:       #8a8278;
+  --accent:      #b34a1a;
+  --accent-2:    #8c3512;
+  --green:       #2a6641;
+  --ease:        cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink-2);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; line-height: 1.12; color: var(--ink); }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+svg { display: block; }
+
+.container { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 22px; }
+.mono { font-family: 'DM Mono', monospace; }
+
+/* graceful image wrapper — branded fallback if a photo fails to load */
+.photo {
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, var(--bg-alt) 0%, var(--border) 100%);
+}
+.photo img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 1;
+  transition: transform 0.6s var(--ease), opacity 0.4s ease;
+}
+.photo img.img-failed { opacity: 0; }
+
+/* ============ SCROLL PROGRESS BAR ============ */
+#scrollProgress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  z-index: 2000; transition: width 0.05s linear;
+}
+
+/* ============ NAV ============ */
+nav.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1500;
+  background: rgba(248,246,241,0.92);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.logo {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Fraunces', Georgia, serif; font-weight: 700;
+  letter-spacing: 0.01em; color: var(--ink); font-size: 23px;
+}
+.logo .mark { width: 30px; height: 30px; display: grid; place-items: center; background: var(--accent); border-radius: 7px; color: #fff; }
+.nav-links { display: none; align-items: center; gap: 32px; }
+.nav-links a {
+  font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px;
+  color: var(--ink-2); transition: color 0.15s var(--ease); position: relative;
+}
+.nav-links a::after { content: ""; position: absolute; left: 0; bottom: -6px; height: 1.5px; width: 0; background: var(--accent); transition: width 0.2s var(--ease); }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
+.nav-right { display: flex; align-items: center; gap: 14px; }
+.btn-wa-nav {
+  display: none; align-items: center; gap: 7px;
+  background: var(--ink); color: var(--bg);
+  font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px;
+  padding: 11px 17px; border-radius: 6px; transition: all 0.2s var(--ease);
+}
+.btn-wa-nav:hover { background: #000; }
+.hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; }
+.hamburger span { width: 24px; height: 2px; background: var(--ink); transition: all 0.3s var(--ease); border-radius: 2px; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-nav {
+  position: fixed; top: 68px; left: 0; right: 0;
+  background: rgba(248,246,241,0.98); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border); z-index: 1400;
+  transform: translateY(-130%); transition: transform 0.35s var(--ease); padding: 18px 22px 26px;
+}
+.mobile-nav.open { transform: translateY(0); }
+.mobile-nav a {
+  display: block; padding: 14px 0;
+  font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 16px;
+  color: var(--ink-2); border-bottom: 1px solid var(--border); transition: color 0.15s var(--ease);
+}
+.mobile-nav a:hover { color: var(--accent); }
+.mobile-nav .btn-wa-nav { display: flex; justify-content: center; margin-top: 18px; }
+
+/* ============ BUTTONS ============ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px;
+  padding: 14px 24px; border-radius: 6px; cursor: pointer;
+  transition: all 0.2s var(--ease); border: 1.5px solid transparent;
+}
+.btn svg { width: 18px; height: 18px; }
+.btn-primary { background: var(--accent); color: #fff; border: none; }
+.btn-primary:hover { background: var(--accent-2); }
+.btn-secondary { background: transparent; border: 1.5px solid var(--border-dark); color: var(--ink); }
+.btn-secondary:hover { border-color: var(--ink); color: var(--ink); }
+.btn .arr { transition: transform 0.2s var(--ease); }
+.btn:hover .arr { transform: translateX(3px); }
+
+/* ============ SECTION HELPERS ============ */
+section { padding: 92px 0; position: relative; }
+.bg-alt { background: var(--bg-alt); }
+.eyebrow {
+  display: inline-block;
+  font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-3); margin-bottom: 18px;
+}
+.sec-title { font-family: 'Fraunces', serif; font-weight: 600; font-size: 26px; color: var(--ink); margin-bottom: 14px; }
+.sec-sub { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 16px; color: var(--ink-2); margin-bottom: 52px; max-width: 580px; }
+.label-mono { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-3); letter-spacing: 0.05em; text-transform: uppercase; }
+.center { text-align: center; }
+.center .sec-sub, .center .eyebrow { margin-left: auto; margin-right: auto; }
+
+/* ============ HERO ============ */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding-top: 124px; padding-bottom: 72px;
+  position: relative; overflow: hidden; background: var(--bg);
+  background-image: repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(26,22,17,0.018) 40px, rgba(26,22,17,0.018) 41px);
+}
+.hero-grid { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; position: relative; z-index: 2; }
+.hero-label {
+  display: inline-block; font-family: 'DM Mono', monospace; font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+  border: 1px solid var(--border); background: var(--surface);
+  padding: 8px 13px; border-radius: 4px; margin-bottom: 28px;
+}
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 700; font-size: 38px; color: var(--ink); margin-bottom: 24px; letter-spacing: -0.01em; }
+.hero h1 span { display: block; }
+.hero h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
+.hero-sub { font-size: 17px; color: var(--ink-2); max-width: 520px; margin-bottom: 34px; }
+.hero-ctas { display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
+.hero-ctas .btn { width: 100%; }
+.hero-stats { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--ink-3); letter-spacing: 0.02em; }
+
+.hero-visual { position: relative; }
+.hero-photo { border-radius: 8px; aspect-ratio: 4 / 5; border: 1px solid var(--border); }
+.hero-photo:hover img { transform: scale(1.04); }
+
+/* ============ CREDENTIALS BAND ============ */
+.creds { background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 36px 0; }
+.creds-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px 16px; }
+.cred { display: flex; align-items: center; gap: 11px; }
+.cred .ic { color: var(--accent); flex-shrink: 0; }
+.cred .ic svg { width: 22px; height: 22px; }
+.cred span { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 13.5px; color: var(--ink-2); }
+
+/* ============ MARQUEE ============ */
+.marquee { background: var(--accent); overflow: hidden; white-space: nowrap; padding: 13px 0; position: relative; }
+.marquee-track { display: inline-flex; animation: marquee 35s linear infinite; }
+.marquee-track span { font-family: 'DM Mono', monospace; font-size: 12px; color: #fff; padding: 0 4px; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ============ FEATURE BLOCK (replaces 3D showcase) ============ */
+.feature-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+.feature-block h2 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 30px; margin-bottom: 28px; max-width: 460px; }
+.feature-block h2 em { font-style: italic; font-weight: 400; }
+.feature-points { display: grid; gap: 18px; }
+.feature-point { display: flex; align-items: flex-start; gap: 13px; }
+.feature-point .ic { width: 26px; height: 26px; border-radius: 6px; background: rgba(42,102,65,0.1); color: var(--green); display: grid; place-items: center; flex-shrink: 0; margin-top: 2px; }
+.feature-point .ic svg { width: 15px; height: 15px; }
+.feature-point span { font-size: 16px; color: var(--ink-2); }
+.review-card {
+  background: var(--ink); color: var(--bg); border-radius: 10px;
+  padding: 46px 38px; text-align: center;
+}
+.review-card .big { font-family: 'Fraunces', serif; font-weight: 700; font-size: 76px; line-height: 1; color: #fff; }
+.review-card .lbl { font-family: 'DM Sans', sans-serif; font-size: 16px; color: rgba(248,246,241,0.7); margin-top: 6px; }
+.review-card .stars { display: inline-flex; gap: 4px; color: var(--accent); margin: 22px 0 14px; }
+.review-card .stars svg { width: 22px; height: 22px; }
+.review-card .src { font-family: 'DM Mono', monospace; font-size: 12px; color: rgba(248,246,241,0.55); letter-spacing: 0.04em; }
+
+/* ============ HOW IT WORKS ============ */
+.steps { display: grid; grid-template-columns: 1fr; gap: 22px; }
+.step-card {
+  background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--border);
+  border-radius: 6px; padding: 32px 28px; transition: all 0.25s var(--ease);
+}
+.step-card:hover { border-color: var(--border-dark); border-top-color: var(--border-dark); transform: translateY(-3px); }
+.step-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.step-num { font-family: 'Fraunces', serif; font-weight: 300; font-size: 46px; color: var(--border-dark); line-height: 1; }
+.step-ic { width: 46px; height: 46px; border-radius: 8px; background: rgba(179,74,26,0.09); display: grid; place-items: center; color: var(--accent); }
+.step-ic svg { width: 23px; height: 23px; }
+.step-card h3 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; margin-bottom: 11px; }
+.step-card p { font-size: 15px; color: var(--ink-2); }
+
+/* ============ SERVICES ============ */
+.mot-feature {
+  display: grid; grid-template-columns: 1fr; gap: 0;
+  background: var(--ink); border-radius: 10px; margin-bottom: 36px;
+  position: relative; overflow: hidden;
+}
+.mot-text { padding: 40px 30px; position: relative; z-index: 2; }
+.mot-ghost { position: absolute; right: 16px; bottom: -20px; font-family: 'Fraunces', serif; font-weight: 700; font-size: 108px; color: rgba(248,246,241,0.05); pointer-events: none; line-height: 1; z-index: 1; }
+.badge-sd { display: inline-block; background: var(--accent); color: #fff; font-family: 'DM Mono', monospace; font-size: 11px; padding: 5px 11px; border-radius: 4px; margin-bottom: 18px; letter-spacing: 0.06em; }
+.mot-text h3 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 24px; color: var(--bg); margin-bottom: 14px; max-width: 520px; }
+.mot-text p { font-size: 15px; color: rgba(248,246,241,0.72); max-width: 520px; margin-bottom: 24px; }
+.mot-cta { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px; transition: gap 0.2s var(--ease); }
+.mot-cta svg { width: 16px; height: 16px; }
+.mot-cta:hover { gap: 13px; }
+.mot-photo { min-height: 220px; position: relative; }
+
+.svc-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+.svc-card {
+  background: var(--surface); border: 1px solid var(--border); border-left: 3px solid transparent;
+  border-radius: 6px; padding: 28px 26px; transition: all 0.25s var(--ease);
+}
+.svc-card:hover { border-color: var(--border-dark); border-left: 3px solid var(--accent); transform: translateY(-3px); }
+.svc-head { display: flex; align-items: center; gap: 14px; margin-bottom: 15px; }
+.svc-ic { width: 46px; height: 46px; border-radius: 8px; background: rgba(179,74,26,0.09); display: grid; place-items: center; color: var(--accent); flex-shrink: 0; transition: all 0.25s var(--ease); }
+.svc-ic svg { width: 23px; height: 23px; }
+.svc-card:hover .svc-ic { background: var(--accent); color: #fff; }
+.svc-card .label-mono { display: block; }
+.svc-card h3 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 19px; margin-top: 3px; }
+.svc-card .items { font-size: 14px; color: var(--ink-2); line-height: 1.75; }
+
+/* ============ MEET FAZNAN ============ */
+.about-grid { display: grid; grid-template-columns: 1fr; gap: 42px; align-items: center; }
+.about-photo { border-radius: 8px; aspect-ratio: 4 / 3; border: 1px solid var(--border); }
+.about h2 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 30px; margin-bottom: 20px; }
+.about h2 em { font-style: italic; font-weight: 400; }
+.about p { color: var(--ink-2); font-size: 16px; margin-bottom: 18px; }
+.about-points { display: grid; gap: 15px; margin-top: 28px; }
+.about-point { display: flex; align-items: flex-start; gap: 12px; }
+.about-point .ic { width: 26px; height: 26px; border-radius: 6px; background: rgba(42,102,65,0.1); color: var(--green); display: grid; place-items: center; flex-shrink: 0; margin-top: 2px; }
+.about-point .ic svg { width: 15px; height: 15px; }
+.about-point span { font-size: 15px; color: var(--ink); }
+
+/* ============ PRICING ============ */
+.price-card {
+  background: var(--surface); border: 1px solid var(--border-dark);
+  border-radius: 10px; box-shadow: 0 2px 12px rgba(26,22,17,0.08);
+  max-width: 520px; margin: 0 auto 44px; padding: 40px 34px; text-align: center; position: relative; overflow: hidden;
+}
+.price-card .ribbon {
+  position: absolute; top: 18px; right: -36px; transform: rotate(45deg);
+  background: var(--ink); color: var(--bg); font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.08em; padding: 5px 42px;
+}
+.price-card .top-label { margin-bottom: 18px; display: block; }
+.price-card .price { font-family: 'Fraunces', serif; font-weight: 700; font-size: 66px; color: var(--accent); line-height: 1; }
+.price-card .price small { font-size: 24px; color: var(--ink-3); vertical-align: super; }
+.price-card .price-sub { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink-3); margin: 12px 0 28px; }
+.price-card ul { text-align: left; display: inline-block; margin-bottom: 28px; }
+.price-card ul li { font-size: 15px; color: var(--ink); padding: 8px 0; display: flex; align-items: center; gap: 12px; }
+.price-card ul li .ck { width: 20px; height: 20px; border-radius: 50%; background: rgba(42,102,65,0.12); color: var(--green); display: grid; place-items: center; flex-shrink: 0; }
+.price-card ul li .ck svg { width: 12px; height: 12px; }
+.price-card .ask { font-size: 14px; color: var(--ink-2); margin-bottom: 24px; }
+.pillars { display: grid; grid-template-columns: 1fr; gap: 18px; max-width: 760px; margin: 0 auto 34px; }
+.pillar { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 28px 26px; text-align: center; transition: all 0.25s var(--ease); }
+.pillar:hover { border-color: var(--border-dark); transform: translateY(-3px); }
+.pillar .pic { width: 46px; height: 46px; margin: 0 auto 16px; border-radius: 8px; background: rgba(179,74,26,0.09); color: var(--accent); display: grid; place-items: center; }
+.pillar .pic svg { width: 22px; height: 22px; }
+.pillar h4 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 19px; margin-bottom: 7px; }
+.pillar .desc { font-size: 13px; color: var(--ink-2); margin-bottom: 16px; }
+.pillar a { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px; }
+.pillar a svg { width: 14px; height: 14px; }
+.price-note { text-align: center; font-style: italic; font-family: 'Fraunces', serif; color: var(--ink-2); font-size: 17px; max-width: 640px; margin: 0 auto; line-height: 1.55; }
+
+/* ============ TESTIMONIALS ============ */
+.testi-scroll {
+  display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding-bottom: 22px; -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin; scrollbar-color: var(--border-dark) transparent;
+}
+.testi-scroll::-webkit-scrollbar { height: 6px; }
+.testi-scroll::-webkit-scrollbar-track { background: transparent; }
+.testi-scroll::-webkit-scrollbar-thumb { background: var(--border-dark); border-radius: 4px; }
+.testi-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+  padding: 30px; min-width: 300px; max-width: 344px; flex: 0 0 auto; scroll-snap-align: start;
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.testi-card:hover { border-color: var(--border-dark); transform: translateY(-3px); }
+.testi-card .qmark { color: rgba(179,74,26,0.22); font-family: 'Fraunces', serif; font-weight: 700; font-size: 52px; line-height: 0.4; margin-bottom: 18px; display: block; }
+.testi-card .stars { display: flex; gap: 3px; color: var(--accent); margin-bottom: 16px; }
+.testi-card .stars svg { width: 16px; height: 16px; }
+.testi-card .quote { font-size: 15.5px; color: var(--ink-2); margin-bottom: 22px; line-height: 1.6; }
+.testi-foot { display: flex; align-items: center; gap: 12px; }
+.testi-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--ink); color: var(--bg); display: grid; place-items: center; font-family: 'Fraunces', serif; font-weight: 600; font-size: 15px; flex-shrink: 0; }
+.testi-card .name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 15px; color: var(--ink); }
+.testi-card .loc { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+.google-badge { text-align: center; margin-top: 46px; }
+.google-badge .big {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+  padding: 16px 26px; font-family: 'Fraunces', serif; font-weight: 600; font-size: 18px; color: var(--ink);
+}
+.google-badge .big svg { width: 24px; height: 24px; }
+.google-badge .gstars { display: inline-flex; gap: 2px; color: var(--accent); }
+.google-badge .gstars svg { width: 16px; height: 16px; }
+.google-badge .see { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; color: var(--accent); font-size: 14px; font-family: 'DM Sans', sans-serif; font-weight: 600; }
+.google-badge .see svg { width: 14px; height: 14px; }
+
+/* ============ SERVICE AREA ============ */
+.area-wrap { display: grid; grid-template-columns: 1fr; gap: 38px; }
+.area-copy p { font-size: 16px; color: var(--ink-2); margin-bottom: 24px; }
+.area-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.area-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  background: var(--bg-alt); border: 1px solid var(--border); color: var(--ink-2);
+  padding: 9px 13px; border-radius: 4px; transition: all 0.2s var(--ease); cursor: default;
+}
+.area-tag svg { width: 11px; height: 11px; opacity: 0.6; }
+.area-tag:hover { border-color: var(--accent); color: var(--accent); }
+.area-tag:hover svg { opacity: 1; }
+
+/* ============ FAQ ============ */
+.faq-list { max-width: 780px; margin: 0 auto; }
+.faq-item {
+  border: 1px solid var(--border); border-left: 3px solid transparent; border-radius: 6px;
+  margin-bottom: 14px; overflow: hidden; background: var(--surface);
+  transition: border-left-color 0.25s var(--ease);
+}
+.faq-item.open { border-left: 3px solid var(--accent); }
+.faq-q {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 21px 24px; cursor: pointer;
+  font-family: 'Fraunces', serif; font-weight: 600; font-size: 17px; color: var(--ink);
+}
+.faq-q .chev { color: var(--accent); transition: transform 0.3s var(--ease); flex-shrink: 0; }
+.faq-q .chev svg { width: 18px; height: 18px; }
+.faq-item.open .chev { transform: rotate(180deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+.faq-a p { padding: 0 24px 22px; font-size: 15px; color: var(--ink-2); }
+
+/* ============ BOOK NOW CTA ============ */
+.book-cta { background: var(--ink); text-align: center; position: relative; overflow: hidden; }
+.book-cta::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 0L56 16.6V49.8L28 66.4L0 49.8V16.6Z' fill='none' stroke='%23f8f6f1' stroke-width='1.5'/%3E%3C/svg%3E");
+  opacity: 0.04; pointer-events: none;
+}
+.book-cta .container { position: relative; z-index: 2; }
+.book-cta h2 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 32px; color: var(--bg); margin-bottom: 16px; }
+.book-cta h2 em { font-style: italic; font-weight: 400; }
+.book-cta .sub { font-size: 17px; color: rgba(248,246,241,0.65); max-width: 560px; margin: 0 auto 34px; }
+.book-ctas { display: flex; flex-direction: column; gap: 14px; max-width: 440px; margin: 0 auto 30px; }
+.btn-book-wa { background: var(--accent); color: #fff; }
+.btn-book-wa:hover { background: var(--accent-2); }
+.btn-book-call { background: transparent; border: 1.5px solid rgba(248,246,241,0.35); color: var(--bg); }
+.btn-book-call:hover { border-color: var(--bg); }
+.book-small { display: inline-flex; align-items: center; gap: 8px; font-family: 'DM Mono', monospace; font-size: 12px; color: rgba(248,246,241,0.45); }
+.book-small svg { width: 14px; height: 14px; }
+
+/* ============ FOOTER ============ */
+footer { background: var(--bg); border-top: 1px solid var(--border); padding: 58px 0 28px; }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 36px; margin-bottom: 40px; }
+.footer-col .logo { margin-bottom: 14px; }
+.footer-col .tag { font-size: 14px; color: var(--ink-2); max-width: 290px; }
+.footer-col h5 { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 18px; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col ul li a { font-size: 14px; color: var(--ink-3); transition: color 0.15s var(--ease); }
+.footer-col ul li a:hover { color: var(--ink); }
+.footer-contact a { display: flex; align-items: center; gap: 9px; font-size: 14px; color: var(--ink-3); margin-bottom: 12px; transition: color 0.15s var(--ease); }
+.footer-contact a svg { width: 15px; height: 15px; color: var(--accent); }
+.footer-contact a:hover { color: var(--ink); }
+.footer-social { display: flex; gap: 12px; margin-top: 18px; }
+.footer-social a { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 8px; color: var(--ink-3); transition: all 0.2s var(--ease); }
+.footer-social a svg { width: 18px; height: 18px; }
+.footer-social a:hover { border-color: var(--accent); color: var(--accent); }
+.footer-bottom { border-top: 1px solid var(--border); padding-top: 26px; text-align: center; font-size: 13px; color: var(--ink-3); }
+
+/* ============ SITEPILOTS DEMO BANNER ============ */
+.sp-banner { background: var(--ink); color: var(--bg); text-align: center; padding: 18px 22px; font-family: 'DM Sans', sans-serif; font-size: 14px; }
+.sp-banner strong { font-family: 'Fraunces', serif; font-weight: 600; }
+.sp-banner a { color: var(--accent); font-weight: 600; }
+.sp-banner a:hover { text-decoration: underline; }
+
+/* ============ DESKTOP MEDIA QUERIES ============ */
+@media (min-width: 640px) { .creds-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 768px) {
+  .steps { grid-template-columns: repeat(3, 1fr); }
+  .svc-grid { grid-template-columns: repeat(2, 1fr); }
+  .pillars { grid-template-columns: repeat(3, 1fr); }
+  .hero-ctas { flex-direction: row; }
+  .hero-ctas .btn { width: auto; }
+  .book-ctas { flex-direction: row; }
+  .book-ctas .btn { flex: 1; }
+  .area-wrap { grid-template-columns: 0.9fr 1.4fr; align-items: start; }
+  .footer-grid { grid-template-columns: 1.6fr 1fr 1.2fr; }
+  .mot-feature { grid-template-columns: 1.3fr 1fr; }
+  .mot-photo { min-height: 100%; }
+  .about-grid { grid-template-columns: 1fr 1.1fr; }
+  .feature-grid { grid-template-columns: 1.1fr 0.9fr; }
+  .creds-grid { grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .cred span { font-size: 12.5px; }
+}
+@media (min-width: 900px) {
+  .nav-links { display: flex; }
+  .btn-wa-nav { display: inline-flex; }
+  .hamburger { display: none; }
+  .hero { padding-top: 68px; }
+  .hero-grid { grid-template-columns: 1.05fr 0.95fr; }
+  .hero h1 { font-size: 56px; }
+  .hero-sub { font-size: 18px; }
+  .sec-title, .about h2, .feature-block h2 { font-size: 34px; }
+  .mot-text { padding: 50px 46px; }
+  .mot-ghost { font-size: 120px; right: 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
 </head>
 <body>
-  <header id="site-header" class="site-header"></header>
 
-  <main>
-    <section class="hero hero-modern">
-      <div class="hero-bg-orb orb-one"></div>
-      <div class="hero-bg-orb orb-two"></div>
-      <div class="container hero-grid">
-        <div class="hero-copy reveal-up">
-          <span class="badge">Guildford Private & Family Dental Care</span>
-          <h1>Calm, modern dentistry designed around your smile</h1>
-          <p>
-            At Waterden Dental Practice, we blend advanced treatments with a gentle, reassuring approach so every visit feels clear, comfortable and confident.
-          </p>
-          <div class="hero-cta-row">
-            <button class="btn" data-book-open>Book Appointment</button>
-            <a class="btn btn-outline" href="treatments.html">Explore Treatments</a>
-          </div>
-          <div class="hero-stats" aria-label="Practice highlights">
-            <article class="stat-card pulse-stat"><strong data-count="4.9">4.9★</strong><span>Google Reviews</span></article>
-            <article class="stat-card pulse-stat"><strong>Platinum</strong><span>Invisalign Provider</span></article>
-            <article class="stat-card pulse-stat"><strong>Mon–Sat</strong><span>Flexible appointment options</span></article>
-          </div>
-        </div>
-        <div class="hero-media reveal-up delay-2">
-          <img class="hero-img" src="assets/img/hero.png" alt="Patient smiling in a bright dental clinic">
-          <div class="floating-note card">
-            <span class="pill">Trusted local team</span>
-            <p>Professional, friendly care focused on long-term oral health.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<div id="scrollProgress"></div>
 
-    <section class="section section-soft">
-      <div class="container">
-        <div class="section-head">
-          <span class="badge">Popular Services</span>
-          <h2>Treatments tailored to your goals</h2>
-        </div>
-        <div id="homeTreatmentPreview" class="treatment-track"></div>
-      </div>
-    </section>
-
-
-    <section class="section parallax-section">
-      <div class="container">
-        <div class="parallax-panel" data-parallax>
-          <h2>Precision Dentistry, Elevated Experience</h2>
-          <p>As you scroll, discover a smoother journey from consultation to confident smile.</p>
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container split-panel reveal-up">
-        <img class="hero-img" src="assets/img/hero.png" alt="Dentist discussing treatment options with a patient">
-        <div>
-          <span class="badge">Why Waterden</span>
-          <h2>Welcome to a practice built on comfort, clarity and results</h2>
-          <p>
-            From preventive check-ups to advanced restorative care, we make your treatment journey straightforward with clear guidance and patient-first attention.
-          </p>
-          <ul class="feature-list">
-            <li>Friendly clinicians with consultation-led care</li>
-            <li>Modern techniques for precision and comfort</li>
-            <li>Transparent treatment planning and next steps</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <span class="badge">Patient Reviews</span>
-          <h2>Selected feedback from our community</h2>
-        </div>
-        <div id="homeReviews" class="grid"></div>
-      </div>
-    </section>
-
-    <section class="section section-soft">
-      <div class="container">
-        <h3>Professional dental care with trusted industry standards.</h3>
-        <div class="trust-strip">
-          <div class="logo-card">CQC</div>
-          <div class="logo-card">BDA</div>
-          <div class="logo-card">General Dental Council</div>
-          <div class="logo-card">Invisalign</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container card cta-panel">
-        <h2>Ready to book your appointment?</h2>
-        <p>Speak with our friendly team or submit an online mock appointment request in under 2 minutes.</p>
-        <button class="btn" data-book-open>Book Appointment</button>
-      </div>
-    </section>
-  </main>
-
-  <footer id="site-footer" class="footer"></footer>
-
-  <div id="bookingModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle" aria-describedby="bookingModalDesc">
-    <div class="modal modal-animated">
-      <div class="modal-glow"></div>
-      <button class="icon-close" data-book-close aria-label="Close booking form">×</button>
-      <div class="modal-header">
-        <span class="badge">Book Appointment</span>
-        <h2 id="bookingModalTitle">Let’s find the right appointment for you</h2>
-        <p id="bookingModalDesc">Complete this quick form and our team will contact you shortly to confirm details.</p>
-      </div>
-      <form id="bookingForm">
-        <div class="progress-row" aria-hidden="true"></div>
-        <div id="bookingStepper" class="stepper-card"></div>
-        <div class="modal-actions">
-          <button class="btn btn-outline" type="button" id="stepBackBtn">Back</button>
-          <button class="btn" type="button" id="stepNextBtn">Next</button>
-        </div>
-      </form>
+<!-- ============ NAV ============ -->
+<nav class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="#" class="logo">
+      <span class="mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+      YORMECH
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#how">How It Works</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://api.whatsapp.com/send?phone=447727229064" target="_blank" rel="noopener" class="btn-wa-nav">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.519 5.26l-.999 3.648 3.969-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        Book via WhatsApp <span class="arr">→</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
   </div>
+</nav>
 
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/booking-modal.js"></script>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#services">Services</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#how">How It Works</a>
+  <a href="#reviews">Reviews</a>
+  <a href="#contact">Contact</a>
+  <a href="https://api.whatsapp.com/send?phone=447727229064" target="_blank" rel="noopener" class="btn-wa-nav">Book via WhatsApp →</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-label" data-aos="fade-up">Banstead, Surrey · Mobile Mechanic &amp; MOT Tester</div>
+        <h1 data-aos="fade-up" data-aos-delay="60">
+          <span>Your Mechanic.</span>
+          <span>Your Driveway.</span>
+          <span>Your <em>Time.</em></span>
+        </h1>
+        <p class="hero-sub" data-aos="fade-up" data-aos-delay="120">
+          Faznan is a fully qualified mobile mechanic and MOT tester covering Banstead, Epsom, Sutton, Croydon and 20+ more areas. He comes to you — at home or at work — with everything he needs.
+        </p>
+        <div class="hero-ctas" data-aos="fade-up" data-aos-delay="180">
+          <a href="https://api.whatsapp.com/send?phone=447727229064" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.519 5.26l-.999 3.648 3.969-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            Book via WhatsApp
+          </a>
+          <a href="tel:01737668912" class="btn btn-secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call 01737 668912
+          </a>
+        </div>
+        <div class="hero-stats" data-aos="fade-up" data-aos-delay="240">93+ Reviews&nbsp;&nbsp;·&nbsp;&nbsp;5.0★ Rating&nbsp;&nbsp;·&nbsp;&nbsp;Same Day MOT</div>
+      </div>
+
+      <div class="hero-visual" data-aos="fade-left" data-aos-delay="150">
+        <div class="photo hero-photo">
+          <img src="https://media.sciencephoto.com/image/f0093455/800wm/F0093455-Mechanics_working_on_car_engine_in_garage.jpg" alt="Mobile mechanic working on a car engine" loading="lazy" onerror="this.classList.add('img-failed')">
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ CREDENTIALS BAND ============ -->
+<div class="creds">
+  <div class="container creds-grid">
+    <div class="cred"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span><span>Qualified MOT Tester</span></div>
+    <div class="cred"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span><span>Insured Trade Plates</span></div>
+    <div class="cred"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><span>Same Day Service</span></div>
+    <div class="cred"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span><span>Fixed Price Guarantee</span></div>
+    <div class="cred"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span>No Garage Required</span></div>
+    <div class="cred"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>All Makes &amp; Models</span></div>
+  </div>
+</div>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>✓ Qualified MOT Tester&nbsp; ·&nbsp; ✓ Insured Trade Plates&nbsp; ·&nbsp; ✓ Same Day Service&nbsp; ·&nbsp; ✓ Fixed Price Guarantee&nbsp; ·&nbsp; ✓ No Garage Required&nbsp; ·&nbsp; ✓ 93 Five-Star Reviews&nbsp; ·&nbsp; ✓ All Makes &amp; Models&nbsp; ·&nbsp;</span>
+    <span>✓ Qualified MOT Tester&nbsp; ·&nbsp; ✓ Insured Trade Plates&nbsp; ·&nbsp; ✓ Same Day Service&nbsp; ·&nbsp; ✓ Fixed Price Guarantee&nbsp; ·&nbsp; ✓ No Garage Required&nbsp; ·&nbsp; ✓ 93 Five-Star Reviews&nbsp; ·&nbsp; ✓ All Makes &amp; Models&nbsp; ·&nbsp;</span>
+  </div>
+</div>
+
+<!-- ============ FEATURE BLOCK ============ -->
+<section class="feature-block">
+  <div class="container feature-grid">
+    <div data-aos="fade-right">
+      <div class="eyebrow">Why YORMECH?</div>
+      <h2>The garage came to you. <em>About time.</em></h2>
+      <div class="feature-points">
+        <div class="feature-point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Faznan turns up when he says he will — every time</span></div>
+        <div class="feature-point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Price agreed before he touches a single bolt</span></div>
+        <div class="feature-point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Fully qualified: MOT tester + mechanic in one visit</span></div>
+        <div class="feature-point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>93 customers left him five stars. The 94th is next.</span></div>
+      </div>
+    </div>
+    <div class="review-card" data-aos="fade-left">
+      <div class="big">93</div>
+      <div class="lbl">five-star reviews</div>
+      <div class="stars" id="featStars"></div>
+      <div class="src">on Google · yormech.co.uk</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how" class="bg-alt">
+  <div class="container">
+    <div class="eyebrow" data-aos="fade-right">Simple by design</div>
+    <h2 class="sec-title" data-aos="fade-right">How It Works</h2>
+    <p class="sec-sub" data-aos="fade-right">We've made car servicing so simple it almost feels wrong.</p>
+    <div class="steps">
+      <div class="step-card" data-aos="fade-up">
+        <div class="step-top">
+          <div class="step-num">01</div>
+          <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        </div>
+        <h3>Tell us what you need</h3>
+        <p>Call or WhatsApp Faznan. No lengthy forms. No automated phone systems. Just a quick message with your car details and what's wrong.</p>
+      </div>
+      <div class="step-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="step-top">
+          <div class="step-num">02</div>
+          <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        </div>
+        <h3>We come to your driveway</h3>
+        <p>Faznan arrives in a fully equipped van — at your home or workplace, at a time that suits you. No waiting rooms. No day off work.</p>
+      </div>
+      <div class="step-card" data-aos="fade-up" data-aos-delay="160">
+        <div class="step-top">
+          <div class="step-num">03</div>
+          <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        </div>
+        <h3>Fixed, tested, on your way</h3>
+        <p>Whether it's a service, MOT, diagnostics or repair — it's handled on the spot. Fixed price agreed upfront. No surprises.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="container">
+    <div class="eyebrow" data-aos="fade-right">Full workshop capability</div>
+    <h2 class="sec-title" data-aos="fade-right">What We Do</h2>
+    <p class="sec-sub" data-aos="fade-right">Everything a garage does. At your front door.</p>
+
+    <div class="mot-feature" data-aos="fade-up">
+      <div class="mot-text">
+        <div class="mot-ghost">MOT</div>
+        <span class="badge-sd">SAME DAY</span>
+        <h3>We'll collect your car, test it, and bring it back.</h3>
+        <p>YORMECH collects your car for its MOT, handles any required repairs on the spot, and returns it to you — often the same day. No arranging lifts. No taking time off work.</p>
+        <a href="https://api.whatsapp.com/send?phone=447727229064" target="_blank" rel="noopener" class="mot-cta">Book MOT Collection
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="photo mot-photo">
+        <img src="https://images.unsplash.com/photo-1625047509252-ab38fb5c7d09?auto=format&fit=crop&w=900&q=80" alt="Car ready for MOT collection" loading="lazy" onerror="this.classList.add('img-failed')">
+      </div>
+    </div>
+
+    <div class="svc-grid">
+      <div class="svc-card" data-aos="fade-up">
+        <div class="svc-head">
+          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg></div>
+          <div><span class="label-mono">BRAKE SERVICE</span><h3>Brakes</h3></div>
+        </div>
+        <p class="items">Brake pads &amp; discs · Calliper replacement · Brake fluid</p>
+      </div>
+      <div class="svc-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="svc-head">
+          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+          <div><span class="label-mono">ENGINE SERVICES</span><h3>Engine</h3></div>
+        </div>
+        <p class="items">Timing belt &amp; chain · Water pump · Head gasket · EGR valve · Drive belts</p>
+      </div>
+      <div class="svc-card" data-aos="fade-up">
+        <div class="svc-head">
+          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div><span class="label-mono">DIAGNOSTICS</span><h3>Diagnostics</h3></div>
+        </div>
+        <p class="items">Engine warning lights · Fault code reading &amp; reset · Non-start diagnosis · Wiring issues</p>
+      </div>
+      <div class="svc-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="svc-head">
+          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/><path d="M8 6h8M8 9h8M8 12h8M8 15h8"/></svg></div>
+          <div><span class="label-mono">SUSPENSION</span><h3>Suspension</h3></div>
+        </div>
+        <p class="items">Coil springs · Shock absorbers · Lower arm &amp; ball joint · Track rods</p>
+      </div>
+      <div class="svc-card" data-aos="fade-up">
+        <div class="svc-head">
+          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          <div><span class="label-mono">VEHICLE SERVICING</span><h3>Servicing</h3></div>
+        </div>
+        <p class="items">Interim · Full · Major · All makes &amp; models</p>
+      </div>
+      <div class="svc-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="svc-head">
+          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <div><span class="label-mono">AUTO ELECTRICAL</span><h3>Auto Electrical</h3></div>
+        </div>
+        <p class="items">Dash cam installation · New stereo · Fog lights · Fuse &amp; relay work</p>
+      </div>
+      <div class="svc-card" data-aos="fade-up">
+        <div class="svc-head">
+          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h6l2 4 4-10 2 6h4"/><circle cx="20" cy="16" r="1.6"/></svg></div>
+          <div><span class="label-mono">EXHAUST &amp; DPF</span><h3>Exhaust</h3></div>
+        </div>
+        <p class="items">Exhaust replacement · Catalytic converter · DPF cleaning &amp; regeneration</p>
+      </div>
+      <div class="svc-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="svc-head">
+          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6a1 1 0 0 1 1 1v1h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2V3a1 1 0 0 1 1-1z"/><polyline points="9 14 11 16 15 12"/></svg></div>
+          <div><span class="label-mono">PRE-PURCHASE INSPECTION</span><h3>Pre-Purchase</h3></div>
+        </div>
+        <p class="items">Mechanical check · Computer diagnostics · Road test · Full written report</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MEET FAZNAN ============ -->
+<section class="about bg-alt" id="about">
+  <div class="container about-grid">
+    <div class="photo about-photo" data-aos="fade-right">
+      <img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=900&q=80" alt="Faznan, qualified mobile mechanic" loading="lazy" onerror="this.classList.add('img-failed')">
+    </div>
+    <div data-aos="fade-left">
+      <div class="eyebrow">Meet your mechanic</div>
+      <h2>One trusted mechanic. <em>Not a faceless garage.</em></h2>
+      <p>When you book YORMECH, you deal with Faznan directly — start to finish. No middle-man service desk, no rotating staff, no upselling. Just a fully qualified mobile mechanic and MOT tester who treats your car like his own.</p>
+      <p>That's why 93 customers across Surrey and South London have left him five stars.</p>
+      <div class="about-points">
+        <div class="about-point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Fully qualified mechanic &amp; certified MOT tester</span></div>
+        <div class="about-point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Honest, upfront pricing — agreed before any work starts</span></div>
+        <div class="about-point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Warranty on repairs for genuine peace of mind</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing">
+  <div class="container">
+    <div class="eyebrow center" data-aos="fade-up" style="display:block;text-align:center">No nasty surprises</div>
+    <h2 class="sec-title center" data-aos="fade-up" style="text-align:center">Transparent Pricing</h2>
+    <p class="sec-sub center" data-aos="fade-up" style="text-align:center">No hidden fees. No surprises. Price agreed before we start.</p>
+
+    <div class="price-card" data-aos="fade-up">
+      <div class="ribbon">POPULAR</div>
+      <span class="label-mono top-label">FULL SERVICE — MOST POPULAR</span>
+      <div class="price"><small>£</small>95</div>
+      <div class="price-sub">fixed price · all makes &amp; models · parts included</div>
+      <ul>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Engine oil &amp; filter</li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Air &amp; cabin filters</li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Spark/glow plugs (where required)</li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Full safety inspection</li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Top-up fluids</li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Digital service report</li>
+      </ul>
+      <p class="ask">Not sure what service you need? Just ask Faznan — he'll tell you honestly.</p>
+      <a href="https://api.whatsapp.com/send?phone=447727229064" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%">Get a Fixed Quote <span class="arr">→</span></a>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar" data-aos="fade-up">
+        <div class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h4>Interim Service</h4>
+        <p class="desc">Ideal between full services &amp; high mileage</p>
+        <a href="tel:01737668912">Call for price <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="pillar" data-aos="fade-up" data-aos-delay="80">
+        <div class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <h4>Full Service</h4>
+        <p class="desc">Our most popular all-round service</p>
+        <a href="tel:01737668912">Call for price <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="pillar" data-aos="fade-up" data-aos-delay="160">
+        <div class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4L12 17l-6.3 4.4L8 14 2 9.4h7.6z"/></svg></div>
+        <h4>Major Service</h4>
+        <p class="desc">The most comprehensive check we offer</p>
+        <a href="tel:01737668912">Call for price <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+
+    <p class="price-note" data-aos="fade-up">"We don't have the overheads of a main dealer — no showroom, no coffee machine, no big reception desk. We pass those savings on to you."</p>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section id="reviews" class="bg-alt">
+  <div class="container">
+    <div class="eyebrow" data-aos="fade-right">Real customers, real stars</div>
+    <h2 class="sec-title" data-aos="fade-right">What Customers Say</h2>
+    <p class="sec-sub" data-aos="fade-right">93 five-star reviews on Google.</p>
+
+    <div class="testi-scroll" id="testiScroll" data-aos="fade-up">
+      <div class="testi-card">
+        <span class="qmark">&ldquo;</span>
+        <div class="stars" aria-label="5 out of 5 stars"></div>
+        <p class="quote">"Incredibly fast response. Came out same day, diagnosed the engine warning light immediately, explained everything clearly. Honest and fairly priced."</p>
+        <div class="testi-foot"><div class="testi-avatar">SM</div><div><div class="name">Sarah M</div><div class="loc">BANSTEAD</div></div></div>
+      </div>
+      <div class="testi-card">
+        <span class="qmark">&ldquo;</span>
+        <div class="stars" aria-label="5 out of 5 stars"></div>
+        <p class="quote">"Called in the morning, Faznan was here by noon. Brake pads and discs replaced on the driveway in two hours. Saved me a fortune compared to the main dealer."</p>
+        <div class="testi-foot"><div class="testi-avatar">MT</div><div><div class="name">Mark T</div><div class="loc">EPSOM</div></div></div>
+      </div>
+      <div class="testi-card">
+        <span class="qmark">&ldquo;</span>
+        <div class="stars" aria-label="5 out of 5 stars"></div>
+        <p class="quote">"Used YORMECH for our MOT collection — they picked the car up, sorted a couple of advisories on the spot, and returned it the same afternoon. Brilliant service."</p>
+        <div class="testi-foot"><div class="testi-avatar">CR</div><div><div class="name">Claire R</div><div class="loc">SUTTON</div></div></div>
+      </div>
+      <div class="testi-card">
+        <span class="qmark">&ldquo;</span>
+        <div class="stars" aria-label="5 out of 5 stars"></div>
+        <p class="quote">"He arrived with every part already sourced and ready. The job was done in under an hour. Professional, friendly, and genuinely good value."</p>
+        <div class="testi-foot"><div class="testi-avatar">JH</div><div><div class="name">James H</div><div class="loc">COULSDON</div></div></div>
+      </div>
+      <div class="testi-card">
+        <span class="qmark">&ldquo;</span>
+        <div class="stars" aria-label="5 out of 5 stars"></div>
+        <p class="quote">"Pre-purchase inspection before buying a used Golf. Thorough report, found two issues I'd never have spotted. Saved me from a bad purchase."</p>
+        <div class="testi-foot"><div class="testi-avatar">RL</div><div><div class="name">Rachel L</div><div class="loc">REIGATE</div></div></div>
+      </div>
+    </div>
+
+    <div class="google-badge" data-aos="fade-up">
+      <div class="big">
+        <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        4.9 <span class="gstars" id="gstars"></span> · 93 Reviews
+      </div>
+      <a class="see" href="https://www.google.com/search?q=yormech+banstead+reviews" target="_blank" rel="noopener">See all reviews
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICE AREA ============ -->
+<section id="areas">
+  <div class="container">
+    <div class="eyebrow" data-aos="fade-right">Surrey &amp; South London</div>
+    <h2 class="sec-title" data-aos="fade-right">Where We Work</h2>
+    <p class="sec-sub" data-aos="fade-right">Covering South London and Surrey — we likely cover you.</p>
+
+    <div class="area-wrap">
+      <div class="area-copy" data-aos="fade-right">
+        <p>YORMECH covers a wide area across Surrey and South London. If you're not sure whether we cover your area, just send a WhatsApp — Faznan will let you know immediately.</p>
+        <a href="https://api.whatsapp.com/send?phone=447727229064" target="_blank" rel="noopener" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.519 5.26l-.999 3.648 3.969-1.607z"/></svg>
+          Check My Area
+        </a>
+      </div>
+      <div class="area-tags" data-aos="fade-left">
+        <span class="area-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Banstead</span>
+        <span class="area-tag">Epsom</span><span class="area-tag">Sutton</span><span class="area-tag">Cheam</span>
+        <span class="area-tag">Croydon</span><span class="area-tag">Wallington</span><span class="area-tag">Carshalton</span>
+        <span class="area-tag">Mitcham</span><span class="area-tag">Reigate</span><span class="area-tag">Ashtead</span>
+        <span class="area-tag">Coulsdon</span><span class="area-tag">Chipstead</span><span class="area-tag">Hooley</span>
+        <span class="area-tag">Ewell</span><span class="area-tag">Worcester Park</span><span class="area-tag">Morden</span>
+        <span class="area-tag">New Malden</span><span class="area-tag">Chessington</span><span class="area-tag">Leatherhead</span>
+        <span class="area-tag">Kingston</span><span class="area-tag">Gatwick</span><span class="area-tag">Horley</span>
+        <span class="area-tag">Purley Way</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="bg-alt">
+  <div class="container center">
+    <div class="eyebrow" data-aos="fade-up">Good to know</div>
+    <h2 class="sec-title" data-aos="fade-up">Common Questions</h2>
+    <div style="height:34px"></div>
+    <div class="faq-list" style="text-align:left">
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q">Do I need to be home when you work on the car? <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+        <div class="faq-a"><p>Not necessarily. As long as we can safely access the vehicle and you're reachable by phone, many customers are at work while Faznan completes the job.</p></div>
+      </div>
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q">Is the £95 full service really the final price? <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+        <div class="faq-a"><p>Yes. For standard services, the price is fixed and agreed before we start. If an unexpected issue is found during the service, Faznan will call you first. We never proceed with additional work without your approval.</p></div>
+      </div>
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q">How quickly can you get to me? <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+        <div class="faq-a"><p>Often same day, especially for MOT collection and urgent repairs. Availability varies — just send a WhatsApp and Faznan will give you an honest timeframe.</p></div>
+      </div>
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q">Do you cover my car's make and model? <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+        <div class="faq-a"><p>We cover all makes and models — petrol, diesel, and mild hybrid. If you have a fully electric vehicle, get in touch and we'll advise.</p></div>
+      </div>
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q">What about a warranty on your work? <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+        <div class="faq-a"><p>Yes. We offer a warranty on repairs for your peace of mind. Details discussed at time of booking.</p></div>
+      </div>
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q">What if my car won't start? <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+        <div class="faq-a"><p>Diagnostics are one of our core services. Message via WhatsApp with your car make, model, registration, and symptoms and Faznan will advise.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOK NOW CTA ============ -->
+<section id="contact" class="book-cta">
+  <div class="container">
+    <h2 data-aos="fade-up">Ready <em>when you are.</em></h2>
+    <p class="sub" data-aos="fade-up" data-aos-delay="60">WhatsApp Faznan directly. No forms, no queue, no waiting. Just tell him what's wrong and he'll sort it.</p>
+    <div class="book-ctas" data-aos="fade-up" data-aos-delay="120">
+      <a href="https://api.whatsapp.com/send?phone=447727229064" target="_blank" rel="noopener" class="btn btn-book-wa">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.519 5.26l-.999 3.648 3.969-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        Message on WhatsApp
+      </a>
+      <a href="tel:01737668912" class="btn btn-book-call">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        Call 01737 668912
+      </a>
+    </div>
+    <p class="book-small" data-aos="fade-up">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Based in Banstead · Serving Surrey &amp; South London · info@yormech.co.uk
+    </p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="#" class="logo">
+          <span class="mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+          YORMECH
+        </a>
+        <p class="tag">Quality meets convenience. A fully qualified mobile mechanic &amp; MOT tester, right on your driveway.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/yormech.uk" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.12 1.38C1.36 2.67.95 3.34.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.12.66.66 1.33 1.07 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.12-1.38.66-.66 1.07-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 00-1.38-2.12A5.86 5.86 0 0019.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 105.84 12 6.16 6.16 0 0012 5.84zM12 16a4 4 0 114-4 4 4 0 01-4 4zm6.41-10.85a1.44 1.44 0 11-1.44-1.44 1.44 1.44 0 011.44 1.44z"/></svg>
+          </a>
+          <a href="https://facebook.com/Yormech" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=447727229064" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.519 5.26l-.999 3.648 3.969-1.607z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h5>Get In Touch</h5>
+        <a href="tel:01737668912"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>01737 668912</a>
+        <a href="tel:07727229064"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>07727 229064</a>
+        <a href="mailto:info@yormech.co.uk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>info@yormech.co.uk</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 YORMECH. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- ============ SITEPILOTS DEMO BANNER ============ -->
+<div class="sp-banner">
+  <strong>SitePilots</strong> demo build for YORMECH — <a href="https://api.whatsapp.com/send?phone=447727229064" target="_blank" rel="noopener">like what you see? Let's talk →</a>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  AOS.init({ duration: 600, easing: 'ease-out-cubic', once: true, offset: 60, disable: reduceMotion });
+
+  // Inject star SVGs (rust, via currentColor) — testimonials, google badge, feature card
+  const starSVG = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.786 1.401 8.168L12 18.896l-7.335 3.869 1.401-8.168L.132 9.211l8.2-1.193z"/></svg>';
+  document.querySelectorAll('.testi-card .stars').forEach(el => el.innerHTML = starSVG.repeat(5));
+  ['gstars','featStars'].forEach(id => { const el = document.getElementById(id); if (el) el.innerHTML = starSVG.repeat(5); });
+
+  // Scroll progress
+  const progress = document.getElementById('scrollProgress');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    progress.style.width = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100 + '%';
+  }, { passive: true });
+
+  // Mobile nav
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+  }));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(other => {
+        other.classList.remove('open');
+        other.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen) { item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+    });
+  });
+
+  // Auto-scroll testimonials
+  const testi = document.getElementById('testiScroll');
+  let testiPaused = false;
+  testi.addEventListener('mouseenter', () => testiPaused = true);
+  testi.addEventListener('mouseleave', () => testiPaused = false);
+  testi.addEventListener('touchstart', () => testiPaused = true, { passive: true });
+  if (!reduceMotion) {
+    setInterval(() => {
+      if (testiPaused) return;
+      if (testi.scrollLeft + testi.clientWidth >= testi.scrollWidth - 2) {
+        testi.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        testi.scrollBy({ left: 1, behavior: 'auto' });
+      }
+    }, 30);
+  }
+</script>
 </body>
 </html>
