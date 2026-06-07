@@ -68,6 +68,8 @@
     }
     .hero-text { max-width: 100%; }
     .hero-ctas { justify-content: center; }
+    .hero-ctas .btn { flex: 1 1 200px; }
+    .hero-badges { justify-content: center; }
     .trust-badge { justify-content: center; }
     .hero-videos { width: 100%; justify-content: center; }
 
@@ -130,10 +132,11 @@
 @media (max-width: 480px) {
     .container { padding: 0 16px; }
 
-    .hero-title { font-size: 28px; }
+    .hero-title { font-size: 32px; line-height: 1.1; }
     .hero-subtitle { font-size: 15px; }
-    .hero-description { font-size: 14px; }
-    .btn { font-size: 14px; padding: 12px 20px; }
+    .hero-eyebrow { font-size: 11px; padding: 6px 12px 6px 10px; }
+    .hero-badges li { font-size: 12px; padding: 6px 11px; }
+    .btn { font-size: 14px; padding: 13px 20px; }
 
     .hero-videos { gap: 10px; }
     .video-card { width: 138px; height: 183px; }

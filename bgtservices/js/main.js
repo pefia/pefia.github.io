@@ -1,3 +1,32 @@
+/* Force-play autoplay videos — some browsers defer until interaction */
+function bootVideos() {
+    document.querySelectorAll('video').forEach(v => {
+        v.muted = true;
+        v.playsInline = true;
+        v.setAttribute('playsinline', '');
+        v.setAttribute('webkit-playsinline', '');
+        const tryPlay = () => {
+            const p = v.play();
+            if (p && typeof p.catch === 'function') {
+                p.catch(() => {
+                    const onTouch = () => { v.play().catch(() => {}); document.removeEventListener('touchstart', onTouch); document.removeEventListener('click', onTouch); };
+                    document.addEventListener('touchstart', onTouch, { once: true, passive: true });
+                    document.addEventListener('click', onTouch, { once: true });
+                });
+            }
+        };
+        if (v.readyState >= 2) tryPlay();
+        else v.addEventListener('loadeddata', tryPlay, { once: true });
+        v.addEventListener('canplay', tryPlay, { once: true });
+    });
+}
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootVideos);
+} else {
+    bootVideos();
+}
+window.addEventListener('pageshow', bootVideos);
+
 /* Navigation */
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
@@ -5,8 +34,9 @@ const navbar = document.querySelector('.navbar');
 
 if (hamburger && navMenu) {
     hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('open');
+        const open = hamburger.classList.toggle('open');
         navMenu.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
     navMenu.querySelectorAll('.nav-link').forEach(link => {
