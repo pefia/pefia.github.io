@@ -214,3 +214,30 @@ document.querySelectorAll('.service-card').forEach(card => cardIO.observe(card))
         goTo(current);
     }, { passive: true });
 }());
+
+/* ── Scroll progress bar ────────────────────────────── */
+(function () {
+    var bar = document.getElementById('scrollProgress');
+    if (!bar) return;
+    var doc = document.documentElement;
+    window.addEventListener('scroll', function () {
+        var pct = (window.scrollY / (doc.scrollHeight - doc.clientHeight)) * 100;
+        bar.style.width = Math.min(pct, 100) + '%';
+    }, { passive: true });
+}());
+
+/* ── Section title underline grow-in ────────────────── */
+(function () {
+    var titleIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('line-reveal');
+                titleIO.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.section-title').forEach(function (el) {
+        titleIO.observe(el);
+    });
+}());
