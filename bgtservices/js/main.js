@@ -1,6 +1,5 @@
-/* Video autoplay: muted autoplay is allowed in all modern browsers.
-   iOS Safari and some Android browsers need an explicit play() call.
-   Low-power mode on iOS silently refuses autoplay until a user gesture. */
+/* iOS Safari requires muted+playsinline+H.264. Videos are now H.264 with
+   faststart so Safari can begin streaming immediately without a full download. */
 document.addEventListener('DOMContentLoaded', function () {
 
     function tryPlay(v) {
@@ -9,21 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (p) p.catch(function () {});
     }
 
-    /* Hero background video — play immediately, high priority */
-    var heroVid = document.querySelector('.hero-video');
-    if (heroVid) {
-        heroVid.muted = true;
-        if (heroVid.readyState >= 2) {
-            tryPlay(heroVid);
-        } else {
-            heroVid.addEventListener('loadeddata', function () { tryPlay(heroVid); }, { once: true });
-            heroVid.addEventListener('canplay',    function () { tryPlay(heroVid); }, { once: true });
-        }
-    }
-
-    /* Side-panel card videos — start loading and play when ready */
-    document.querySelectorAll('.video-card video').forEach(function (v) {
-        v.load();
+    var videos = document.querySelectorAll('video[autoplay]');
+    videos.forEach(function (v) {
         if (v.readyState >= 2) {
             tryPlay(v);
         } else {
@@ -31,10 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    /* Kick everything on first gesture (covers iOS Low Power Mode) */
-    function kickAll() {
-        document.querySelectorAll('video[autoplay]').forEach(tryPlay);
-    }
+    /* First touch/click kicks any videos blocked by Low Power Mode */
+    function kickAll() { videos.forEach(tryPlay); }
     document.addEventListener('touchstart', kickAll, { once: true, passive: true });
     document.addEventListener('click',      kickAll, { once: true });
 });
