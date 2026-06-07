@@ -1788,30 +1788,18 @@ a:hover { color: var(--cta); }
 }
 
 .nav-logo-img {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    object-fit: cover;
-    /* Adjust this single number (0%–60%) to frame the tree circle */
-    object-position: 50% 28%;
+    height: 44px;
+    max-height: 44px;
+    width: auto;
+    display: block;
+    border-radius: 8px;
     flex-shrink: 0;
-    border: 2px solid rgba(76,135,143,0.22);
-    transition: border-color 0.25s var(--ease);
+    transition: opacity 0.25s var(--ease);
 }
 
 .navbar-logo a:hover .nav-logo-img {
-    border-color: var(--primary);
+    opacity: 0.85;
 }
-
-.nav-logo-text {
-    font-family: var(--font-display);
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--text);
-    letter-spacing: -0.2px;
-}
-
-.nav-logo-text span { color: var(--primary); }
 
 /* ==============================
    FOOTER — LOGO IMAGE
@@ -1958,6 +1946,5 @@ a:hover { color: var(--cta); }
    ============================== */
 
 @media (max-width: 640px) {
-    .nav-logo-text { font-size: 18px; }
-    .nav-logo-img  { width: 30px; height: 30px; }
+    .nav-logo-img { height: 36px; }
 }
