@@ -1,0 +1,160 @@
+/* =====================
+   TABLET — 1024px
+   ===================== */
+
+@media (max-width: 1024px) {
+    .hero-content { padding: 48px 32px; gap: 32px; }
+
+    .video-card { width: 200px; height: 260px; }
+
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .why-inner { gap: 48px; }
+
+    .footer-content { grid-template-columns: 1fr 1fr; gap: 36px; }
+
+    .service-block { min-height: 400px; }
+    .service-block-text { padding: 48px 40px; }
+}
+
+/* =====================
+   TABLET — 768px
+   ===================== */
+
+@media (max-width: 768px) {
+
+    /* Nav */
+    .navbar-container { padding: 0 16px; height: 56px; }
+
+    .nav-menu {
+        display: none;
+        position: fixed;
+        top: 56px; left: 0; right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: white;
+        border-bottom: 1px solid var(--border);
+        padding: 8px 0;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+    .nav-menu.active { display: flex; }
+
+    .nav-link {
+        padding: 14px 20px;
+        border-radius: 0;
+        border-bottom: 1px solid var(--border);
+        width: 100%;
+        font-size: 16px;
+    }
+    .nav-link:last-child { border-bottom: none; }
+
+    .nav-phone { margin: 8px 16px; text-align: center; padding: 12px; }
+    .hamburger { display: flex; }
+    .mobile-cta { display: flex; }
+    body { padding-bottom: 60px; }
+
+    /* Hero */
+    .hero { height: auto; min-height: 100svh; margin-top: 56px; }
+    .hero-content {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 48px 20px 80px;
+        gap: 40px;
+        height: auto;
+    }
+    .hero-text { max-width: 100%; }
+    .hero-ctas { justify-content: center; }
+    .trust-badge { justify-content: center; }
+    .hero-videos { width: 100%; justify-content: center; }
+
+    .video-card { width: 155px; height: 205px; }
+    .card-1 { transform: rotate(-4deg) translateX(-10px); }
+    .card-2 { transform: rotate(4deg) translateX(10px); }
+    .card-1:hover { transform: rotate(-4deg) translateX(-10px) translateY(-6px); }
+    .card-2:hover { transform: rotate(4deg) translateX(10px) translateY(-6px); }
+
+    /* Nature scene */
+    .nature-scene { height: 380px; }
+    .nature-quote { font-size: 20px; }
+
+    /* Services */
+    .services-section { padding: 64px 0; }
+    .services-grid { grid-template-columns: 1fr; gap: 16px; }
+
+    /* Stats */
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0; }
+    .stat-item {
+        padding: 28px 16px;
+        border-right: 1px solid rgba(255,255,255,0.1);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-item:nth-child(even) { border-right: none; }
+    .stat-number { font-size: 44px; }
+
+    /* Why us */
+    .why-section { padding: 64px 0; }
+    .why-inner { grid-template-columns: 1fr; gap: 48px; }
+    .why-card { padding: 36px 28px; }
+
+    /* CTA */
+    .cta-section { padding: 72px 24px; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+    .btn-white, .btn-outline-white { width: 100%; max-width: 320px; justify-content: center; }
+
+    /* Footer */
+    .footer-content { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .footer-bottom-links { gap: 16px; }
+
+    /* Contact */
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .form-row { grid-template-columns: 1fr; }
+
+    /* Services page */
+    .service-block {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+    .service-block-text { order: 2 !important; padding: 40px 24px; }
+    .service-block-img  { order: 1 !important; height: 280px; }
+}
+
+/* =====================
+   MOBILE — 480px
+   ===================== */
+
+@media (max-width: 480px) {
+    .container { padding: 0 16px; }
+
+    .hero-title { font-size: 28px; }
+    .hero-subtitle { font-size: 15px; }
+    .hero-description { font-size: 14px; }
+    .btn { font-size: 14px; padding: 12px 20px; }
+
+    .hero-videos { gap: 10px; }
+    .video-card { width: 138px; height: 183px; }
+
+    .nature-scene { height: 340px; }
+    .nature-quote { font-size: 18px; }
+
+    .section-title { font-size: 26px; }
+    .service-card-fig { height: 200px; }
+
+    .stat-number { font-size: 38px; }
+
+    .why-card { padding: 28px 20px; }
+    .why-card-title { font-size: 24px; }
+
+    .footer-content { grid-template-columns: 1fr; gap: 28px; }
+    .footer-tagline { max-width: 100%; }
+
+    .form-card { padding: 24px 18px; }
+    .page-hero { padding: 100px 16px 48px; }
+
+    .service-block-text { padding: 32px 18px; }
+    .service-block-img { height: 240px; }
+}
