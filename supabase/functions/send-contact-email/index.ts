@@ -164,8 +164,8 @@ serve(async (req) => {
         "Authorization": `Bearer ${Deno.env.get("RESEND_API_KEY")}`,
       },
       body: JSON.stringify({
-        from: "noreply@bgtservices.co.uk",    // must be verified in Resend dashboard
-        to:   "ismaelplatt@outlook.com",       // TESTING — change to james@bgtservices.co.uk
+        from: "onboarding@resend.dev",
+        to:   "james@bgtservices.co.uk",
         reply_to: email,
         subject: `[BGT] New ${esc(service || "General")} enquiry — ${esc(name)}`,
         html: emailHtml,
