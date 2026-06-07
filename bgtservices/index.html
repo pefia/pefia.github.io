@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional tree removal, hedge trimming, garden maintenance and fencing services across Surrey. Local specialists with free quotes. Call 07498 658202.">
+    <meta property="og:title" content="Boxhill Gardening & Tree Services | Surrey">
+    <meta property="og:description" content="Tree removal, hedge trimming, garden maintenance & fencing across Surrey. Free quotes.">
+    <meta property="og:type" content="website">
+    <title>Boxhill Gardening & Tree Services | Surrey</title>
+    <link rel="canonical" href="https://bgtservices.co.uk/">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Three.js via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.min.js"></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a href="/"><span>Boxhill</span> Gardening</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link active">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="tel:07498658202" class="nav-phone">07498 658202</a></li>
+            </ul>
+            <div class="hamburger" aria-label="Open menu" role="button" tabindex="0">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-cta" aria-hidden="true">
+        <a href="tel:07498658202" class="mobile-cta-btn call-btn">Call Now</a>
+        <a href="contact.html" class="mobile-cta-btn quote-btn">Free Quote</a>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         HERO — kept exactly as provided
+         ═══════════════════════════════════════ -->
+    <section id="hero" class="hero">
+        <video class="hero-video" autoplay muted loop playsinline poster="images/hero-poster.jpg">
+            <source src="videos/treeremoval.webm" type="video/webm">
+            <source src="videos/treeremoval.mp4"  type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-blur"></div>
+
+        <div class="hero-content">
+            <div class="hero-text">
+                <a href="tel:07498658202" class="hero-phone">
+                    <span class="phone-icon">📞</span>
+                    07498 658202
+                </a>
+                <h1 class="hero-title">
+                    Professional Tree &amp; Garden Services Across Surrey
+                </h1>
+                <p class="hero-subtitle">
+                    Tree Removal, Stump Grinding, Hedge Trimming, Garden Maintenance, Fencing &amp; Pressure Washing.
+                </p>
+                <p class="hero-description">
+                    Reliable local specialists delivering high-quality outdoor services throughout Surrey with free quotes available.
+                </p>
+                <div class="hero-ctas">
+                    <a href="tel:07498658202" class="btn btn-primary">
+                        <span>📞 Call Now</span>
+                    </a>
+                    <a href="contact.html" class="btn btn-secondary">
+                        <span>📋 Request Free Quote</span>
+                    </a>
+                </div>
+                <div class="trust-badge">
+                    <span class="stars">★★★★★</span>
+                    <span>Trusted by 100+ Surrey homeowners</span>
+                </div>
+            </div>
+
+            <div class="hero-videos">
+                <div class="video-card card-1">
+                    <video autoplay muted loop playsinline>
+                        <source src="videos/trimminghedge.webm" type="video/webm">
+                        <source src="videos/trimminghedge.mp4"  type="video/mp4">
+                    </video>
+                    <div class="video-overlay"></div>
+                </div>
+                <div class="video-card card-2">
+                    <video autoplay muted loop playsinline>
+                        <source src="videos/planting.webm" type="video/webm">
+                        <source src="videos/planting.mp4"  type="video/mp4">
+                    </video>
+                    <div class="video-overlay"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator" aria-hidden="true">
+            <span>Scroll to explore</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         THREE.JS NATURE SCENE — testimonial
+         ═══════════════════════════════════════ -->
+    <section class="nature-scene" aria-label="Testimonial">
+        <canvas id="nature-canvas" aria-hidden="true"></canvas>
+        <div class="nature-scene-content">
+            <span class="nature-label">Client Testimonial</span>
+            <span class="nature-stars">★★★★★</span>
+            <blockquote class="nature-quote">
+                "Boxhill Gardening transformed our completely overgrown garden. Professional, tidy and a genuinely great result."
+            </blockquote>
+            <cite class="nature-attribution">— Homeowner in Dorking, Surrey</cite>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SERVICES — with real images
+         ═══════════════════════════════════════ -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">What We Do</span>
+                <h2 class="section-title">Professional Outdoor Services</h2>
+                <p class="section-subtitle">Expert solutions delivered safely and efficiently across Surrey</p>
+            </div>
+
+            <div class="services-grid">
+
+                <!-- Tree Removal -->
+                <article class="service-card reveal reveal-delay-1">
+                    <figure class="service-card-fig">
+                        <span class="service-img-tag">Tree Removal</span>
+                        <img
+                            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+                            alt="Professional tree removal service in Surrey"
+                            loading="lazy"
+                            onerror="this.parentElement.classList.add('no-img');this.remove()">
+                    </figure>
+                    <div class="service-card-body">
+                        <h3>Tree Removal</h3>
+                        <p>Safe, controlled removal of any size tree. We protect your property throughout and leave your garden clean.</p>
+                        <a href="services.html#tree-removal" class="service-link">
+                            Learn more
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Hedge Trimming -->
+                <article class="service-card reveal reveal-delay-2">
+                    <figure class="service-card-fig">
+                        <span class="service-img-tag">Hedge Trimming</span>
+                        <img
+                            src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80"
+                            alt="Hedge trimming and shaping in Surrey"
+                            loading="lazy"
+                            onerror="this.parentElement.classList.add('no-img');this.remove()">
+                    </figure>
+                    <div class="service-card-body">
+                        <h3>Hedge Trimming</h3>
+                        <p>Precise shaping and maintenance for all hedge types — from low box hedging to tall boundary hedges.</p>
+                        <a href="services.html#hedge-trimming" class="service-link">
+                            Learn more
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Garden Maintenance -->
+                <article class="service-card reveal reveal-delay-3">
+                    <figure class="service-card-fig">
+                        <span class="service-img-tag">Garden Maintenance</span>
+                        <img
+                            src="https://images.unsplash.com/photo-1416323526413-a837bd6d3d65?auto=format&fit=crop&w=800&q=80"
+                            alt="Garden maintenance services in Surrey"
+                            loading="lazy"
+                            onerror="this.parentElement.classList.add('no-img');this.remove()">
+                    </figure>
+                    <div class="service-card-body">
+                        <h3>Garden Maintenance</h3>
+                        <p>Regular upkeep tailored to your garden — mowing, weeding, planting and seasonal tidying.</p>
+                        <a href="services.html#garden-maintenance" class="service-link">
+                            Learn more
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Stump Grinding -->
+                <article class="service-card reveal reveal-delay-1">
+                    <figure class="service-card-fig">
+                        <span class="service-img-tag">Stump Grinding</span>
+                        <img
+                            src="https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=800&q=80"
+                            alt="Stump grinding and removal in Surrey"
+                            loading="lazy"
+                            onerror="this.parentElement.classList.add('no-img');this.remove()">
+                    </figure>
+                    <div class="service-card-body">
+                        <h3>Stump Grinding</h3>
+                        <p>Complete removal below ground level using professional equipment, leaving the area ready for replanting.</p>
+                        <a href="services.html#stump-grinding" class="service-link">
+                            Learn more
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Fencing -->
+                <article class="service-card reveal reveal-delay-2">
+                    <figure class="service-card-fig">
+                        <span class="service-img-tag">Fencing</span>
+                        <img
+                            src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=800&q=80"
+                            alt="Fencing installation and repair in Surrey"
+                            loading="lazy"
+                            onerror="this.parentElement.classList.add('no-img');this.remove()">
+                    </figure>
+                    <div class="service-card-body">
+                        <h3>Fencing</h3>
+                        <p>Supply and installation of timber and panel fencing. Repairs and new fence runs handled start to finish.</p>
+                        <a href="services.html#fencing" class="service-link">
+                            Learn more
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Pressure Washing -->
+                <article class="service-card reveal reveal-delay-3">
+                    <figure class="service-card-fig">
+                        <span class="service-img-tag">Pressure Washing</span>
+                        <img
+                            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=800&q=80"
+                            alt="Pressure washing driveways and patios in Surrey"
+                            loading="lazy"
+                            onerror="this.parentElement.classList.add('no-img');this.remove()">
+                    </figure>
+                    <div class="service-card-body">
+                        <h3>Pressure Washing</h3>
+                        <p>Professional cleaning of patios, driveways, decking and paths — restoring surfaces to their original condition.</p>
+                        <a href="services.html#pressure-washing" class="service-link">
+                            Learn more
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section" aria-label="Key figures">
+        <div class="stats-grid">
+            <div class="stat-item reveal">
+                <div class="stat-number" data-target="100" data-suffix="+">100+</div>
+                <div class="stat-label">Surrey Clients</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-1">
+                <div class="stat-number" data-target="6" data-suffix="">6</div>
+                <div class="stat-label">Services</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-2">
+                <div class="stat-number" data-target="15" data-suffix="+">15+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-3">
+                <div class="stat-number">Free</div>
+                <div class="stat-label">Quotes</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us" class="why-section">
+        <div class="container">
+            <div class="why-inner">
+                <div>
+                    <span class="why-tag">Why Boxhill</span>
+                    <h2 class="why-title">The trusted local choice across Surrey</h2>
+                    <p class="why-subtitle">We combine professional standards with a personal service that larger contractors simply can't match.</p>
+
+                    <ul class="feature-list">
+                        <li class="feature-item reveal">
+                            <div class="feature-check" aria-hidden="true">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+                            </div>
+                            <div class="feature-item-text">
+                                <strong>Surrey-based specialists</strong>
+                                <span>Deep local knowledge — we know the area and its planning requirements</span>
+                            </div>
+                        </li>
+                        <li class="feature-item reveal reveal-delay-1">
+                            <div class="feature-check" aria-hidden="true">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+                            </div>
+                            <div class="feature-item-text">
+                                <strong>Fully insured</strong>
+                                <span>Public liability insurance for complete peace of mind</span>
+                            </div>
+                        </li>
+                        <li class="feature-item reveal reveal-delay-2">
+                            <div class="feature-check" aria-hidden="true">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+                            </div>
+                            <div class="feature-item-text">
+                                <strong>Free quotes, no pressure</strong>
+                                <span>Honest, transparent pricing with no hidden charges</span>
+                            </div>
+                        </li>
+                        <li class="feature-item reveal reveal-delay-3">
+                            <div class="feature-check" aria-hidden="true">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+                            </div>
+                            <div class="feature-item-text">
+                                <strong>Clean and tidy finish</strong>
+                                <span>All waste removed and site left immaculate — every time</span>
+                            </div>
+                        </li>
+                        <li class="feature-item reveal reveal-delay-4">
+                            <div class="feature-check" aria-hidden="true">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+                            </div>
+                            <div class="feature-item-text">
+                                <strong>Professional, experienced team</strong>
+                                <span>Qualified crew who take real pride in their workmanship</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="why-card reveal">
+                    <div class="why-card-label">Get Started</div>
+                    <h3 class="why-card-title">A free quote within 2 hours</h3>
+                    <p class="why-card-desc">Call or send a message and we'll get back to you with a no-obligation quote — usually the same day.</p>
+
+                    <div class="why-card-details">
+                        <div class="why-card-detail">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+                            No obligation, completely free
+                        </div>
+                        <div class="why-card-detail">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+                            Response within 2 hours
+                        </div>
+                        <div class="why-card-detail">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+                            All Surrey locations covered
+                        </div>
+                    </div>
+
+                    <a href="contact.html" class="btn-teal">Request a Free Quote</a>
+                    <p style="text-align:center;margin-top:14px;font-size:13px;color:var(--text-muted);">
+                        Or call: <a href="tel:07498658202" style="color:var(--primary);font-weight:600;">07498 658202</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <span class="cta-label">Ready to get started?</span>
+        <h2>Transform your outdoor space</h2>
+        <p>Professional tree and garden services across Surrey — from single jobs to ongoing contracts.</p>
+        <div class="cta-buttons">
+            <a href="tel:07498658202" class="btn-white">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.42 2 2 0 0 1 3.58 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                07498 658202
+            </a>
+            <a href="contact.html" class="btn-outline-white">
+                Request Free Quote
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <div class="footer-brand-name"><span>Boxhill</span> Gardening</div>
+                <p class="footer-tagline">Professional tree and garden services across Surrey. Trusted by homeowners throughout the area.</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/profile.php?id=61575893198898" target="_blank" rel="noopener" aria-label="Facebook">Fb</a>
+                    <a href="https://www.instagram.com/_bgtservices/" target="_blank" rel="noopener" aria-label="Instagram">Ig</a>
+                </div>
+            </div>
+            <div>
+                <div class="footer-col-title">Services</div>
+                <ul class="footer-links">
+                    <li><a href="services.html#tree-removal">Tree Removal</a></li>
+                    <li><a href="services.html#hedge-trimming">Hedge Trimming</a></li>
+                    <li><a href="services.html#garden-maintenance">Garden Maintenance</a></li>
+                    <li><a href="services.html#stump-grinding">Stump Grinding</a></li>
+                    <li><a href="services.html#fencing">Fencing</a></li>
+                    <li><a href="services.html#pressure-washing">Pressure Washing</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Company</div>
+                <ul class="footer-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Contact</div>
+                <div class="footer-contact-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.42 2 2 0 0 1 3.58 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <a href="tel:07498658202">07498 658202</a>
+                </div>
+                <div class="footer-contact-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <a href="mailto:james@bgtservices.co.uk">james@bgtservices.co.uk</a>
+                </div>
+                <div class="footer-contact-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Surrey, United Kingdom
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Boxhill Gardening &amp; Tree Services Ltd. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+                <a href="cookies.html">Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Schema markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Boxhill Gardening & Tree Services Ltd",
+      "description": "Professional tree and garden services across Surrey",
+      "telephone": "+447498658202",
+      "email": "james@bgtservices.co.uk",
+      "address": { "@type": "PostalAddress", "addressRegion": "Surrey", "addressCountry": "GB" },
+      "areaServed": ["Dorking","Reigate","Guildford","Woking","Epsom","Leatherhead","Redhill"],
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=61575893198898",
+        "https://www.instagram.com/_bgtservices/"
+      ]
+    }
+    </script>
+
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/scene.js"></script>
+</body>
+</html>
