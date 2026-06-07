@@ -21,7 +21,10 @@
     <nav id="navbar" class="navbar">
         <div class="navbar-container">
             <div class="navbar-logo">
-                <a href="/"><span>Boxhill</span> Gardening</a>
+                <a href="/">
+                    <img src="images/logo.jpg" alt="Boxhill Gardening and Tree Services" class="nav-logo-img">
+                    <span class="nav-logo-text" style="font-size:14px;"><span>Boxhill</span> Gardening and Tree Services</span>
+                </a>
             </div>
             <ul class="nav-menu">
                 <li><a href="/" class="nav-link">Home</a></li>
@@ -125,7 +128,7 @@
                 <div class="form-card">
                     <h2>Send a Message</h2>
                     <!-- For production: use Formspree or Netlify Forms action attribute -->
-                    <form id="contact-form" novalidate>
+                    <form id="contactForm" novalidate>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Full Name <span style="color:#dc2626">*</span></label>
@@ -154,8 +157,17 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="location">Your Location</label>
+                            <input type="text" id="location" name="location" placeholder="e.g. Dorking, Reigate, Guildford...">
+                        </div>
+                        <div class="form-group">
                             <label for="message">Tell us about your project <span style="color:#dc2626">*</span></label>
                             <textarea id="message" name="message" rows="5" required placeholder="Brief description of what you need..."></textarea>
+                        </div>
+                        <!-- Honeypot: hidden from users, catches bots -->
+                        <div style="display:none;" aria-hidden="true">
+                            <label for="_hp_website">Website</label>
+                            <input type="text" id="_hp_website" name="_hp_website" tabindex="-1" autocomplete="off">
                         </div>
                         <button type="submit" class="form-submit">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -177,8 +189,12 @@
     <footer class="footer">
         <div class="footer-content">
             <div>
-                <div class="footer-brand-name"><span>Boxhill</span> Gardening</div>
-                <p class="footer-tagline">Professional tree and garden services across Surrey.</p>
+                <img src="images/logo.jpg" alt="Boxhill Gardening and Tree Services" class="footer-logo-img">
+                <p class="footer-tagline">Professional tree and garden services across Surrey. Trusted by homeowners throughout the area.</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/profile.php?id=61575893198898" target="_blank" rel="noopener" aria-label="Facebook">Fb</a>
+                    <a href="https://www.instagram.com/_bgtservices/" target="_blank" rel="noopener" aria-label="Instagram">Ig</a>
+                </div>
             </div>
             <div>
                 <div class="footer-col-title">Services</div>
@@ -187,6 +203,8 @@
                     <li><a href="services.html#hedge-trimming">Hedge Trimming</a></li>
                     <li><a href="services.html#garden-maintenance">Garden Maintenance</a></li>
                     <li><a href="services.html#stump-grinding">Stump Grinding</a></li>
+                    <li><a href="services.html#fencing">Fencing</a></li>
+                    <li><a href="services.html#pressure-washing">Pressure Washing</a></li>
                 </ul>
             </div>
             <div>
@@ -195,6 +213,9 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="cookies.html">Cookies</a></li>
                 </ul>
             </div>
             <div>
@@ -207,17 +228,115 @@
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     <a href="mailto:james@bgtservices.co.uk">james@bgtservices.co.uk</a>
                 </div>
+                <div class="footer-contact-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Surrey, United Kingdom
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Boxhill Gardening &amp; Tree Services Ltd.</p>
+            <p>&copy; 2026 Boxhill Gardening &amp; Tree Services Ltd. All rights reserved.</p>
             <div class="footer-bottom-links">
                 <a href="privacy.html">Privacy</a>
                 <a href="terms.html">Terms</a>
+                <a href="cookies.html">Cookies</a>
             </div>
         </div>
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+    (function () {
+        var SUPABASE_URL = 'https://oswnmadidxupybbupvxk.supabase.co';
+        var ANON_KEY     = 'sb_publishable_fx_3gHZiNM-HcUQ23GH3Lw_qjgDZxZ7';
+        var COOLDOWN_MS  = 2 * 60 * 1000; // 2-min per-browser cooldown
+        var LS_KEY       = 'bgt_form_last_submit';
+
+        function showStatus(type, msg) {
+            var el = document.getElementById('_formStatus');
+            if (!el) {
+                el = document.createElement('div');
+                el.id = '_formStatus';
+                var form = document.getElementById('contactForm');
+                form.insertBefore(el, form.querySelector('.form-submit'));
+            }
+            el.className = 'form-status form-status--' + type;
+            el.textContent = msg;
+            el.style.display = 'block';
+            el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            if (type === 'success') setTimeout(function () { el.style.display = 'none'; }, 8000);
+        }
+
+        async function handleSubmit(e) {
+            e.preventDefault();
+
+            // Honeypot — bots fill hidden fields, humans don't
+            if (document.getElementById('_hp_website').value) return;
+
+            // Client-side cooldown (prevents accidental double-submits)
+            var now = Date.now();
+            var last = parseInt(localStorage.getItem(LS_KEY) || '0', 10);
+            if (now - last < COOLDOWN_MS) {
+                var secs = Math.ceil((COOLDOWN_MS - (now - last)) / 1000);
+                showStatus('error', 'Please wait ' + secs + ' seconds before trying again.');
+                return;
+            }
+
+            var name     = document.getElementById('name').value.trim();
+            var email    = document.getElementById('email').value.trim();
+            var phone    = document.getElementById('phone').value.trim();
+            var service  = document.getElementById('service').value;
+            var location = document.getElementById('location').value.trim();
+            var message  = document.getElementById('message').value.trim();
+
+            if (!name || !email || !phone) {
+                showStatus('error', 'Please fill in all required fields (name, email, phone).');
+                return;
+            }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showStatus('error', 'Please enter a valid email address.');
+                return;
+            }
+
+            var btn      = document.getElementById('contactForm').querySelector('.form-submit');
+            var origHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 0.8s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Sending…';
+
+            try {
+                var res = await fetch(SUPABASE_URL + '/functions/v1/send-contact-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + ANON_KEY
+                    },
+                    body: JSON.stringify({ name: name, email: email, phone: phone, service: service, location: location, message: message })
+                });
+
+                var data = await res.json();
+
+                if (res.ok) {
+                    localStorage.setItem(LS_KEY, String(now));
+                    showStatus('success', 'Thanks! We’ll be in touch within 24 hours.');
+                    document.getElementById('contactForm').reset();
+                } else if (res.status === 429) {
+                    showStatus('error', 'Too many submissions. Please wait a moment or call 07498 658202.');
+                } else {
+                    showStatus('error', 'Something went wrong. Please call 07498 658202 instead.');
+                    console.error('Submit error:', data);
+                }
+            } catch (err) {
+                showStatus('error', 'Connection error. Please call 07498 658202 or email james@bgtservices.co.uk.');
+                console.error('Fetch error:', err);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = origHTML;
+            }
+        }
+
+        var form = document.getElementById('contactForm');
+        if (form) form.addEventListener('submit', handleSubmit);
+    })();
+    </script>
 </body>
 </html>

@@ -1958,3 +1958,125 @@ a:hover { color: var(--cta); }
 @media (max-width: 640px) {
     .nav-logo-img { height: 36px; }
 }
+
+/* ==============================
+   LEGAL CONTENT PAGES
+   ============================== */
+
+.legal-section {
+    padding: 64px 0 96px;
+}
+
+.legal-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.legal-updated {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-light);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    margin-bottom: 36px;
+}
+
+.legal-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+    font-family: var(--font-body);
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.legal-back:hover { color: var(--cta); gap: 9px; }
+
+.legal-content h2 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    margin: 44px 0 12px;
+    padding-top: 44px;
+    border-top: 1px solid var(--border);
+}
+
+.legal-content h2:first-of-type {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.legal-content p {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 14px;
+    font-family: var(--font-body);
+}
+
+.legal-content strong { color: var(--text); }
+
+.legal-contact-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--primary-light);
+    border: 1px solid rgba(76,135,143,0.22);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-top: 56px;
+}
+
+.legal-contact-box svg { color: var(--primary); flex-shrink: 0; }
+
+.legal-contact-box p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+.legal-contact-box a { color: var(--primary); font-weight: 600; }
+.legal-contact-box a:hover { color: var(--cta); }
+
+/* ==============================
+   CONTACT FORM STATUS MESSAGES
+   ============================== */
+
+.form-status {
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    font-size: 14px;
+    font-family: var(--font-body);
+    margin-bottom: 16px;
+    display: none;
+    line-height: 1.55;
+}
+
+.form-status--success {
+    background: #f0fdf4;
+    border: 1px solid #86efac;
+    color: #166534;
+}
+
+.form-status--error {
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    color: #991b1b;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
