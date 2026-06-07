@@ -1801,6 +1801,16 @@ a:hover { color: var(--cta); }
     opacity: 0.85;
 }
 
+.nav-logo-text {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: -0.2px;
+}
+
+.nav-logo-text span { color: var(--primary); }
+
 /* ==============================
    FOOTER — LOGO IMAGE
    ============================== */
