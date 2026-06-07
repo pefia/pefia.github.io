@@ -165,7 +165,7 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         from: "onboarding@resend.dev",
-        to:   "james@bgtservices.co.uk",
+        to:   "playboicarti225@protonmail.com",
         reply_to: email,
         subject: `[BGT] New ${esc(service || "General")} enquiry — ${esc(name)}`,
         html: emailHtml,
