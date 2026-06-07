@@ -241,6 +241,20 @@ a:hover { color: var(--cta); }
     object-fit: cover;
     z-index: 1;
     filter: saturate(1.05) brightness(0.9);
+    background: #0a1628;
+    pointer-events: none;
+}
+
+/* Hide iOS / WebKit native video chrome if autoplay falls back */
+video::-webkit-media-controls,
+video::-webkit-media-controls-enclosure,
+video::-webkit-media-controls-panel,
+video::-webkit-media-controls-start-playback-button,
+video::-webkit-media-controls-overlay-play-button {
+    display: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    opacity: 0 !important;
 }
 
 .hero-overlay {

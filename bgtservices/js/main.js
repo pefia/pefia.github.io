@@ -1,24 +1,45 @@
-/* Force-play autoplay videos — some browsers defer until interaction */
+/* Force-play autoplay videos — some browsers (notably iOS Safari with Low Power
+   Mode, or any browser that defers until interaction) need an explicit play().
+   Also re-tries on first user interaction so the broken-icon iOS fallback can
+   never persist past one tap. */
 function bootVideos() {
-    document.querySelectorAll('video').forEach(v => {
+    const videos = Array.from(document.querySelectorAll('video'));
+    videos.forEach(v => {
         v.muted = true;
+        v.defaultMuted = true;
         v.playsInline = true;
+        v.setAttribute('muted', '');
         v.setAttribute('playsinline', '');
         v.setAttribute('webkit-playsinline', '');
+        v.removeAttribute('controls');
+
         const tryPlay = () => {
             const p = v.play();
-            if (p && typeof p.catch === 'function') {
-                p.catch(() => {
-                    const onTouch = () => { v.play().catch(() => {}); document.removeEventListener('touchstart', onTouch); document.removeEventListener('click', onTouch); };
-                    document.addEventListener('touchstart', onTouch, { once: true, passive: true });
-                    document.addEventListener('click', onTouch, { once: true });
-                });
-            }
+            if (p && typeof p.catch === 'function') p.catch(() => {});
         };
+
         if (v.readyState >= 2) tryPlay();
-        else v.addEventListener('loadeddata', tryPlay, { once: true });
-        v.addEventListener('canplay', tryPlay, { once: true });
+        v.addEventListener('loadedmetadata', tryPlay);
+        v.addEventListener('loadeddata', tryPlay);
+        v.addEventListener('canplay', tryPlay);
     });
+
+    const kick = () => videos.forEach(v => { try { v.play().catch(() => {}); } catch (e) {} });
+    ['touchstart', 'touchend', 'click', 'scroll'].forEach(evt =>
+        document.addEventListener(evt, kick, { once: true, passive: true })
+    );
+
+    if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const p = e.target.play();
+                    if (p && typeof p.catch === 'function') p.catch(() => {});
+                }
+            });
+        }, { threshold: 0.1 });
+        videos.forEach(v => io.observe(v));
+    }
 }
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', bootVideos);
