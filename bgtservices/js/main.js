@@ -1,52 +1,30 @@
-/* Force-play autoplay videos — some browsers (notably iOS Safari with Low Power
-   Mode, or any browser that defers until interaction) need an explicit play().
-   Also re-tries on first user interaction so the broken-icon iOS fallback can
-   never persist past one tap. */
-function bootVideos() {
-    const videos = Array.from(document.querySelectorAll('video'));
-    videos.forEach(v => {
+/* Ensure all <video autoplay> elements actually play.
+   Desktop browsers honour autoplay+muted natively; iOS Safari needs an
+   explicit play() call after the element loads, and if the device is in
+   Low Power Mode it won't autoplay until the first user gesture. */
+document.addEventListener('DOMContentLoaded', function () {
+    var videos = document.querySelectorAll('video[autoplay]');
+
+    function tryPlay(v) {
         v.muted = true;
-        v.defaultMuted = true;
-        v.playsInline = true;
-        v.setAttribute('muted', '');
-        v.setAttribute('playsinline', '');
-        v.setAttribute('webkit-playsinline', '');
-        v.removeAttribute('controls');
+        var p = v.play();
+        if (p) p.catch(function () {});
+    }
 
-        const tryPlay = () => {
-            const p = v.play();
-            if (p && typeof p.catch === 'function') p.catch(() => {});
-        };
-
-        if (v.readyState >= 2) tryPlay();
-        v.addEventListener('loadedmetadata', tryPlay);
-        v.addEventListener('loadeddata', tryPlay);
-        v.addEventListener('canplay', tryPlay);
+    videos.forEach(function (v) {
+        if (v.readyState >= 3) {
+            tryPlay(v);
+        } else {
+            v.addEventListener('canplay', function () { tryPlay(v); }, { once: true });
+        }
     });
 
-    const kick = () => videos.forEach(v => { try { v.play().catch(() => {}); } catch (e) {} });
-    ['touchstart', 'touchend', 'click', 'scroll'].forEach(evt =>
-        document.addEventListener(evt, kick, { once: true, passive: true })
-    );
-
-    if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    const p = e.target.play();
-                    if (p && typeof p.catch === 'function') p.catch(() => {});
-                }
-            });
-        }, { threshold: 0.1 });
-        videos.forEach(v => io.observe(v));
+    function kickAll() {
+        videos.forEach(tryPlay);
     }
-}
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bootVideos);
-} else {
-    bootVideos();
-}
-window.addEventListener('pageshow', bootVideos);
+    document.addEventListener('touchstart', kickAll, { once: true, passive: true });
+    document.addEventListener('click', kickAll, { once: true });
+});
 
 /* Navigation */
 const hamburger = document.querySelector('.hamburger');
