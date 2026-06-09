@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 200" role="img" aria-label="SitePilots">
+  <defs>
+    <linearGradient id="sp-chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C4CAD6"/>
+      <stop offset="0.17" stop-color="#FFFFFF"/>
+      <stop offset="0.40" stop-color="#FFFFFF"/>
+      <stop offset="0.52" stop-color="#D6DBE4"/>
+      <stop offset="0.66" stop-color="#A8AFBE"/>
+      <stop offset="0.82" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#8C93A2"/>
+    </linearGradient>
+    <filter id="sp-glow" x="-30%" y="-50%" width="160%" height="200%">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#00D9FF" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+  <g filter="url(#sp-glow)" fill="url(#sp-chrome)">
+    <path d="M43 70 L144 38 L79 125 L93 82 Z"/>
+    <text x="196" y="135" font-family="Outfit, 'Segoe UI', system-ui, sans-serif"
+          font-weight="800" font-size="104" letter-spacing="3">SITEPILOTS</text>
+  </g>
+</svg>

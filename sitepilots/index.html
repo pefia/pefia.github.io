@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SitePilots — Modern Websites That Get Calls</title>
+  <meta name="description" content="Fast, conversion-focused websites built for UK trades and local services. Premium design, SEO, and support that turns clicks into phone calls." />
+  <meta name="theme-color" content="#0A0E27" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="SitePilots — Modern Websites That Get Calls" />
+  <meta property="og:description" content="Fast. Conversion-focused. Built for UK trades and local services." />
+  <meta property="og:image" content="sitepilotslogo.png" />
+
+  <!-- No-flash gate: reveal animations only run when JS is active -->
+  <script>
+    document.documentElement.classList.add('js');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('reduced-motion');
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <link rel="icon" type="image/png" href="sitepilotslogo.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- top scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="SitePilots home">
+        <img src="sitepilotslogo.png" alt="SitePilots" class="brand-logo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" />
+        <span class="brand-fallback" aria-hidden="true">
+          <svg viewBox="0 0 38 38" width="30" height="30"><path d="M34 5 6 17l10 4 4 11 4-9 6-18z" fill="none" stroke="#E8E8E8" stroke-width="2.4" stroke-linejoin="round"/></svg>
+          <b class="chrome-text">SitePilots</b>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#process">Process</a>
+        <a href="#work">Work</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="btn btn-primary btn-sm nav-cta" href="mailto:sitepilots@outlook.com">Start a project</a>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- mobile overlay menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="#process">Process</a>
+    <a href="#work">Work</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+    <a class="btn btn-primary" href="mailto:sitepilots@outlook.com">Start a project</a>
+  </div>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="top">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-grid"></div>
+        <div class="hero-glow glow-a"></div>
+        <div class="hero-glow glow-b"></div>
+        <div class="hero-aurora"></div>
+        <div class="hero-noise"></div>
+      </div>
+      <div class="hero-spotlight" aria-hidden="true"></div>
+
+      <div class="hero-inner">
+        <span class="eyebrow hero-eyebrow"><span class="dot"></span> Premium web design · UK trades &amp; local services</span>
+
+        <h1 class="hero-title chrome-text" data-split>MODERN WEBSITES THAT GET CALLS</h1>
+
+        <p class="hero-sub">Fast. Conversion-focused. Built for UK trades and local services.</p>
+
+        <div class="hero-cta">
+          <a href="#work" class="btn btn-primary" data-magnetic>
+            <span>Explore Our Work</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="mailto:sitepilots@outlook.com" class="btn btn-ghost" data-magnetic>Get a quote</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num"><b data-count="40" data-suffix="%">0%</b></span>
+            <span class="stat-label">More calls, month one</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num"><b data-count="19">0</b></span>
+            <span class="stat-label">Location pages launched</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num"><b data-count="100" data-suffix="%">0%</b></span>
+            <span class="stat-label">UK based &amp; managed</span>
+          </div>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#process" aria-label="Scroll to process">
+        <span class="scroll-cue-text">Scroll</span>
+        <span class="scroll-cue-track"><span class="scroll-cue-dot"></span></span>
+      </a>
+    </section>
+
+    <!-- ===================== HOW IT WORKS (pinned) ===================== -->
+    <section class="how" id="process">
+      <div class="how-pin">
+        <div class="how-head">
+          <span class="eyebrow">How it works</span>
+          <h2 class="section-title chrome-text">Three steps to a site that sells</h2>
+        </div>
+
+        <div class="how-progress" aria-hidden="true"><span class="how-progress-fill"></span></div>
+
+        <div class="steps">
+          <article class="step" data-step="01">
+            <div class="step-card">
+              <div class="step-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M4 16l5-9 4 6 3-4 4 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="1.4" fill="currentColor"/></svg>
+              </div>
+              <span class="step-num">01</span>
+              <h3>Design</h3>
+              <p>We craft a fast, modern site around your customers — clear calls-to-action, trust signals, and a layout engineered to make the phone ring.</p>
+            </div>
+          </article>
+
+          <article class="step" data-step="02">
+            <div class="step-card">
+              <div class="step-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M5 19l3-3M12 4c4 0 7 3 7 7l-4 4-6-6 3-5zM9 11l-3 1-1 3 3-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="step-num">02</span>
+              <h3>Launch</h3>
+              <p>SEO, location pages, analytics and lightning-fast hosting — set up properly so you rank locally and load instantly on every device.</p>
+            </div>
+          </article>
+
+          <article class="step" data-step="03">
+            <div class="step-card">
+              <div class="step-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M12 21s-7-4.3-7-9a4 4 0 017-2.6A4 4 0 0119 12c0 4.7-7 9-7 9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="step-num">03</span>
+              <h3>Support</h3>
+              <p>Ongoing edits, monitoring and improvements. You focus on the work — we keep your site fast, secure and converting all year round.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PORTFOLIO ===================== -->
+    <section class="portfolio" id="work">
+      <div class="section-head">
+        <span class="eyebrow">Selected work</span>
+        <h2 class="section-title chrome-text">Real results, not just pretty pixels</h2>
+      </div>
+
+      <article class="case">
+        <div class="case-media">
+          <div class="browser" data-parallax="0.12">
+            <div class="browser-bar">
+              <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+              <span class="browser-url">boxhillgardening.co.uk</span>
+            </div>
+            <div class="browser-screen">
+              <div class="mock-nav">
+                <span class="mock-logo">BOXHILL <em>G&amp;T</em></span>
+                <span class="mock-links"><i></i><i></i><i></i></span>
+                <span class="mock-call">📞 Call now</span>
+              </div>
+              <div class="mock-hero">
+                <div class="mock-hero-copy">
+                  <span class="mock-eyebrow">Gardening &amp; Tree Surgery · 19 locations</span>
+                  <strong>Beautiful gardens,<br />expertly maintained</strong>
+                  <span class="mock-btns"><i class="primary"></i><i class="ghost"></i></span>
+                </div>
+                <div class="mock-hero-art"></div>
+              </div>
+              <div class="mock-cards">
+                <div class="mock-card"></div><div class="mock-card"></div><div class="mock-card"></div>
+              </div>
+            </div>
+          </div>
+          <div class="case-glow" aria-hidden="true"></div>
+        </div>
+
+        <div class="case-body">
+          <span class="case-tag">Case study · BGT Services</span>
+          <h3 class="case-title chrome-text">Boxhill Gardening &amp; Tree Services</h3>
+          <p class="case-desc">A 19-location website with local SEO baked in, built for speed and conversion — delivering a <strong>40% increase in calls</strong> within the first month.</p>
+          <ul class="case-stats">
+            <li><b>+40%</b><span>Inbound calls</span></li>
+            <li><b>19</b><span>Location pages</span></li>
+            <li><b>&lt;1s</b><span>Load time</span></li>
+          </ul>
+          <a href="mailto:sitepilots@outlook.com" class="btn btn-ghost" data-magnetic>Start your project</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===================== TESTIMONIAL ===================== -->
+    <section class="testimonial">
+      <div class="quote-bg" aria-hidden="true"></div>
+      <figure class="quote-card">
+        <div class="stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.8 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.8 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.8 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.8 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.8 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+        </div>
+        <blockquote class="quote">“Best investment for my business. Calls went up <span class="hl">40% in the first month</span>.”</blockquote>
+        <figcaption class="quote-author">
+          <span class="avatar" aria-hidden="true">JS</span>
+          <span class="author-meta">
+            <b>James Smith</b>
+            <span>BGT Services</span>
+          </span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- ===================== PRICING ===================== -->
+    <section class="pricing" id="pricing">
+      <div class="section-head">
+        <span class="eyebrow">Simple pricing</span>
+        <h2 class="section-title chrome-text">Premium build. Honest prices.</h2>
+        <p class="section-sub">No retainers you can't escape. One clear build fee, with light-touch support if you want it.</p>
+      </div>
+
+      <div class="price-grid">
+        <article class="price-card accent-gold" data-price="left">
+          <div class="price-top"><span class="price-name">Website Build</span><span class="price-badge">One-off</span></div>
+          <div class="price-amount"><span class="cur">£</span><span class="val">400</span></div>
+          <p class="price-note">A complete, conversion-focused website — designed, built and launched.</p>
+          <ul class="features">
+            <li>Custom multi-page design</li>
+            <li>Mobile-first &amp; lightning fast</li>
+            <li>Local SEO foundations</li>
+            <li>Contact forms &amp; click-to-call</li>
+            <li>Go-live in days, not months</li>
+          </ul>
+          <a href="mailto:sitepilots@outlook.com" class="btn btn-ghost" data-magnetic>Get started</a>
+        </article>
+
+        <article class="price-card accent-chrome" data-price="center">
+          <div class="price-top"><span class="price-name">Basic Support</span><span class="price-badge">Monthly</span></div>
+          <div class="price-amount"><span class="cur">£</span><span class="val">20</span><span class="per">/mo</span></div>
+          <p class="price-note">Keep your site online, secure and up to date — hands off for you.</p>
+          <ul class="features">
+            <li>Hosting &amp; SSL included</li>
+            <li>Security &amp; uptime monitoring</li>
+            <li>Monthly content edits</li>
+            <li>Email support</li>
+          </ul>
+          <a href="mailto:sitepilots@outlook.com" class="btn btn-ghost" data-magnetic>Choose plan</a>
+        </article>
+
+        <article class="price-card accent-cyan featured" data-price="right">
+          <span class="featured-tag">Most popular</span>
+          <div class="price-top"><span class="price-name">Premium Support</span><span class="price-badge">Monthly</span></div>
+          <div class="price-amount"><span class="cur">£</span><span class="val">40</span><span class="per">/mo</span></div>
+          <p class="price-note">Everything in Basic, plus priority changes and growth work.</p>
+          <ul class="features">
+            <li>Everything in Basic</li>
+            <li>Priority 24h edits</li>
+            <li>Ongoing SEO improvements</li>
+            <li>Performance reports</li>
+            <li>Phone &amp; email support</li>
+          </ul>
+          <a href="mailto:sitepilots@outlook.com" class="btn btn-primary" data-magnetic>Choose plan</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== CTA BAND ===================== -->
+    <section class="cta-band" id="contact">
+      <div class="cta-glow" aria-hidden="true"></div>
+      <h2 class="cta-title chrome-text">Let’s build the site that<br />gets your phone ringing.</h2>
+      <p class="cta-sub">Tell us about your trade. We’ll send back a plan and a fixed price.</p>
+      <a href="mailto:sitepilots@outlook.com" class="btn btn-primary btn-lg" data-magnetic>
+        <span>sitepilots@outlook.com</span>
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-word chrome-text">SITEPILOTS</span>
+        <p>Modern websites that get calls — built for UK trades and local services.</p>
+        <a class="footer-email" href="mailto:sitepilots@outlook.com">sitepilots@outlook.com</a>
+      </div>
+      <nav class="footer-cols" aria-label="Footer">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="#process">Process</a>
+          <a href="#work">Work</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="cookies.html">Cookie Policy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> SitePilots. All rights reserved.</span>
+      <span class="footer-legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="terms.html">Terms</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="animations.js"></script>
+</body>
+</html>
