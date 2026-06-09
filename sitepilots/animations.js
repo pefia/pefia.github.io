@@ -49,33 +49,10 @@
     });
   }
 
-  // momentum / smooth wheel scrolling (desktop pointer only).
-  // We ease the *native* scroll position, so ScrollTrigger pinning stays
-  // perfectly in sync and keyboard / scrollbar / anchors keep working.
-  if (fine && !reduced) {
-    var target = window.scrollY, current = target, ticking = false;
-    var maxScroll = function () {
-      return Math.max(0, docEl.scrollHeight - window.innerHeight);
-    };
-    var frame = function () {
-      current += (target - current) * 0.14;
-      if (Math.abs(target - current) < 0.4) { current = target; ticking = false; }
-      window.scrollTo(0, Math.round(current));
-      if (ticking) requestAnimationFrame(frame);
-    };
-    window.addEventListener("wheel", function (e) {
-      if (e.ctrlKey) return; // let pinch-zoom through
-      var dy = e.deltaMode === 1 ? e.deltaY * 16
-             : e.deltaMode === 2 ? e.deltaY * window.innerHeight
-             : e.deltaY;
-      target = Math.min(Math.max(target + dy, 0), maxScroll());
-      e.preventDefault();
-      if (!ticking) { ticking = true; current = window.scrollY; requestAnimationFrame(frame); }
-    }, { passive: false });
-    window.addEventListener("scroll", function () {
-      if (!ticking) { target = current = window.scrollY; }
-    }, { passive: true });
-  }
+  // NOTE: we intentionally use the browser's *native* scrolling. A previous
+  // version hijacked the wheel to add momentum, which fought ScrollTrigger's
+  // pinning and could swallow scroll input. Native scroll + CSS
+  // `scroll-behavior: smooth` (for anchor clicks) is reliable everywhere.
 
   // counters helper — used by both the static and animated paths
   function finalizeCounters() {
@@ -192,9 +169,9 @@
       scrollTrigger: {
         trigger: ".how",
         start: "top top",
-        end: "+=2400",
+        end: "+=1500",
         pin: true,
-        scrub: 1,
+        scrub: 0.6,
         anticipatePin: 1
       }
     });

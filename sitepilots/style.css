@@ -25,6 +25,22 @@
   --edge-soft:  rgba(232, 232, 232, 0.08);
   --glow-cyan:  rgba(0, 217, 255, 0.22);
 
+  /* polished-chrome reflection: bright sky -> hard dark horizon -> ground */
+  --chrome-grad: linear-gradient(180deg,
+    #ffffff 0%,
+    #c4d6ec 20%,
+    #ffffff 38%,
+    #465160 47%,
+    #1e242e 51%,
+    #4a5667 56%,
+    #cdd9e8 66%,
+    #97a4b8 82%,
+    #ffffff 91%,
+    #707b8d 100%);
+  --chrome-sheen: linear-gradient(106deg,
+    transparent 40%, rgba(255,255,255,0.95) 48%,
+    rgba(180,235,255,0.35) 50%, rgba(255,255,255,0.1) 53%, transparent 62%);
+
   --font-display: 'Outfit', system-ui, sans-serif;
   --font-body:    'Manrope', system-ui, sans-serif;
 
@@ -67,22 +83,57 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-/* --------------------------- chrome text --------------------------- */
+/* --------------------------- chrome text (3D) ---------------------- */
+/* Layered metallic fill (clipped to text) + dark edge + extruded bevel
+   via stacked text-shadows + a moving specular sweep + cyan glow.       */
 .chrome-text {
-  background: linear-gradient(100deg,
-    #aab0c0 0%, #ffffff 18%, #e6e8ee 34%, #ffffff 50%,
-    #bfc4d2 66%, #ffffff 82%, #cfd3de 100%);
-  background-size: 220% auto;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-image: var(--chrome-sheen), var(--chrome-grad);
+  /* the chrome gradient tiles once per text line so every line gets a full
+     sky -> horizon -> ground reflection (instead of stretching across all). */
+  background-size: 250% 100%, 100% 1em;
+  background-position: 165% 0, 0 -0.12em;
+  background-repeat: no-repeat, repeat-y;
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.35)) drop-shadow(0 0 16px rgba(0, 217, 255, 0.22));
-  letter-spacing: 1px;
-  animation: chromeShift 9s linear infinite;
+  -webkit-text-stroke: 0.6px rgba(9, 13, 28, 0.42);
+  text-shadow:
+    0 1px 0 #c4cedb, 0 2px 0 #aab4c3, 0 3px 0 #8e98a8,
+    0 4px 0 #7a8494, 0 5px 8px rgba(0, 0, 0, 0.45),
+    0 0 24px rgba(0, 217, 255, 0.26);
+  letter-spacing: 0.5px;
+  animation: chromeSheen 6.5s linear infinite;
 }
-@keyframes chromeShift { to { background-position: -220% center; } }
-.reduced-motion .chrome-text { animation: none; }
+/* per-letter fill so the gradient survives the hero stagger transforms */
+.chrome-text .char {
+  -webkit-text-fill-color: transparent;
+  background-image: var(--chrome-sheen), var(--chrome-grad);
+  background-size: 250% 100%, 100% 100%;
+  background-position: 165% 0, 0 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 0.6px rgba(9, 13, 28, 0.42);
+  animation: chromeSheen 6.5s linear infinite;
+}
+@keyframes chromeSheen { to { background-position: -165% 0, 0 0; } }
+
+/* deeper extrusion for the giant display headlines */
+.hero-title.chrome-text,
+.cta-title.chrome-text,
+.footer-word.chrome-text {
+  -webkit-text-stroke: 1px rgba(7, 11, 24, 0.5);
+  text-shadow:
+    0 1px 0 #d4dce8, 0 2px 0 #bdc6d3, 0 3px 0 #a6b0bf,
+    0 4px 0 #919bab, 0 5px 0 #7d8797, 0 6px 0 #6b7585,
+    0 7px 0 #5b6575, 0 10px 18px rgba(0,0,0,0.6),
+    0 0 40px rgba(0,217,255,0.3);
+}
+.hero-title .char { -webkit-text-stroke: 1px rgba(7, 11, 24, 0.5); }
+
+.reduced-motion .chrome-text,
+.reduced-motion .chrome-text .char { animation: none; }
 
 /* ----------------------------- shared ------------------------------ */
 .container, .section-head, .case, .price-grid,
@@ -527,7 +578,7 @@ body.menu-open .mobile-menu { opacity: 1; visibility: visible; }
 /* ------------------------------ footer ----------------------------- */
 .footer { background: var(--bg-2); border-top: 1px solid var(--edge-soft); padding-top: 80px; }
 .footer-top { display: grid; grid-template-columns: 1.4fr 1fr; gap: 50px; padding-bottom: 56px; }
-.footer-word { font-family: var(--font-display); font-weight: 900; font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: 0.04em; }
+.footer-word { font-family: var(--font-display); font-weight: 900; font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: 0.04em; line-height: 1; }
 .footer-brand p { margin: 16px 0 18px; max-width: 360px; color: var(--text-dim); }
 .footer-email { color: var(--accent); font-weight: 600; border-bottom: 1px solid rgba(0,217,255,0.3); padding-bottom: 2px; transition: color 0.3s; }
 .footer-email:hover { color: #9be9ff; }
