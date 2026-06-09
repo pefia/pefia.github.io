@@ -40,6 +40,11 @@
   --chrome-sheen: linear-gradient(106deg,
     transparent 40%, rgba(255,255,255,0.95) 48%,
     rgba(180,235,255,0.35) 50%, rgba(255,255,255,0.1) 53%, transparent 62%);
+  /* iridescent holographic spectrum (loops seamlessly cyan -> ... -> cyan) */
+  --holo: linear-gradient(100deg,
+    #22d3ee 0%, #ecfdff 7%, #38bdf8 15%, #818cf8 26%, #f3f0ff 33%,
+    #c084fc 42%, #f0abfc 51%, #ffffff 57%, #67e8f9 65%, #a78bfa 77%,
+    #ecfeff 84%, #5eead4 92%, #22d3ee 100%);
 
   --font-display: 'Outfit', system-ui, sans-serif;
   --font-body:    'Manrope', system-ui, sans-serif;
@@ -119,8 +124,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 @keyframes chromeSheen { to { background-position: -165% 0, 0 0; } }
 
-/* deeper extrusion for the giant display headlines */
-.hero-title.chrome-text,
+/* deeper extrusion for the chrome display headlines (CTA + footer) */
 .cta-title.chrome-text,
 .footer-word.chrome-text {
   -webkit-text-stroke: 1px rgba(7, 11, 24, 0.5);
@@ -130,7 +134,41 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
     0 7px 0 #5b6575, 0 10px 18px rgba(0,0,0,0.6),
     0 0 40px rgba(0,217,255,0.3);
 }
-.hero-title .char { -webkit-text-stroke: 1px rgba(7, 11, 24, 0.5); }
+
+/* --------------------- holographic hero headline ------------------- */
+/* Iridescent multi-colour flow with glassy white highlights baked into
+   the palette, plus a cyan + violet glow. A tasteful holographic
+   spectrum (no flat ROYGBIV), animated so the colours drift like foil.  */
+.holo-text {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-image: var(--holo);
+  background-size: 200% 100%;
+  background-position: 0 0;
+  background-repeat: repeat-x;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 0.5px rgba(8, 12, 28, 0.28);
+  filter:
+    drop-shadow(0 2px 5px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 0 20px rgba(34, 211, 238, 0.55))
+    drop-shadow(0 0 44px rgba(168, 85, 247, 0.42));
+  animation: holoFlow 9s linear infinite;
+}
+.holo-text .char {
+  -webkit-text-fill-color: transparent;
+  background-image: var(--holo);
+  background-size: 200% 100%;
+  background-position: 0 0;
+  background-repeat: repeat-x;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 0.5px rgba(8, 12, 28, 0.28);
+  animation: holoFlow 9s linear infinite;
+}
+@keyframes holoFlow { to { background-position: 200% 0; } }
+.reduced-motion .holo-text,
+.reduced-motion .holo-text .char { animation: none; }
 
 .reduced-motion .chrome-text,
 .reduced-motion .chrome-text .char { animation: none; }
